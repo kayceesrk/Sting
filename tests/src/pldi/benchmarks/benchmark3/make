@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# tests/src/pldi/benchmarks/benchmark3/make
+
+a=false
+b=false
+c=false
+
+while true;
+do
+  case $1 in
+    "")
+      break
+      ;;
+    all) 
+      a=true
+      b=true
+      c=true
+      break
+      ;;
+    a) 
+      a=true
+      shift
+      ;;      
+    b)
+      b=true
+      shift
+      ;;
+    c)
+      c=true
+      shift
+      ;;      
+    *)
+      shift
+      ;;
+  esac
+done
+
+
+if [ "$c" == "true" ];
+then
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/c/Alice.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/c/Bob.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/c/Carol.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/c/Kill.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
+
+
+if [ "$b" == "true" ];
+then
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/b/Bob.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/b/Carol.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/b/Kill.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
+
+
+if [ "$a" == "true" ];
+then
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/a/Alice.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/a/Bob.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/a/Carol.sj -d tests/classes/  
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/a/AliceCarol.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/a/Kill.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi

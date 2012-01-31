@@ -1,0 +1,134 @@
+//$ bin/sessionjc tests/src/pi/Service.sj -d tests/classes/
+//$ bin/sessionj -cp tests/classes/ pi.Service 4441 1024 localhost 4443 
+
+package pi;
+
+import java.io.*;
+import java.math.*;
+import java.util.*;
+
+import sessionj.runtime.*;
+import sessionj.runtime.net.*;
+
+/**
+ * 
+ * @author Raymond, Andi
+ *
+ */
+public class Service
+{	
+	private final noalias protocol p_worker_client { ^(Protocols.p_worker) }
+	
+	private int port;
+	private int workerSize;
+	private String workerHost;
+	private int workerPort;  
+	
+	public Service(int port, int workerSize, String workerHost, int workerPort)
+	{
+		this.port = port;
+		this.workerSize = workerSize;
+		this.workerHost = workerHost;
+		this.workerPort = workerPort;
+	}
+	
+	private double pi;
+	private int hits;
+	private int shots;
+	
+	private synchronized double done()
+	{
+		return (Math.abs(Math.PI - pi) > target);
+	}
+	
+	private synchronized void updatePi(double hits)
+	{
+		this.hits += hits;
+		this.shots += workerSize;
+		
+		this.pi = 4.0 * ((double) hits) / ((double) shots);
+	}
+	
+	public void run() throws Exception 
+	{			
+		final noalias SJServerAddress c_worker = SJServerAddress.create(p_worker_client, workerHost, workerPort);						
+		
+		final noalias SJServerSocket ss;
+		
+		try (ss)
+		{		
+			ss = SJNewServerSocket.create(Protocols.p_service, port);
+
+			while (true)
+			{		
+				final noalias SJSocket client;			
+ 				
+				try (client)
+				{			
+					client = ss.accept();
+					
+					pi = 0.0;
+					
+					double target = ((Double) client.receive()).doubleValue();
+					
+					//double pi = 0.0;
+					
+					final noalias SJSocket worker;
+					
+					try (worker)
+					{								
+						int shots = 0;
+						int hits = 0;
+						
+						worker = c_worker.request();								
+						
+						worker.send(new Integer(workerSize));						
+						
+						<worker>.outwhile(Math.abs(Math.PI - pi) > target)
+						{																	
+							shots += workerSize;
+							hits += ((Integer) worker.receive()).intValue();
+							
+							pi = 4.0 * hits / shots;
+							
+							System.out.println("pi = " + pi);
+						}																			
+					}
+					catch(SJIncompatibleSessionException ise)
+					{
+						System.err.println(serviceId() + " rejected by Worker: " + ise);
+					}
+					
+					client.send(new BigDecimal(pi));
+				}
+				catch(SJIncompatibleSessionException ise)
+				{
+					System.err.println(serviceId() + " incompatible client: " + ise);
+				}
+				catch(SJIOException ioe)
+				{
+					System.err.println(serviceId() + " IO error: " + ioe);			
+				}			
+			}
+		}		
+		finally		
+		{
+			
+		}		
+	}
+	
+	public static void main(String args[]) throws Exception 
+	{
+		int port = Integer.parseInt(args[0]);
+		int workerSize = Integer.parseInt(args[1]);
+		String workerHost = args[2];
+		int workerPort = Integer.parseInt(args[3]);		
+		
+		new Service(port, workerSize, workerHost, workerPort).run();
+	}
+	
+	private String serviceId()
+	{
+		return "[Service " + port + "]";
+	}		
+}

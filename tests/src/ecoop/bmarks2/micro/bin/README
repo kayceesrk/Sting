@@ -1,0 +1,8 @@
+To run the response time benchmark on localhost:
+
+1. tests/src/ecoop/bmarks2/micro/bin/make localhost all
+2. tests/src/ecoop/bmarks2/micro/bin/load.py t       localhost localhost     8888          7777          SE        2 
+                                             <debug> <env>     <server host> <server port> <worker port> <version> <repeats>
+3. tests/src/ecoop/bmarks2/micro/bin/timer.py t localhost localhost 8888 6666 SE 3 2
+4. tests/src/ecoop/bmarks2/micro/bin/server.py t localhost 8888 7777 6666 SE 2
+

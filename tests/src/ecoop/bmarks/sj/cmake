@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Run from the sessionj root directory:
+# tests/src/ecoop/bmarks/sj/make 
+
+
+path=tests/src/ecoop/bmarks/sj/common
+
+for f in ClientMessage MyObject; do
+  echo Compiling $path/$f.sj
+  #bin/sessionjc -cp tests/classes -sourcepath $path $path/$f.sj -d tests/classes
+  bin/csessionjc -cp tests/classes $path/$f.sj -d tests/classes
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+done
+
+path=tests/src/ecoop/bmarks/sj/server
+
+for f in Server SignalServer ServerRunner; do
+  echo Compiling $path/$f.sj
+  bin/csessionjc -cp tests/classes $path/$f.sj -d tests/classes
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+done
+
+path=tests/src/ecoop/bmarks/sj/client
+
+for f in SignalClient LoadClient TimerClient ClientRunner; do
+  echo Compiling $path/$f.sj
+  bin/csessionjc -cp tests/classes $path/$f.sj -d tests/classes
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+done

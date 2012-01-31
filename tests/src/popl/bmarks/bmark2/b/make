@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+#Run from the sessionj root directory:
+#tests/src/popl/bmarks/bmark2/b/make  
+
+
+# Script configuration parameters.
+
+compiler=bin/sessionjc # Compiler.
+classpath=tests/classes # Classpath.
+destination=tests/classes # Output directory.
+
+
+# Functions.
+
+compile()
+{
+  echo Compiling: $1
+  $compiler -cp $classpath $1 -d $destination
+  if [ $? -ne 0 ]; then exit 1; fi
+}
+
+
+# Main.
+
+echo Parameters: compiler=$compiler, classpath=$classpath, destination=$destination 
+
+
+path=tests/src/popl/bmarks
+
+for f in Message Kill KillThread; do
+  compile $path/$f.sj
+done
+
+path=tests/src/popl/bmarks/bmark2
+
+for f in Channel SpinChannel OrdinaryChannel BusyWaitChannel NewChannel NewerChannel NewestChannel; do
+  compile $path/$f.sj
+done
+
+path=tests/src/popl/bmarks/bmark2/b
+
+for f in Session Session1 Session2 LocalRun; do
+  compile $path/$f.sj
+done
+  

@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Run from the sessionj root directory:
+# tests/src/popl/bmarks/bmark1/make
+
+
+a=false
+b=false
+
+while true;
+do
+  case $1 in
+    "")
+      break
+      ;;
+    all) 
+      a=true
+      b=true
+      break
+      ;;
+    a) 
+      a=true
+      shift
+      ;;      
+    b)
+      b=true
+      shift
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+
+if [ "$a" == "true" ];
+then
+  echo "Compiling popl.bmarks.bmark1.a.Server:"
+  bin/sessionjc -cp tests/classes/ tests/src/popl/bmarks/bmark1/a/Server.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling popl.bmarks.bmark1.a.Client:"
+  bin/sessionjc -cp tests/classes/ tests/src/popl/bmarks/bmark1/a/Client.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+   echo "Compiling popl.bmarks.bmark1.a.LocalRun:"
+  bin/sessionjc -cp tests/classes/ tests/src/popl/bmarks/bmark1/a/LocalRun.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi 
+fi
+
+
+if [ "$b" == "true" ];
+then
+  echo "Compiling popl.bmarks.bmark1.b.Server:"
+  bin/sessionjc -cp tests/classes/ tests/src/popl/bmarks/bmark1/b/Server.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling popl.bmarks.bmark1.b.Client:"
+  bin/sessionjc -cp tests/classes/ tests/src/popl/bmarks/bmark1/b/Client.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+   echo "Compiling popl.bmarks.bmark1.b.LocalRun:"
+  bin/sessionjc -cp tests/classes/ tests/src/popl/bmarks/bmark1/b/LocalRun.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi 
+fi
+

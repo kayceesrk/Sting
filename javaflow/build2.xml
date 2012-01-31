@@ -1,0 +1,45 @@
+<project name="myMain" default="run">  
+   
+     <target name="clean">  
+         <delete includeemptydirs="true">  
+             <fileset dir="tests/classes/purdue/continuations/" includes="**/*"/>  
+         </delete>  
+     </target>  
+       
+     <taskdef name="javaflow" classname="org.apache.commons.javaflow.ant.AntRewriteTask">  
+         <classpath> 
+             <pathelement location="tests/classes/purdue/continuations/"/> 
+             <pathelement location="lib/javaflow.jar"/>  
+	     <pathelement location="lib/bcel.jar"/>
+	     <pathelement location="lib/commons.jar"/>
+         </classpath>  
+     </taskdef>  
+       
+     <target name="build">  
+           
+         <javac srcdir="." destdir=".">  
+             <classpath> 
+	         <pathelement location="."/>
+                 <pathelement location="lib/javaflow.jar"/>
+		 <pathelement location="lib/bcel.jar"/>
+		 <pathelement location="lib/commons.jar"/>  
+             </classpath>  
+         </javac>  
+           
+         <javaflow srcdir="tests/classes/purdue/continuations/" dstdir="tests/classes/purdue/continuations/">  
+             <include name="**/*.class"/>  
+         </javaflow>  
+           
+     </target>  
+       
+     <target name="run" depends="build">  
+         <java classname="Test1"  fork="true" dir="tests/classes/purdue/continuations/">  
+             <classpath>
+	         <pathelement location="tests/classes/purdue/continuations/"/>
+                 <pathelement location="lib/javaflow.jar"/>
+		 <pathelement location="lib/bcel.jar"/>
+		 <pathelement location="lib/commons.jar"/>
+             </classpath>  
+         </java>  
+     </target>  
+ </project>  

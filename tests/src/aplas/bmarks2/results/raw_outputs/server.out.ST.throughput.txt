@@ -1,0 +1,3062 @@
+Configuration: server=camelot16, workers=['camelot15', 'camelot03', 'camelot04', 'camelot05', 'camelot06', 'camelot07', 'camelot09', 'camelot02', 'camelot13', 'camelot14'], client=camelot01
+Global: versions=['ST'], numClients=['10', '100', '300', '500', '700', '900'], messageSizes=['1024']
+Parameters: version=ST, size=1024, trial=0
+[Server] Count duration: 15246961000 nanos
+[Server] Total count: 4082
+[Server] Count duration: 16514256000 nanos
+[Server] Total count: 4433
+[Server] Count duration: 15281890000 nanos
+[Server] Total count: 4107
+[Server] Count duration: 15302984000 nanos
+[Server] Total count: 4115
+[Server] Count duration: 16513604000 nanos
+[Server] Total count: 4454
+[Server] Count duration: 15287704000 nanos
+[Server] Total count: 4122
+[Server] Count duration: 15286967000 nanos
+[Server] Total count: 4123
+[Server] Count duration: 15297096000 nanos
+[Server] Total count: 4125
+[Server] Count duration: 16527091000 nanos
+[Server] Total count: 4461
+[Server] Count duration: 15290822000 nanos
+[Server] Total count: 4126
+[Server] Count duration: 15286892000 nanos
+[Server] Total count: 4122
+[Server] Count duration: 15300083000 nanos
+[Server] Total count: 4128
+[Server] Count duration: 16621951000 nanos
+[Server] Total count: 4485
+[Server] Count duration: 15314953000 nanos
+[Server] Total count: 4130
+[Server] Count duration: 15298990000 nanos
+[Server] Total count: 4131
+[Server] Count duration: 15284862000 nanos
+[Server] Total count: 4131
+[Server] Count duration: 16514917000 nanos
+[Server] Total count: 4460
+[Server] Count duration: 15310746000 nanos
+[Server] Total count: 4131
+[Server] Count duration: 15275743000 nanos
+[Server] Total count: 4124
+[Server] Count duration: 16547692000 nanos
+[Server] Total count: 4465
+[Server] Count duration: 15281590000 nanos
+[Server] Total count: 4127
+[Server] Count duration: 15281561000 nanos
+[Server] Total count: 4126
+[Server] Count duration: 15345018000 nanos
+[Server] Total count: 4149
+[Server] Count duration: 16548025000 nanos
+[Server] Total count: 4474
+[Server] Count duration: 15300986000 nanos
+[Server] Total count: 4139
+[Server] Count duration: 15289542000 nanos
+[Server] Total count: 4136
+[Server] Count duration: 15290396000 nanos
+[Server] Total count: 4134
+[Server] Count duration: 16610842000 nanos
+[Server] Total count: 4495
+[Server] Count duration: 15251773000 nanos
+[Server] Total count: 4122
+[Server] Count duration: 15278104000 nanos
+[Server] Total count: 4134
+[Server] Count duration: 15277655000 nanos
+[Server] Total count: 4133
+[Server] Count duration: 16549852000 nanos
+[Server] Total count: 4473
+[Server] Count duration: 15295433000 nanos
+[Server] Total count: 4136
+[Server] Count duration: 15293263000 nanos
+[Server] Total count: 4137
+[Server] Count duration: 15287607000 nanos
+[Server] Total count: 4139
+[Server] Count duration: 15303629000 nanos
+[Server] Total count: 4131
+[Server] Count duration: 15287680000 nanos
+[Server] Total count: 4137
+[Server] Count duration: 15264920000 nanos
+[Server] Total count: 4133
+[Server] Count duration: 16548089000 nanos
+[Server] Total count: 4475
+[Server] Count duration: 15298225000 nanos
+[Server] Total count: 4140
+[Server] Count duration: 15294380000 nanos
+[Server] Total count: 4142
+[Server] Count duration: 15275965000 nanos
+[Server] Total count: 4134
+[Server] Count duration: 16500632000 nanos
+[Server] Total count: 4463
+[Server] Count duration: 15317290000 nanos
+[Server] Total count: 4149
+[Server] Count duration: 15286575000 nanos
+[Server] Total count: 4141
+[Server] Count duration: 15287390000 nanos
+[Server] Total count: 4139
+[Server] Count duration: 16596296000 nanos
+[Server] Total count: 4494
+[Server] Count duration: 15290727000 nanos
+[Server] Total count: 4142
+[Server] Count duration: 15291422000 nanos
+[Server] Total count: 4142
+[Server] Count duration: 15308487000 nanos
+[Server] Total count: 4140
+[Server] Finished running (10 Clients joined).
+Parameters: version=ST, size=1024, trial=1
+[Server] Count duration: 15297824000 nanos
+[Server] Total count: 4037
+[Server] Count duration: 15313692000 nanos
+[Server] Total count: 4061
+[Server] Count duration: 15276809000 nanos
+[Server] Total count: 4052
+[Server] Count duration: 16533068000 nanos
+[Server] Total count: 4381
+[Server] Count duration: 15311113000 nanos
+[Server] Total count: 4060
+[Server] Count duration: 15295880000 nanos
+[Server] Total count: 4059
+[Server] Count duration: 16516227000 nanos
+[Server] Total count: 4393
+[Server] Count duration: 15343649000 nanos
+[Server] Total count: 4077
+[Server] Count duration: 15303694000 nanos
+[Server] Total count: 4064
+[Server] Count duration: 15287024000 nanos
+[Server] Total count: 4064
+[Server] Count duration: 16511852000 nanos
+[Server] Total count: 4393
+[Server] Count duration: 15291527000 nanos
+[Server] Total count: 4067
+[Server] Count duration: 15319542000 nanos
+[Server] Total count: 4069
+[Server] Count duration: 15286478000 nanos
+[Server] Total count: 4066
+[Server] Count duration: 16509774000 nanos
+[Server] Total count: 4391
+[Server] Count duration: 15318974000 nanos
+[Server] Total count: 4076
+[Server] Count duration: 15324830000 nanos
+[Server] Total count: 4084
+[Server] Count duration: 15275047000 nanos
+[Server] Total count: 4061
+[Server] Count duration: 16518610000 nanos
+[Server] Total count: 4401
+[Server] Count duration: 15321173000 nanos
+[Server] Total count: 4076
+[Server] Count duration: 15329082000 nanos
+[Server] Total count: 4083
+[Server] Count duration: 15326636000 nanos
+[Server] Total count: 4076
+[Server] Count duration: 16532188000 nanos
+[Server] Total count: 4394
+[Server] Count duration: 15304699000 nanos
+[Server] Total count: 4080
+[Server] Count duration: 15267871000 nanos
+[Server] Total count: 4065
+[Server] Count duration: 16585640000 nanos
+[Server] Total count: 4429
+[Server] Count duration: 15289837000 nanos
+[Server] Total count: 4070
+[Server] Count duration: 15324706000 nanos
+[Server] Total count: 4082
+[Server] Count duration: 15274718000 nanos
+[Server] Total count: 4070
+[Server] Count duration: 16510183000 nanos
+[Server] Total count: 4402
+[Server] Count duration: 15280195000 nanos
+[Server] Total count: 4076
+[Server] Count duration: 15321530000 nanos
+[Server] Total count: 4081
+[Server] Count duration: 15310922000 nanos
+[Server] Total count: 4086
+[Server] Count duration: 16544395000 nanos
+[Server] Total count: 4413
+[Server] Count duration: 15286879000 nanos
+[Server] Total count: 4075
+[Server] Count duration: 15309297000 nanos
+[Server] Total count: 4082
+[Server] Count duration: 15284148000 nanos
+[Server] Total count: 4075
+[Server] Count duration: 16525684000 nanos
+[Server] Total count: 4404
+[Server] Count duration: 15291086000 nanos
+[Server] Total count: 4079
+[Server] Count duration: 15301224000 nanos
+[Server] Total count: 4086
+[Server] Count duration: 16568532000 nanos
+[Server] Total count: 4417
+[Server] Count duration: 15306654000 nanos
+[Server] Total count: 4077
+[Server] Count duration: 15304016000 nanos
+[Server] Total count: 4085
+[Server] Count duration: 15306930000 nanos
+[Server] Total count: 4084
+[Server] Count duration: 16532451000 nanos
+[Server] Total count: 4412
+[Server] Count duration: 15279798000 nanos
+[Server] Total count: 4075
+[Server] Count duration: 15292153000 nanos
+[Server] Total count: 4080
+[Server] Count duration: 15240200000 nanos
+[Server] Total count: 4067
+[Server] Count duration: 16498711000 nanos
+[Server] Total count: 4407
+[Server] Count duration: 15289226000 nanos
+[Server] Total count: 4078
+[Server] Finished running (10 Clients joined).
+Parameters: version=ST, size=1024, trial=2
+[Server] Count duration: 15268452000 nanos
+[Server] Total count: 3980
+[Server] Count duration: 16513776000 nanos
+[Server] Total count: 4315
+[Server] Count duration: 15284600000 nanos
+[Server] Total count: 4000
+[Server] Count duration: 15303354000 nanos
+[Server] Total count: 4006
+[Server] Count duration: 15279031000 nanos
+[Server] Total count: 4008
+[Server] Count duration: 16509480000 nanos
+[Server] Total count: 4320
+[Server] Count duration: 15294932000 nanos
+[Server] Total count: 4002
+[Server] Count duration: 15318935000 nanos
+[Server] Total count: 4016
+[Server] Count duration: 15283625000 nanos
+[Server] Total count: 4002
+[Server] Count duration: 16569821000 nanos
+[Server] Total count: 4344
+[Server] Count duration: 15297336000 nanos
+[Server] Total count: 4009
+[Server] Count duration: 15401134000 nanos
+[Server] Total count: 4050
+[Server] Count duration: 16512250000 nanos
+[Server] Total count: 4333
+[Server] Count duration: 15323072000 nanos
+[Server] Total count: 4020
+[Server] Count duration: 15310353000 nanos
+[Server] Total count: 4017
+[Server] Count duration: 15294259000 nanos
+[Server] Total count: 4013
+[Server] Count duration: 16528466000 nanos
+[Server] Total count: 4347
+[Server] Count duration: 15284879000 nanos
+[Server] Total count: 4016
+[Server] Count duration: 15299173000 nanos
+[Server] Total count: 4026
+[Server] Count duration: 15294621000 nanos
+[Server] Total count: 4022
+[Server] Count duration: 16657979000 nanos
+[Server] Total count: 4381
+[Server] Count duration: 15294810000 nanos
+[Server] Total count: 4027
+[Server] Count duration: 15303415000 nanos
+[Server] Total count: 4027
+[Server] Count duration: 15226615000 nanos
+[Server] Total count: 4000
+[Server] Count duration: 16528669000 nanos
+[Server] Total count: 4337
+[Server] Count duration: 15290138000 nanos
+[Server] Total count: 4016
+[Server] Count duration: 15267031000 nanos
+[Server] Total count: 4008
+[Server] Count duration: 15304699000 nanos
+[Server] Total count: 4016
+[Server] Count duration: 15293878000 nanos
+[Server] Total count: 4016
+[Server] Count duration: 15304270000 nanos
+[Server] Total count: 4027
+[Server] Count duration: 15285916000 nanos
+[Server] Total count: 4018
+[Server] Count duration: 16568444000 nanos
+[Server] Total count: 4361
+[Server] Count duration: 15294559000 nanos
+[Server] Total count: 4025
+[Server] Count duration: 15292511000 nanos
+[Server] Total count: 4031
+[Server] Count duration: 15266360000 nanos
+[Server] Total count: 4021
+[Server] Count duration: 16531035000 nanos
+[Server] Total count: 4355
+[Server] Count duration: 15312535000 nanos
+[Server] Total count: 4040
+[Server] Count duration: 15288946000 nanos
+[Server] Total count: 4026
+[Server] Count duration: 15265627000 nanos
+[Server] Total count: 4018
+[Server] Count duration: 16545096000 nanos
+[Server] Total count: 4358
+[Server] Count duration: 15276183000 nanos
+[Server] Total count: 4014
+[Server] Count duration: 15278817000 nanos
+[Server] Total count: 4021
+[Server] Count duration: 15270518000 nanos
+[Server] Total count: 4010
+[Server] Count duration: 16555615000 nanos
+[Server] Total count: 4354
+[Server] Count duration: 15286422000 nanos
+[Server] Total count: 4017
+[Server] Count duration: 15299631000 nanos
+[Server] Total count: 4021
+[Server] Count duration: 16595942000 nanos
+[Server] Total count: 4367
+[Server] Count duration: 15319472000 nanos
+[Server] Total count: 4032
+[Server] Count duration: 15293126000 nanos
+[Server] Total count: 4022
+[Server] Count duration: 15285857000 nanos
+[Server] Total count: 4029
+[Server] Finished running (10 Clients joined).
+Parameters: version=ST, size=1024, trial=3
+[Server] Count duration: 15279068000 nanos
+[Server] Total count: 4054
+[Server] Count duration: 15288143000 nanos
+[Server] Total count: 4065
+[Server] Count duration: 15274873000 nanos
+[Server] Total count: 4072
+[Server] Count duration: 16542255000 nanos
+[Server] Total count: 4416
+[Server] Count duration: 15288651000 nanos
+[Server] Total count: 4086
+[Server] Count duration: 15287167000 nanos
+[Server] Total count: 4085
+[Server] Count duration: 15283538000 nanos
+[Server] Total count: 4087
+[Server] Count duration: 16534341000 nanos
+[Server] Total count: 4422
+[Server] Count duration: 15288455000 nanos
+[Server] Total count: 4090
+[Server] Count duration: 15336383000 nanos
+[Server] Total count: 4110
+[Server] Count duration: 15275438000 nanos
+[Server] Total count: 4088
+[Server] Count duration: 16551067000 nanos
+[Server] Total count: 4433
+[Server] Count duration: 15286714000 nanos
+[Server] Total count: 4096
+[Server] Count duration: 15276604000 nanos
+[Server] Total count: 4095
+[Server] Count duration: 15285070000 nanos
+[Server] Total count: 4102
+[Server] Count duration: 15299101000 nanos
+[Server] Total count: 4099
+[Server] Count duration: 15280150000 nanos
+[Server] Total count: 4095
+[Server] Count duration: 15271246000 nanos
+[Server] Total count: 4088
+[Server] Count duration: 16519596000 nanos
+[Server] Total count: 4432
+[Server] Count duration: 15328801000 nanos
+[Server] Total count: 4101
+[Server] Count duration: 15315244000 nanos
+[Server] Total count: 4104
+[Server] Count duration: 15273292000 nanos
+[Server] Total count: 4100
+[Server] Count duration: 16546426000 nanos
+[Server] Total count: 4438
+[Server] Count duration: 15295541000 nanos
+[Server] Total count: 4096
+[Server] Count duration: 15296162000 nanos
+[Server] Total count: 4092
+[Server] Count duration: 15264445000 nanos
+[Server] Total count: 4094
+[Server] Count duration: 16515302000 nanos
+[Server] Total count: 4430
+[Server] Count duration: 15329626000 nanos
+[Server] Total count: 4117
+[Server] Count duration: 15290548000 nanos
+[Server] Total count: 4101
+[Server] Count duration: 15266107000 nanos
+[Server] Total count: 4101
+[Server] Count duration: 16506876000 nanos
+[Server] Total count: 4426
+[Server] Count duration: 15312102000 nanos
+[Server] Total count: 4104
+[Server] Count duration: 15294405000 nanos
+[Server] Total count: 4105
+[Server] Count duration: 16512400000 nanos
+[Server] Total count: 4425
+[Server] Count duration: 15283652000 nanos
+[Server] Total count: 4102
+[Server] Count duration: 15318181000 nanos
+[Server] Total count: 4113
+[Server] Count duration: 15330106000 nanos
+[Server] Total count: 4113
+[Server] Count duration: 16521487000 nanos
+[Server] Total count: 4442
+[Server] Count duration: 15279142000 nanos
+[Server] Total count: 4101
+[Server] Count duration: 15315859000 nanos
+[Server] Total count: 4112
+[Server] Count duration: 15302964000 nanos
+[Server] Total count: 4104
+[Server] Count duration: 16542421000 nanos
+[Server] Total count: 4448
+[Server] Count duration: 15282265000 nanos
+[Server] Total count: 4103
+[Server] Count duration: 15293982000 nanos
+[Server] Total count: 4112
+[Server] Count duration: 15281458000 nanos
+[Server] Total count: 4103
+[Server] Count duration: 16539120000 nanos
+[Server] Total count: 4449
+[Server] Count duration: 15285842000 nanos
+[Server] Total count: 4106
+[Server] Count duration: 15318714000 nanos
+[Server] Total count: 4113
+[Server] Count duration: 16503202000 nanos
+[Server] Total count: 4435
+[Server] Count duration: 15278967000 nanos
+[Server] Total count: 4105
+[Server] Finished running (10 Clients joined).
+Parameters: version=ST, size=1024, trial=4
+[Server] Count duration: 15278987000 nanos
+[Server] Total count: 4019
+[Server] Count duration: 15307791000 nanos
+[Server] Total count: 4038
+[Server] Count duration: 16507249000 nanos
+[Server] Total count: 4356
+[Server] Count duration: 15309300000 nanos
+[Server] Total count: 4038
+[Server] Count duration: 15295073000 nanos
+[Server] Total count: 4047
+[Server] Count duration: 15296216000 nanos
+[Server] Total count: 4054
+[Server] Count duration: 16533157000 nanos
+[Server] Total count: 4375
+[Server] Count duration: 15324551000 nanos
+[Server] Total count: 4050
+[Server] Count duration: 15311635000 nanos
+[Server] Total count: 4059
+[Server] Count duration: 16512076000 nanos
+[Server] Total count: 4370
+[Server] Count duration: 15270614000 nanos
+[Server] Total count: 4048
+[Server] Count duration: 15302718000 nanos
+[Server] Total count: 4057
+[Server] Count duration: 15287288000 nanos
+[Server] Total count: 4053
+[Server] Count duration: 16568731000 nanos
+[Server] Total count: 4400
+[Server] Count duration: 15280732000 nanos
+[Server] Total count: 4056
+[Server] Count duration: 15333080000 nanos
+[Server] Total count: 4071
+[Server] Count duration: 15312576000 nanos
+[Server] Total count: 4058
+[Server] Count duration: 16565126000 nanos
+[Server] Total count: 4389
+[Server] Count duration: 15278672000 nanos
+[Server] Total count: 4053
+[Server] Count duration: 15307909000 nanos
+[Server] Total count: 4061
+[Server] Count duration: 15285993000 nanos
+[Server] Total count: 4055
+[Server] Count duration: 16506774000 nanos
+[Server] Total count: 4376
+[Server] Count duration: 15271471000 nanos
+[Server] Total count: 4050
+[Server] Count duration: 15299455000 nanos
+[Server] Total count: 4057
+[Server] Count duration: 15318265000 nanos
+[Server] Total count: 4071
+[Server] Count duration: 15317931000 nanos
+[Server] Total count: 4063
+[Server] Count duration: 15274672000 nanos
+[Server] Total count: 4055
+[Server] Count duration: 15300188000 nanos
+[Server] Total count: 4065
+[Server] Count duration: 16546072000 nanos
+[Server] Total count: 4402
+[Server] Count duration: 15299882000 nanos
+[Server] Total count: 4060
+[Server] Count duration: 15300435000 nanos
+[Server] Total count: 4064
+[Server] Count duration: 15310018000 nanos
+[Server] Total count: 4069
+[Server] Count duration: 16528044000 nanos
+[Server] Total count: 4396
+[Server] Count duration: 15290737000 nanos
+[Server] Total count: 4064
+[Server] Count duration: 15297782000 nanos
+[Server] Total count: 4057
+[Server] Count duration: 15301518000 nanos
+[Server] Total count: 4063
+[Server] Count duration: 16515781000 nanos
+[Server] Total count: 4380
+[Server] Count duration: 15311126000 nanos
+[Server] Total count: 4063
+[Server] Count duration: 15296646000 nanos
+[Server] Total count: 4064
+[Server] Count duration: 15295603000 nanos
+[Server] Total count: 4057
+[Server] Count duration: 16517867000 nanos
+[Server] Total count: 4391
+[Server] Count duration: 15291757000 nanos
+[Server] Total count: 4064
+[Server] Count duration: 15284672000 nanos
+[Server] Total count: 4070
+[Server] Count duration: 16538866000 nanos
+[Server] Total count: 4401
+[Server] Count duration: 15297192000 nanos
+[Server] Total count: 4066
+[Server] Count duration: 15287562000 nanos
+[Server] Total count: 4064
+[Server] Count duration: 15269800000 nanos
+[Server] Total count: 4064
+[Server] Count duration: 16540083000 nanos
+[Server] Total count: 4398
+[Server] Count duration: 15228826000 nanos
+[Server] Total count: 4052
+[Server] Count duration: 15299747000 nanos
+[Server] Total count: 4069
+[Server] Finished running (10 Clients joined).
+Parameters: version=ST, size=1024, trial=0
+[Server] Count duration: 15311954000 nanos
+[Server] Total count: 3804
+[Server] Count duration: 15289895000 nanos
+[Server] Total count: 3800
+[Server] Count duration: 15896529000 nanos
+[Server] Total count: 3985
+[Server] Count duration: 15510797000 nanos
+[Server] Total count: 3864
+[Server] Count duration: 15295652000 nanos
+[Server] Total count: 3829
+[Server] Count duration: 15388469000 nanos
+[Server] Total count: 3823
+[Server] Count duration: 15273872000 nanos
+[Server] Total count: 3812
+[Server] Count duration: 15494065000 nanos
+[Server] Total count: 3858
+[Server] Count duration: 15328199000 nanos
+[Server] Total count: 3808
+[Server] Count duration: 16768125000 nanos
+[Server] Total count: 4159
+[Server] Count duration: 18259665000 nanos
+[Server] Total count: 4551
+[Server] Count duration: 12795564000 nanos
+[Server] Total count: 3183
+[Server] Count duration: 15313472000 nanos
+[Server] Total count: 3804
+[Server] Count duration: 16515246000 nanos
+[Server] Total count: 4106
+[Server] Count duration: 15525335000 nanos
+[Server] Total count: 3840
+[Server] Count duration: 15745851000 nanos
+[Server] Total count: 3928
+[Server] Count duration: 14695798000 nanos
+[Server] Total count: 3642
+[Server] Count duration: 16498894000 nanos
+[Server] Total count: 4110
+[Server] Count duration: 15205868000 nanos
+[Server] Total count: 3821
+[Server] Count duration: 15459660000 nanos
+[Server] Total count: 3851
+[Server] Count duration: 15290914000 nanos
+[Server] Total count: 3793
+[Server] Count duration: 16540614000 nanos
+[Server] Total count: 4118
+[Server] Count duration: 15425311000 nanos
+[Server] Total count: 3812
+[Server] Count duration: 15372155000 nanos
+[Server] Total count: 3817
+[Server] Count duration: 16789018000 nanos
+[Server] Total count: 4164
+[Server] Count duration: 15423256000 nanos
+[Server] Total count: 3831
+[Server] Count duration: 15474025000 nanos
+[Server] Total count: 3832
+[Server] Count duration: 16309829000 nanos
+[Server] Total count: 4028
+[Server] Count duration: 16508567000 nanos
+[Server] Total count: 4079
+[Server] Count duration: 16030182000 nanos
+[Server] Total count: 4003
+[Server] Count duration: 15250781000 nanos
+[Server] Total count: 3790
+[Server] Count duration: 14929513000 nanos
+[Server] Total count: 3705
+[Server] Count duration: 16575417000 nanos
+[Server] Total count: 4096
+[Server] Count duration: 15407841000 nanos
+[Server] Total count: 3811
+[Server] Count duration: 15794421000 nanos
+[Server] Total count: 3898
+[Server] Count duration: 14983253000 nanos
+[Server] Total count: 3699
+[Server] Count duration: 16686983000 nanos
+[Server] Total count: 4120
+[Server] Count duration: 15091923000 nanos
+[Server] Total count: 3716
+[Server] Count duration: 15481311000 nanos
+[Server] Total count: 3856
+[Server] Count duration: 16579079000 nanos
+[Server] Total count: 4107
+[Server] Count duration: 15452700000 nanos
+[Server] Total count: 3832
+[Server] Count duration: 15337673000 nanos
+[Server] Total count: 3786
+[Server] Count duration: 14820745000 nanos
+[Server] Total count: 3707
+[Server] Count duration: 16747186000 nanos
+[Server] Total count: 4164
+[Server] Count duration: 12041315000 nanos
+[Server] Total count: 2982
+[Server] Count duration: 15343455000 nanos
+[Server] Total count: 3832
+[Server] Count duration: 15631778000 nanos
+[Server] Total count: 3918
+[Server] Count duration: 15983898000 nanos
+[Server] Total count: 4041
+[Server] Count duration: 16536916000 nanos
+[Server] Total count: 4172
+[Server] Count duration: 17205786000 nanos
+[Server] Total count: 4315
+[Server] Finished running (100 Clients joined).
+Parameters: version=ST, size=1024, trial=1
+[Server] Count duration: 16389551000 nanos
+[Server] Total count: 4125
+[Server] Count duration: 15154549000 nanos
+[Server] Total count: 3822
+[Server] Count duration: 15645582000 nanos
+[Server] Total count: 3940
+[Server] Count duration: 15039948000 nanos
+[Server] Total count: 3810
+[Server] Count duration: 17493124000 nanos
+[Server] Total count: 4382
+[Server] Count duration: 15013099000 nanos
+[Server] Total count: 3780
+[Server] Count duration: 14232263000 nanos
+[Server] Total count: 3557
+[Server] Count duration: 15453887000 nanos
+[Server] Total count: 3834
+[Server] Count duration: 16632069000 nanos
+[Server] Total count: 4140
+[Server] Count duration: 16393380000 nanos
+[Server] Total count: 4105
+[Server] Count duration: 14550192000 nanos
+[Server] Total count: 3673
+[Server] Count duration: 16584470000 nanos
+[Server] Total count: 4168
+[Server] Count duration: 15321193000 nanos
+[Server] Total count: 3815
+[Server] Count duration: 15262430000 nanos
+[Server] Total count: 3817
+[Server] Count duration: 15417488000 nanos
+[Server] Total count: 3851
+[Server] Count duration: 13616935000 nanos
+[Server] Total count: 3373
+[Server] Count duration: 15638632000 nanos
+[Server] Total count: 3909
+[Server] Count duration: 15718757000 nanos
+[Server] Total count: 3928
+[Server] Count duration: 15329159000 nanos
+[Server] Total count: 3840
+[Server] Count duration: 19858178000 nanos
+[Server] Total count: 4964
+[Server] Count duration: 15281229000 nanos
+[Server] Total count: 3816
+[Server] Count duration: 15670002000 nanos
+[Server] Total count: 3930
+[Server] Count duration: 16679639000 nanos
+[Server] Total count: 4160
+[Server] Count duration: 15454350000 nanos
+[Server] Total count: 3837
+[Server] Count duration: 15301598000 nanos
+[Server] Total count: 3796
+[Server] Count duration: 16701553000 nanos
+[Server] Total count: 4146
+[Server] Count duration: 16258765000 nanos
+[Server] Total count: 4078
+[Server] Count duration: 15417999000 nanos
+[Server] Total count: 3848
+[Server] Count duration: 15430483000 nanos
+[Server] Total count: 3797
+[Server] Count duration: 15217147000 nanos
+[Server] Total count: 3774
+[Server] Count duration: 16541713000 nanos
+[Server] Total count: 4094
+[Server] Count duration: 15466006000 nanos
+[Server] Total count: 3877
+[Server] Count duration: 15553638000 nanos
+[Server] Total count: 3857
+[Server] Count duration: 15306894000 nanos
+[Server] Total count: 3784
+[Server] Count duration: 16667249000 nanos
+[Server] Total count: 4134
+[Server] Count duration: 16029191000 nanos
+[Server] Total count: 3990
+[Server] Count duration: 14986185000 nanos
+[Server] Total count: 3732
+[Server] Count duration: 17432216000 nanos
+[Server] Total count: 4347
+[Server] Count duration: 15071179000 nanos
+[Server] Total count: 3755
+[Server] Count duration: 14844301000 nanos
+[Server] Total count: 3667
+[Server] Count duration: 17011073000 nanos
+[Server] Total count: 4204
+[Server] Count duration: 14973579000 nanos
+[Server] Total count: 3722
+[Server] Count duration: 15422341000 nanos
+[Server] Total count: 3854
+[Server] Count duration: 16008798000 nanos
+[Server] Total count: 4002
+[Server] Count duration: 15048424000 nanos
+[Server] Total count: 3790
+[Server] Count duration: 16563423000 nanos
+[Server] Total count: 4140
+[Server] Count duration: 12956601000 nanos
+[Server] Total count: 3251
+[Server] Count duration: 14984259000 nanos
+[Server] Total count: 3773
+[Server] Count duration: 15170647000 nanos
+[Server] Total count: 3818
+[Server] Count duration: 16696739000 nanos
+[Server] Total count: 4208
+[Server] Finished running (100 Clients joined).
+Parameters: version=ST, size=1024, trial=2
+[Server] Count duration: 15627802000 nanos
+[Server] Total count: 3838
+[Server] Count duration: 15155700000 nanos
+[Server] Total count: 3733
+[Server] Count duration: 15388902000 nanos
+[Server] Total count: 3780
+[Server] Count duration: 16767476000 nanos
+[Server] Total count: 4116
+[Server] Count duration: 15392173000 nanos
+[Server] Total count: 3771
+[Server] Count duration: 15454971000 nanos
+[Server] Total count: 3811
+[Server] Count duration: 16545542000 nanos
+[Server] Total count: 4106
+[Server] Count duration: 15455613000 nanos
+[Server] Total count: 3819
+[Server] Count duration: 15407340000 nanos
+[Server] Total count: 3774
+[Server] Count duration: 15342382000 nanos
+[Server] Total count: 3762
+[Server] Count duration: 16730198000 nanos
+[Server] Total count: 4094
+[Server] Count duration: 15479633000 nanos
+[Server] Total count: 3796
+[Server] Count duration: 15380776000 nanos
+[Server] Total count: 3806
+[Server] Count duration: 15269873000 nanos
+[Server] Total count: 3775
+[Server] Count duration: 17023386000 nanos
+[Server] Total count: 4156
+[Server] Count duration: 15300648000 nanos
+[Server] Total count: 3761
+[Server] Count duration: 15849621000 nanos
+[Server] Total count: 3878
+[Server] Count duration: 15399137000 nanos
+[Server] Total count: 3808
+[Server] Count duration: 16441968000 nanos
+[Server] Total count: 4049
+[Server] Count duration: 15040642000 nanos
+[Server] Total count: 3698
+[Server] Count duration: 15528949000 nanos
+[Server] Total count: 3814
+[Server] Count duration: 15272553000 nanos
+[Server] Total count: 3726
+[Server] Count duration: 15277681000 nanos
+[Server] Total count: 3738
+[Server] Count duration: 18270024000 nanos
+[Server] Total count: 4505
+[Server] Count duration: 13968971000 nanos
+[Server] Total count: 3430
+[Server] Count duration: 16835377000 nanos
+[Server] Total count: 4128
+[Server] Count duration: 15332031000 nanos
+[Server] Total count: 3778
+[Server] Count duration: 15580493000 nanos
+[Server] Total count: 3823
+[Server] Count duration: 19380370000 nanos
+[Server] Total count: 4738
+[Server] Count duration: 13228652000 nanos
+[Server] Total count: 3228
+[Server] Count duration: 15547211000 nanos
+[Server] Total count: 3822
+[Server] Count duration: 15105584000 nanos
+[Server] Total count: 3671
+[Server] Count duration: 14548969000 nanos
+[Server] Total count: 3558
+[Server] Count duration: 16622135000 nanos
+[Server] Total count: 4055
+[Server] Count duration: 14997462000 nanos
+[Server] Total count: 3686
+[Server] Count duration: 15479266000 nanos
+[Server] Total count: 3770
+[Server] Count duration: 16660424000 nanos
+[Server] Total count: 4059
+[Server] Count duration: 15323376000 nanos
+[Server] Total count: 3755
+[Server] Count duration: 15456733000 nanos
+[Server] Total count: 3783
+[Server] Count duration: 15482283000 nanos
+[Server] Total count: 3768
+[Server] Count duration: 16692919000 nanos
+[Server] Total count: 4061
+[Server] Count duration: 15449738000 nanos
+[Server] Total count: 3753
+[Server] Count duration: 18323897000 nanos
+[Server] Total count: 4459
+[Server] Count duration: 12699203000 nanos
+[Server] Total count: 3119
+[Server] Count duration: 16486741000 nanos
+[Server] Total count: 4054
+[Server] Count duration: 15458243000 nanos
+[Server] Total count: 3800
+[Server] Count duration: 15516642000 nanos
+[Server] Total count: 3814
+[Server] Count duration: 15993634000 nanos
+[Server] Total count: 3966
+[Server] Count duration: 16096313000 nanos
+[Server] Total count: 3973
+[Server] Count duration: 15293962000 nanos
+[Server] Total count: 3761
+[Server] Finished running (100 Clients joined).
+Parameters: version=ST, size=1024, trial=3
+[Server] Count duration: 15204418000 nanos
+[Server] Total count: 3869
+[Server] Count duration: 15580012000 nanos
+[Server] Total count: 3972
+[Server] Count duration: 15466794000 nanos
+[Server] Total count: 3923
+[Server] Count duration: 15495628000 nanos
+[Server] Total count: 3914
+[Server] Count duration: 15312237000 nanos
+[Server] Total count: 3862
+[Server] Count duration: 16513654000 nanos
+[Server] Total count: 4179
+[Server] Count duration: 15740028000 nanos
+[Server] Total count: 3975
+[Server] Count duration: 15187589000 nanos
+[Server] Total count: 3858
+[Server] Count duration: 16629646000 nanos
+[Server] Total count: 4207
+[Server] Count duration: 15795785000 nanos
+[Server] Total count: 3975
+[Server] Count duration: 15424045000 nanos
+[Server] Total count: 3895
+[Server] Count duration: 15009593000 nanos
+[Server] Total count: 3808
+[Server] Count duration: 16510745000 nanos
+[Server] Total count: 4141
+[Server] Count duration: 15437443000 nanos
+[Server] Total count: 3888
+[Server] Count duration: 16076261000 nanos
+[Server] Total count: 4028
+[Server] Count duration: 14754478000 nanos
+[Server] Total count: 3702
+[Server] Count duration: 16634644000 nanos
+[Server] Total count: 4209
+[Server] Count duration: 15371657000 nanos
+[Server] Total count: 3885
+[Server] Count duration: 15258400000 nanos
+[Server] Total count: 3855
+[Server] Count duration: 15503881000 nanos
+[Server] Total count: 3894
+[Server] Count duration: 16631505000 nanos
+[Server] Total count: 4179
+[Server] Count duration: 15539395000 nanos
+[Server] Total count: 3889
+[Server] Count duration: 15308075000 nanos
+[Server] Total count: 3850
+[Server] Count duration: 16678513000 nanos
+[Server] Total count: 4188
+[Server] Count duration: 15287898000 nanos
+[Server] Total count: 3827
+[Server] Count duration: 15690424000 nanos
+[Server] Total count: 3957
+[Server] Count duration: 16198650000 nanos
+[Server] Total count: 4103
+[Server] Count duration: 15268615000 nanos
+[Server] Total count: 3835
+[Server] Count duration: 16133390000 nanos
+[Server] Total count: 4073
+[Server] Count duration: 14781322000 nanos
+[Server] Total count: 3749
+[Server] Count duration: 15338354000 nanos
+[Server] Total count: 3867
+[Server] Count duration: 16529533000 nanos
+[Server] Total count: 4147
+[Server] Count duration: 15284290000 nanos
+[Server] Total count: 3814
+[Server] Count duration: 15452706000 nanos
+[Server] Total count: 3882
+[Server] Count duration: 15522112000 nanos
+[Server] Total count: 3900
+[Server] Count duration: 16650142000 nanos
+[Server] Total count: 4173
+[Server] Count duration: 15593239000 nanos
+[Server] Total count: 3913
+[Server] Count duration: 15191574000 nanos
+[Server] Total count: 3793
+[Server] Count duration: 15351985000 nanos
+[Server] Total count: 3852
+[Server] Count duration: 17464094000 nanos
+[Server] Total count: 4393
+[Server] Count duration: 14825266000 nanos
+[Server] Total count: 3721
+[Server] Count duration: 15420793000 nanos
+[Server] Total count: 3911
+[Server] Count duration: 17113173000 nanos
+[Server] Total count: 4310
+[Server] Count duration: 15206323000 nanos
+[Server] Total count: 3860
+[Server] Count duration: 15238662000 nanos
+[Server] Total count: 3900
+[Server] Count duration: 15757047000 nanos
+[Server] Total count: 4009
+[Server] Count duration: 16467352000 nanos
+[Server] Total count: 4203
+[Server] Count duration: 16116260000 nanos
+[Server] Total count: 4110
+[Server] Count duration: 14834541000 nanos
+[Server] Total count: 3791
+[Server] Count duration: 15654702000 nanos
+[Server] Total count: 3984
+[Server] Finished running (100 Clients joined).
+Parameters: version=ST, size=1024, trial=4
+[Server] Count duration: 15211832000 nanos
+[Server] Total count: 3850
+[Server] Count duration: 15274148000 nanos
+[Server] Total count: 3876
+[Server] Count duration: 14929658000 nanos
+[Server] Total count: 3781
+[Server] Count duration: 17318492000 nanos
+[Server] Total count: 4400
+[Server] Count duration: 15119535000 nanos
+[Server] Total count: 3865
+[Server] Count duration: 15294364000 nanos
+[Server] Total count: 3887
+[Server] Count duration: 18624296000 nanos
+[Server] Total count: 4697
+[Server] Count duration: 13949285000 nanos
+[Server] Total count: 3519
+[Server] Count duration: 15721465000 nanos
+[Server] Total count: 3990
+[Server] Count duration: 14702935000 nanos
+[Server] Total count: 3750
+[Server] Count duration: 15867899000 nanos
+[Server] Total count: 4017
+[Server] Count duration: 16268837000 nanos
+[Server] Total count: 4114
+[Server] Count duration: 15394814000 nanos
+[Server] Total count: 3876
+[Server] Count duration: 15113711000 nanos
+[Server] Total count: 3840
+[Server] Count duration: 16406133000 nanos
+[Server] Total count: 4128
+[Server] Count duration: 15303163000 nanos
+[Server] Total count: 3829
+[Server] Count duration: 15462295000 nanos
+[Server] Total count: 3883
+[Server] Count duration: 15718556000 nanos
+[Server] Total count: 3956
+[Server] Count duration: 16571443000 nanos
+[Server] Total count: 4212
+[Server] Count duration: 15370874000 nanos
+[Server] Total count: 3909
+[Server] Count duration: 15532591000 nanos
+[Server] Total count: 3934
+[Server] Count duration: 16421780000 nanos
+[Server] Total count: 4149
+[Server] Count duration: 16866028000 nanos
+[Server] Total count: 4293
+[Server] Count duration: 15509219000 nanos
+[Server] Total count: 3930
+[Server] Count duration: 14917188000 nanos
+[Server] Total count: 3763
+[Server] Count duration: 16695173000 nanos
+[Server] Total count: 4190
+[Server] Count duration: 15605793000 nanos
+[Server] Total count: 3920
+[Server] Count duration: 15427269000 nanos
+[Server] Total count: 3886
+[Server] Count duration: 15249290000 nanos
+[Server] Total count: 3840
+[Server] Count duration: 16553601000 nanos
+[Server] Total count: 4165
+[Server] Count duration: 15457019000 nanos
+[Server] Total count: 3880
+[Server] Count duration: 15382801000 nanos
+[Server] Total count: 3868
+[Server] Count duration: 16036093000 nanos
+[Server] Total count: 4070
+[Server] Count duration: 15910819000 nanos
+[Server] Total count: 4030
+[Server] Count duration: 15358349000 nanos
+[Server] Total count: 3841
+[Server] Count duration: 15305448000 nanos
+[Server] Total count: 3845
+[Server] Count duration: 15343515000 nanos
+[Server] Total count: 3839
+[Server] Count duration: 16686582000 nanos
+[Server] Total count: 4165
+[Server] Count duration: 15496266000 nanos
+[Server] Total count: 3875
+[Server] Count duration: 15270572000 nanos
+[Server] Total count: 3869
+[Server] Count duration: 15540048000 nanos
+[Server] Total count: 3920
+[Server] Count duration: 15116016000 nanos
+[Server] Total count: 3858
+[Server] Count duration: 15581777000 nanos
+[Server] Total count: 3971
+[Server] Count duration: 14815310000 nanos
+[Server] Total count: 3790
+[Server] Count duration: 16586450000 nanos
+[Server] Total count: 4235
+[Server] Count duration: 14898958000 nanos
+[Server] Total count: 3792
+[Server] Count duration: 15693881000 nanos
+[Server] Total count: 4014
+[Server] Count duration: 15383804000 nanos
+[Server] Total count: 3939
+[Server] Count duration: 16944724000 nanos
+[Server] Total count: 4343
+[Server] Count duration: 15353559000 nanos
+[Server] Total count: 3902
+[Server] Finished running (100 Clients joined).
+Parameters: version=ST, size=1024, trial=0
+[Server] Count duration: 15082389000 nanos
+[Server] Total count: 3495
+[Server] Count duration: 16532554000 nanos
+[Server] Total count: 3812
+[Server] Count duration: 15312441000 nanos
+[Server] Total count: 3534
+[Server] Count duration: 15486501000 nanos
+[Server] Total count: 3633
+[Server] Count duration: 15349804000 nanos
+[Server] Total count: 3550
+[Server] Count duration: 16428444000 nanos
+[Server] Total count: 3802
+[Server] Count duration: 15503812000 nanos
+[Server] Total count: 3631
+[Server] Count duration: 15456043000 nanos
+[Server] Total count: 3566
+[Server] Count duration: 15529320000 nanos
+[Server] Total count: 3610
+[Server] Count duration: 15290832000 nanos
+[Server] Total count: 3520
+[Server] Count duration: 15480355000 nanos
+[Server] Total count: 3590
+[Server] Count duration: 15411689000 nanos
+[Server] Total count: 3593
+[Server] Count duration: 16498173000 nanos
+[Server] Total count: 3830
+[Server] Count duration: 15301976000 nanos
+[Server] Total count: 3557
+[Server] Count duration: 15142517000 nanos
+[Server] Total count: 3491
+[Server] Count duration: 15490090000 nanos
+[Server] Total count: 3612
+[Server] Count duration: 16517282000 nanos
+[Server] Total count: 3834
+[Server] Count duration: 15393496000 nanos
+[Server] Total count: 3583
+[Server] Count duration: 17082003000 nanos
+[Server] Total count: 3951
+[Server] Count duration: 13822490000 nanos
+[Server] Total count: 3198
+[Server] Count duration: 16660231000 nanos
+[Server] Total count: 3858
+[Server] Count duration: 15219353000 nanos
+[Server] Total count: 3545
+[Server] Count duration: 15347057000 nanos
+[Server] Total count: 3634
+[Server] Count duration: 15312331000 nanos
+[Server] Total count: 3580
+[Server] Count duration: 16553334000 nanos
+[Server] Total count: 3893
+[Server] Count duration: 15297771000 nanos
+[Server] Total count: 3610
+[Server] Count duration: 15433869000 nanos
+[Server] Total count: 3622
+[Server] Count duration: 16771553000 nanos
+[Server] Total count: 3907
+[Server] Count duration: 15411769000 nanos
+[Server] Total count: 3578
+[Server] Count duration: 3438310000 nanos
+[Server] Total count: 796
+[Server] Count duration: 15306458000 nanos
+[Server] Total count: 3569
+[Server] Count duration: 16594524000 nanos
+[Server] Total count: 3873
+[Server] Count duration: 15425035000 nanos
+[Server] Total count: 3564
+[Server] Count duration: 15203885000 nanos
+[Server] Total count: 3551
+[Server] Count duration: 15465992000 nanos
+[Server] Total count: 3624
+[Server] Count duration: 16674265000 nanos
+[Server] Total count: 3856
+[Server] Count duration: 1972330000 nanos
+[Server] Total count: 459
+[Server] Count duration: 15594949000 nanos
+[Server] Total count: 3637
+[Server] Count duration: 15321617000 nanos
+[Server] Total count: 3573
+[Server] Count duration: 19269948000 nanos
+[Server] Total count: 4523
+[Server] Count duration: 15485915000 nanos
+[Server] Total count: 3650
+[Server] Count duration: 15660680000 nanos
+[Server] Total count: 3684
+[Server] Count duration: 16901832000 nanos
+[Server] Total count: 3996
+[Server] Count duration: 15721166000 nanos
+[Server] Total count: 3684
+[Server] Count duration: 15319937000 nanos
+[Server] Total count: 3637
+[Server] Count duration: 15403135000 nanos
+[Server] Total count: 3622
+[Server] Count duration: 16669917000 nanos
+[Server] Total count: 3855
+[Server] Count duration: 15322184000 nanos
+[Server] Total count: 3575
+[Server] Count duration: 15347344000 nanos
+[Server] Total count: 3576
+[Server] Count duration: 16436602000 nanos
+[Server] Total count: 3789
+[Server] Finished running (300 Clients joined).
+Parameters: version=ST, size=1024, trial=1
+[Server] Count duration: 15293410000 nanos
+[Server] Total count: 3524
+[Server] Count duration: 15409995000 nanos
+[Server] Total count: 3593
+[Server] Count duration: 16620143000 nanos
+[Server] Total count: 3926
+[Server] Count duration: 15289772000 nanos
+[Server] Total count: 3584
+[Server] Count duration: 15403564000 nanos
+[Server] Total count: 3603
+[Server] Count duration: 15336339000 nanos
+[Server] Total count: 3602
+[Server] Count duration: 16632077000 nanos
+[Server] Total count: 3949
+[Server] Count duration: 15317914000 nanos
+[Server] Total count: 3601
+[Server] Count duration: 15407383000 nanos
+[Server] Total count: 3607
+[Server] Count duration: 15263357000 nanos
+[Server] Total count: 3613
+[Server] Count duration: 16527190000 nanos
+[Server] Total count: 3942
+[Server] Count duration: 15309919000 nanos
+[Server] Total count: 3622
+[Server] Count duration: 15296165000 nanos
+[Server] Total count: 3648
+[Server] Count duration: 15300478000 nanos
+[Server] Total count: 3624
+[Server] Count duration: 16694541000 nanos
+[Server] Total count: 3921
+[Server] Count duration: 15340295000 nanos
+[Server] Total count: 3617
+[Server] Count duration: 15534190000 nanos
+[Server] Total count: 3717
+[Server] Count duration: 16678811000 nanos
+[Server] Total count: 3941
+[Server] Count duration: 15318603000 nanos
+[Server] Total count: 3616
+[Server] Count duration: 15336733000 nanos
+[Server] Total count: 3647
+[Server] Count duration: 15225306000 nanos
+[Server] Total count: 3599
+[Server] Count duration: 21264842000 nanos
+[Server] Total count: 5005
+[Server] Count duration: 15570358000 nanos
+[Server] Total count: 3672
+[Server] Count duration: 15422953000 nanos
+[Server] Total count: 3670
+[Server] Count duration: 15545350000 nanos
+[Server] Total count: 3682
+[Server] Count duration: 17070212000 nanos
+[Server] Total count: 4066
+[Server] Count duration: 15364750000 nanos
+[Server] Total count: 3632
+[Server] Count duration: 15502284000 nanos
+[Server] Total count: 3663
+[Server] Count duration: 19320785000 nanos
+[Server] Total count: 4558
+[Server] Count duration: 15597684000 nanos
+[Server] Total count: 3682
+[Server] Count duration: 15277327000 nanos
+[Server] Total count: 3623
+[Server] Count duration: 15527894000 nanos
+[Server] Total count: 3659
+[Server] Count duration: 16614556000 nanos
+[Server] Total count: 3942
+[Server] Count duration: 15525084000 nanos
+[Server] Total count: 3677
+[Server] Count duration: 15313753000 nanos
+[Server] Total count: 3619
+[Server] Count duration: 15307887000 nanos
+[Server] Total count: 3632
+[Server] Count duration: 16545150000 nanos
+[Server] Total count: 3938
+[Server] Count duration: 15398661000 nanos
+[Server] Total count: 3649
+[Server] Count duration: 15349262000 nanos
+[Server] Total count: 3642
+[Server] Count duration: 16696718000 nanos
+[Server] Total count: 3951
+[Server] Count duration: 15307170000 nanos
+[Server] Total count: 3640
+[Server] Count duration: 15405699000 nanos
+[Server] Total count: 3686
+[Server] Count duration: 79000 nanos
+[Server] Total count: 0
+[Server] Count duration: 16271040000 nanos
+[Server] Total count: 3854
+[Server] Count duration: 15308958000 nanos
+[Server] Total count: 3628
+[Server] Count duration: 15412885000 nanos
+[Server] Total count: 3626
+[Server] Count duration: 15284965000 nanos
+[Server] Total count: 3590
+[Server] Count duration: 19316599000 nanos
+[Server] Total count: 4547
+[Server] Count duration: 12829742000 nanos
+[Server] Total count: 3043
+[Server] Count duration: 15430810000 nanos
+[Server] Total count: 3635
+[Server] Finished running (300 Clients joined).
+Parameters: version=ST, size=1024, trial=2
+[Server] Count duration: 15293150000 nanos
+[Server] Total count: 3651
+[Server] Count duration: 16524156000 nanos
+[Server] Total count: 3884
+[Server] Count duration: 15400335000 nanos
+[Server] Total count: 3614
+[Server] Count duration: 3807536000 nanos
+[Server] Total count: 909
+[Server] Count duration: 15431902000 nanos
+[Server] Total count: 3687
+[Server] Count duration: 16543601000 nanos
+[Server] Total count: 3906
+[Server] Count duration: 15319963000 nanos
+[Server] Total count: 3575
+[Server] Count duration: 15529579000 nanos
+[Server] Total count: 3634
+[Server] Count duration: 15224970000 nanos
+[Server] Total count: 3548
+[Server] Count duration: 16541288000 nanos
+[Server] Total count: 3845
+[Server] Count duration: 15244065000 nanos
+[Server] Total count: 3568
+[Server] Count duration: 15308258000 nanos
+[Server] Total count: 3594
+[Server] Count duration: 15312499000 nanos
+[Server] Total count: 3589
+[Server] Count duration: 15394447000 nanos
+[Server] Total count: 3608
+[Server] Count duration: 15476875000 nanos
+[Server] Total count: 3650
+[Server] Count duration: 15337552000 nanos
+[Server] Total count: 3585
+[Server] Count duration: 11339894000 nanos
+[Server] Total count: 2627
+[Server] Count duration: 23714993000 nanos
+[Server] Total count: 5532
+[Server] Count duration: 6978863000 nanos
+[Server] Total count: 1630
+[Server] Count duration: 15473752000 nanos
+[Server] Total count: 3617
+[Server] Count duration: 31058262000 nanos
+[Server] Total count: 7296
+[Server] Count duration: 1152500000 nanos
+[Server] Total count: 280
+[Server] Count duration: 15346108000 nanos
+[Server] Total count: 3675
+[Server] Count duration: 15158084000 nanos
+[Server] Total count: 3612
+[Server] Count duration: 7407737000 nanos
+[Server] Total count: 1771
+[Server] Count duration: 15537741000 nanos
+[Server] Total count: 3665
+[Server] Count duration: 15317953000 nanos
+[Server] Total count: 3629
+[Server] Count duration: 15451075000 nanos
+[Server] Total count: 3647
+[Server] Count duration: 16741437000 nanos
+[Server] Total count: 3920
+[Server] Count duration: 15208982000 nanos
+[Server] Total count: 3584
+[Server] Count duration: 15534231000 nanos
+[Server] Total count: 3659
+[Server] Count duration: 16667833000 nanos
+[Server] Total count: 3932
+[Server] Count duration: 15279500000 nanos
+[Server] Total count: 3606
+[Server] Count duration: 15346194000 nanos
+[Server] Total count: 3626
+[Server] Count duration: 15296734000 nanos
+[Server] Total count: 3626
+[Server] Count duration: 16781729000 nanos
+[Server] Total count: 3939
+[Server] Count duration: 15300324000 nanos
+[Server] Total count: 3599
+[Server] Count duration: 15296085000 nanos
+[Server] Total count: 3557
+[Server] Count duration: 15285033000 nanos
+[Server] Total count: 3557
+[Server] Count duration: 16654476000 nanos
+[Server] Total count: 3878
+[Server] Count duration: 15342112000 nanos
+[Server] Total count: 3621
+[Server] Count duration: 15311064000 nanos
+[Server] Total count: 3627
+[Server] Count duration: 15280308000 nanos
+[Server] Total count: 3632
+[Server] Count duration: 16552562000 nanos
+[Server] Total count: 3917
+[Server] Count duration: 15324021000 nanos
+[Server] Total count: 3631
+[Server] Count duration: 15385446000 nanos
+[Server] Total count: 3635
+[Server] Count duration: 16550901000 nanos
+[Server] Total count: 3937
+[Server] Count duration: 15051814000 nanos
+[Server] Total count: 3531
+[Server] Count duration: 15287657000 nanos
+[Server] Total count: 3596
+[Server] Count duration: 16587276000 nanos
+[Server] Total count: 3916
+[Server] Finished running (300 Clients joined).
+Parameters: version=ST, size=1024, trial=3
+[Server] Count duration: 15254754000 nanos
+[Server] Total count: 3554
+[Server] Count duration: 15466365000 nanos
+[Server] Total count: 3609
+[Server] Count duration: 15327015000 nanos
+[Server] Total count: 3552
+[Server] Count duration: 15417654000 nanos
+[Server] Total count: 3601
+[Server] Count duration: 15309789000 nanos
+[Server] Total count: 3584
+[Server] Count duration: 16515226000 nanos
+[Server] Total count: 3876
+[Server] Count duration: 15287386000 nanos
+[Server] Total count: 3564
+[Server] Count duration: 15429840000 nanos
+[Server] Total count: 3619
+[Server] Count duration: 15276821000 nanos
+[Server] Total count: 3550
+[Server] Count duration: 24969562000 nanos
+[Server] Total count: 5768
+[Server] Count duration: 7151265000 nanos
+[Server] Total count: 1662
+[Server] Count duration: 15491487000 nanos
+[Server] Total count: 3620
+[Server] Count duration: 15403557000 nanos
+[Server] Total count: 3595
+[Server] Count duration: 16521812000 nanos
+[Server] Total count: 3874
+[Server] Count duration: 15290929000 nanos
+[Server] Total count: 3609
+[Server] Count duration: 15374554000 nanos
+[Server] Total count: 3598
+[Server] Count duration: 12986031000 nanos
+[Server] Total count: 3034
+[Server] Count duration: 16582398000 nanos
+[Server] Total count: 3900
+[Server] Count duration: 15308862000 nanos
+[Server] Total count: 3628
+[Server] Count duration: 15467741000 nanos
+[Server] Total count: 3644
+[Server] Count duration: 16731506000 nanos
+[Server] Total count: 3916
+[Server] Count duration: 15429864000 nanos
+[Server] Total count: 3646
+[Server] Count duration: 15308382000 nanos
+[Server] Total count: 3589
+[Server] Count duration: 5016122000 nanos
+[Server] Total count: 1172
+[Server] Count duration: 2931291000 nanos
+[Server] Total count: 707
+[Server] Count duration: 15230052000 nanos
+[Server] Total count: 3619
+[Server] Count duration: 15469158000 nanos
+[Server] Total count: 3632
+[Server] Count duration: 15397606000 nanos
+[Server] Total count: 3613
+[Server] Count duration: 1070466000 nanos
+[Server] Total count: 262
+[Server] Count duration: 15307494000 nanos
+[Server] Total count: 3610
+[Server] Count duration: 15341773000 nanos
+[Server] Total count: 3608
+[Server] Count duration: 15270551000 nanos
+[Server] Total count: 3568
+[Server] Count duration: 16606236000 nanos
+[Server] Total count: 3862
+[Server] Count duration: 15314102000 nanos
+[Server] Total count: 3590
+[Server] Count duration: 15485066000 nanos
+[Server] Total count: 3648
+[Server] Count duration: 16630935000 nanos
+[Server] Total count: 3909
+[Server] Count duration: 15332532000 nanos
+[Server] Total count: 3612
+[Server] Count duration: 15490566000 nanos
+[Server] Total count: 3630
+[Server] Count duration: 15416058000 nanos
+[Server] Total count: 3610
+[Server] Count duration: 16604635000 nanos
+[Server] Total count: 3922
+[Server] Count duration: 15454879000 nanos
+[Server] Total count: 3643
+[Server] Count duration: 15403355000 nanos
+[Server] Total count: 3627
+[Server] Count duration: 15389959000 nanos
+[Server] Total count: 3645
+[Server] Count duration: 16552304000 nanos
+[Server] Total count: 3923
+[Server] Count duration: 15312915000 nanos
+[Server] Total count: 3623
+[Server] Count duration: 15441376000 nanos
+[Server] Total count: 3601
+[Server] Count duration: 15276564000 nanos
+[Server] Total count: 3570
+[Server] Count duration: 16495179000 nanos
+[Server] Total count: 3848
+[Server] Count duration: 15268378000 nanos
+[Server] Total count: 3564
+[Server] Count duration: 15358412000 nanos
+[Server] Total count: 3580
+[Server] Finished running (300 Clients joined).
+Parameters: version=ST, size=1024, trial=4
+[Server] Count duration: 15267738000 nanos
+[Server] Total count: 3406
+[Server] Count duration: 15283332000 nanos
+[Server] Total count: 3611
+[Server] Count duration: 15301260000 nanos
+[Server] Total count: 3562
+[Server] Count duration: 16542322000 nanos
+[Server] Total count: 3831
+[Server] Count duration: 15268861000 nanos
+[Server] Total count: 3531
+[Server] Count duration: 15272840000 nanos
+[Server] Total count: 3555
+[Server] Count duration: 15235248000 nanos
+[Server] Total count: 3526
+[Server] Count duration: 16529506000 nanos
+[Server] Total count: 3811
+[Server] Count duration: 15344113000 nanos
+[Server] Total count: 3549
+[Server] Count duration: 7305774000 nanos
+[Server] Total count: 1684
+[Server] Count duration: 15287190000 nanos
+[Server] Total count: 3480
+[Server] Count duration: 16631981000 nanos
+[Server] Total count: 3803
+[Server] Count duration: 4997116000 nanos
+[Server] Total count: 1139
+[Server] Count duration: 15416941000 nanos
+[Server] Total count: 3512
+[Server] Count duration: 16984694000 nanos
+[Server] Total count: 3909
+[Server] Count duration: 15222308000 nanos
+[Server] Total count: 3528
+[Server] Count duration: 15355644000 nanos
+[Server] Total count: 3630
+[Server] Count duration: 15265845000 nanos
+[Server] Total count: 3558
+[Server] Count duration: 16714420000 nanos
+[Server] Total count: 3950
+[Server] Count duration: 15314336000 nanos
+[Server] Total count: 3595
+[Server] Count duration: 15306321000 nanos
+[Server] Total count: 3554
+[Server] Count duration: 15374850000 nanos
+[Server] Total count: 3551
+[Server] Count duration: 16719927000 nanos
+[Server] Total count: 3891
+[Server] Count duration: 15303327000 nanos
+[Server] Total count: 3544
+[Server] Count duration: 15333884000 nanos
+[Server] Total count: 3574
+[Server] Count duration: 5193659000 nanos
+[Server] Total count: 1206
+[Server] Count duration: 16529566000 nanos
+[Server] Total count: 3851
+[Server] Count duration: 15480661000 nanos
+[Server] Total count: 3612
+[Server] Count duration: 15429436000 nanos
+[Server] Total count: 3534
+[Server] Count duration: 16491860000 nanos
+[Server] Total count: 3835
+[Server] Count duration: 14986824000 nanos
+[Server] Total count: 3474
+[Server] Count duration: 15582938000 nanos
+[Server] Total count: 3638
+[Server] Count duration: 15380469000 nanos
+[Server] Total count: 3556
+[Server] Count duration: 16704211000 nanos
+[Server] Total count: 3901
+[Server] Count duration: 15295648000 nanos
+[Server] Total count: 3589
+[Server] Count duration: 15444104000 nanos
+[Server] Total count: 3580
+[Server] Count duration: 15447205000 nanos
+[Server] Total count: 3604
+[Server] Count duration: 16580111000 nanos
+[Server] Total count: 3848
+[Server] Count duration: 15285800000 nanos
+[Server] Total count: 3591
+[Server] Count duration: 15329846000 nanos
+[Server] Total count: 3601
+[Server] Count duration: 15307373000 nanos
+[Server] Total count: 3575
+[Server] Count duration: 16405127000 nanos
+[Server] Total count: 3796
+[Server] Count duration: 15509911000 nanos
+[Server] Total count: 3563
+[Server] Count duration: 16709680000 nanos
+[Server] Total count: 3902
+[Server] Count duration: 16385850000 nanos
+[Server] Total count: 3848
+[Server] Count duration: 15347264000 nanos
+[Server] Total count: 3554
+[Server] Count duration: 10784084000 nanos
+[Server] Total count: 2507
+[Server] Count duration: 15365041000 nanos
+[Server] Total count: 3566
+[Server] Count duration: 16500356000 nanos
+[Server] Total count: 3892
+[Server] Count duration: 15390213000 nanos
+[Server] Total count: 3608
+[Server] Finished running (300 Clients joined).
+Parameters: version=ST, size=1024, trial=0
+[Server] Count duration: 15198953000 nanos
+[Server] Total count: 2720
+[Server] Count duration: 14995182000 nanos
+[Server] Total count: 2723
+[Server] Count duration: 15337178000 nanos
+[Server] Total count: 2797
+[Server] Count duration: 16628081000 nanos
+[Server] Total count: 2964
+[Server] Count duration: 15309222000 nanos
+[Server] Total count: 2717
+[Server] Count duration: 15166506000 nanos
+[Server] Total count: 2750
+[Server] Count duration: 15331105000 nanos
+[Server] Total count: 2817
+[Server] Count duration: 16528761000 nanos
+[Server] Total count: 3006
+[Server] Count duration: 15391856000 nanos
+[Server] Total count: 2763
+[Server] Count duration: 15560668000 nanos
+[Server] Total count: 2831
+[Server] Count duration: 16698400000 nanos
+[Server] Total count: 2932
+[Server] Count duration: 15297661000 nanos
+[Server] Total count: 2744
+[Server] Count duration: 15431516000 nanos
+[Server] Total count: 2660
+[Server] Count duration: 15444951000 nanos
+[Server] Total count: 2802
+[Server] Count duration: 16412237000 nanos
+[Server] Total count: 3110
+[Server] Count duration: 15278961000 nanos
+[Server] Total count: 2783
+[Server] Count duration: 51852649000 nanos
+[Server] Total count: 9304
+[Server] Count duration: 49000 nanos
+[Server] Total count: 0
+[Server] Count duration: 41000 nanos
+[Server] Total count: 0
+[Server] Count duration: 11807200000 nanos
+[Server] Total count: 2065
+[Server] Count duration: 15142574000 nanos
+[Server] Total count: 2688
+[Server] Count duration: 16470557000 nanos
+[Server] Total count: 3007
+[Server] Count duration: 16648441000 nanos
+[Server] Total count: 2927
+[Server] Count duration: 15296664000 nanos
+[Server] Total count: 2740
+[Server] Count duration: 15227958000 nanos
+[Server] Total count: 2666
+[Server] Count duration: 16669905000 nanos
+[Server] Total count: 2922
+[Server] Count duration: 15359227000 nanos
+[Server] Total count: 2827
+[Server] Count duration: 15263141000 nanos
+[Server] Total count: 2740
+[Server] Count duration: 15272290000 nanos
+[Server] Total count: 2768
+[Server] Count duration: 44349023000 nanos
+[Server] Total count: 7966
+[Server] Count duration: 43000 nanos
+[Server] Total count: 0
+[Server] Count duration: 3712640000 nanos
+[Server] Total count: 639
+[Server] Count duration: 15280404000 nanos
+[Server] Total count: 2747
+[Server] Count duration: 16604563000 nanos
+[Server] Total count: 3017
+[Server] Count duration: 15408657000 nanos
+[Server] Total count: 2769
+[Server] Count duration: 15222377000 nanos
+[Server] Total count: 2689
+[Server] Count duration: 15421954000 nanos
+[Server] Total count: 2707
+[Server] Count duration: 16405174000 nanos
+[Server] Total count: 2909
+[Server] Count duration: 15205346000 nanos
+[Server] Total count: 2775
+[Server] Count duration: 15197282000 nanos
+[Server] Total count: 2703
+[Server] Count duration: 15134289000 nanos
+[Server] Total count: 2759
+[Server] Count duration: 16813239000 nanos
+[Server] Total count: 2947
+[Server] Count duration: 15419148000 nanos
+[Server] Total count: 2747
+[Server] Count duration: 15190850000 nanos
+[Server] Total count: 2969
+[Server] Count duration: 16528600000 nanos
+[Server] Total count: 2969
+[Server] Count duration: 15408925000 nanos
+[Server] Total count: 2866
+[Server] Count duration: 15490409000 nanos
+[Server] Total count: 2874
+[Server] Count duration: 15190816000 nanos
+[Server] Total count: 2773
+[Server] Count duration: 16608408000 nanos
+[Server] Total count: 3011
+[Server] Count duration: 76000 nanos
+[Server] Total count: 0
+[Server] Finished running (500 Clients joined).
+Parameters: version=ST, size=1024, trial=1
+[Server] Count duration: 16593137000 nanos
+[Server] Total count: 3157
+[Server] Count duration: 15333218000 nanos
+[Server] Total count: 2973
+[Server] Count duration: 15440139000 nanos
+[Server] Total count: 2913
+[Server] Count duration: 15352123000 nanos
+[Server] Total count: 2930
+[Server] Count duration: 16721209000 nanos
+[Server] Total count: 3265
+[Server] Count duration: 15245599000 nanos
+[Server] Total count: 2890
+[Server] Count duration: 15445781000 nanos
+[Server] Total count: 2928
+[Server] Count duration: 15316910000 nanos
+[Server] Total count: 2934
+[Server] Count duration: 16762811000 nanos
+[Server] Total count: 3199
+[Server] Count duration: 15509036000 nanos
+[Server] Total count: 2940
+[Server] Count duration: 15449471000 nanos
+[Server] Total count: 3003
+[Server] Count duration: 15309922000 nanos
+[Server] Total count: 2906
+[Server] Count duration: 16501842000 nanos
+[Server] Total count: 3214
+[Server] Count duration: 15430757000 nanos
+[Server] Total count: 2968
+[Server] Count duration: 15255065000 nanos
+[Server] Total count: 2908
+[Server] Count duration: 15442080000 nanos
+[Server] Total count: 2921
+[Server] Count duration: 15190552000 nanos
+[Server] Total count: 2825
+[Server] Count duration: 15419650000 nanos
+[Server] Total count: 3039
+[Server] Count duration: 15296500000 nanos
+[Server] Total count: 2931
+[Server] Count duration: 16630435000 nanos
+[Server] Total count: 3278
+[Server] Count duration: 15316162000 nanos
+[Server] Total count: 2987
+[Server] Count duration: 15647910000 nanos
+[Server] Total count: 2998
+[Server] Count duration: 16754365000 nanos
+[Server] Total count: 3417
+[Server] Count duration: 16725800000 nanos
+[Server] Total count: 3176
+[Server] Count duration: 15211349000 nanos
+[Server] Total count: 2924
+[Server] Count duration: 15483290000 nanos
+[Server] Total count: 3002
+[Server] Count duration: 15218034000 nanos
+[Server] Total count: 2899
+[Server] Count duration: 16660236000 nanos
+[Server] Total count: 3285
+[Server] Count duration: 15285914000 nanos
+[Server] Total count: 2894
+[Server] Count duration: 15366204000 nanos
+[Server] Total count: 2942
+[Server] Count duration: 16918301000 nanos
+[Server] Total count: 3210
+[Server] Count duration: 15544713000 nanos
+[Server] Total count: 3059
+[Server] Count duration: 15580304000 nanos
+[Server] Total count: 2974
+[Server] Count duration: 15129509000 nanos
+[Server] Total count: 2851
+[Server] Count duration: 16310095000 nanos
+[Server] Total count: 3110
+[Server] Count duration: 15442127000 nanos
+[Server] Total count: 2950
+[Server] Count duration: 15554484000 nanos
+[Server] Total count: 3002
+[Server] Count duration: 15357044000 nanos
+[Server] Total count: 3019
+[Server] Count duration: 16518843000 nanos
+[Server] Total count: 3173
+[Server] Count duration: 77000 nanos
+[Server] Total count: 0
+[Server] Count duration: 7008387000 nanos
+[Server] Total count: 1317
+[Server] Count duration: 15182229000 nanos
+[Server] Total count: 2880
+[Server] Count duration: 16565526000 nanos
+[Server] Total count: 3186
+[Server] Count duration: 15299722000 nanos
+[Server] Total count: 2921
+[Server] Count duration: 15421012000 nanos
+[Server] Total count: 2885
+[Server] Count duration: 16537436000 nanos
+[Server] Total count: 3103
+[Server] Count duration: 15380689000 nanos
+[Server] Total count: 2881
+[Server] Count duration: 15347047000 nanos
+[Server] Total count: 2902
+[Server] Count duration: 15407976000 nanos
+[Server] Total count: 2980
+[Server] Count duration: 16697268000 nanos
+[Server] Total count: 3287
+[Server] Finished running (500 Clients joined).
+Parameters: version=ST, size=1024, trial=2
+[Server] Count duration: 15277585000 nanos
+[Server] Total count: 2721
+[Server] Count duration: 15307784000 nanos
+[Server] Total count: 2628
+[Server] Count duration: 15677004000 nanos
+[Server] Total count: 2530
+[Server] Count duration: 16484598000 nanos
+[Server] Total count: 2784
+[Server] Count duration: 15291027000 nanos
+[Server] Total count: 2450
+[Server] Count duration: 15262313000 nanos
+[Server] Total count: 2566
+[Server] Count duration: 16548194000 nanos
+[Server] Total count: 2694
+[Server] Count duration: 15348740000 nanos
+[Server] Total count: 2618
+[Server] Count duration: 15563026000 nanos
+[Server] Total count: 2638
+[Server] Count duration: 15213312000 nanos
+[Server] Total count: 2566
+[Server] Count duration: 45389550000 nanos
+[Server] Total count: 7732
+[Server] Count duration: 45000 nanos
+[Server] Total count: 0
+[Server] Count duration: 2038264000 nanos
+[Server] Total count: 343
+[Server] Count duration: 15292184000 nanos
+[Server] Total count: 2599
+[Server] Count duration: 16745845000 nanos
+[Server] Total count: 2896
+[Server] Count duration: 15310397000 nanos
+[Server] Total count: 2735
+[Server] Count duration: 15438390000 nanos
+[Server] Total count: 2492
+[Server] Count duration: 77000 nanos
+[Server] Total count: 0
+[Server] Count duration: 47000 nanos
+[Server] Total count: 0
+[Server] Count duration: 7594423000 nanos
+[Server] Total count: 1320
+[Server] Count duration: 15359487000 nanos
+[Server] Total count: 2551
+[Server] Count duration: 16552463000 nanos
+[Server] Total count: 2812
+[Server] Count duration: 15333114000 nanos
+[Server] Total count: 2701
+[Server] Count duration: 15056342000 nanos
+[Server] Total count: 2551
+[Server] Count duration: 15426845000 nanos
+[Server] Total count: 2550
+[Server] Count duration: 16430778000 nanos
+[Server] Total count: 2774
+[Server] Count duration: 15361304000 nanos
+[Server] Total count: 2626
+[Server] Count duration: 15442256000 nanos
+[Server] Total count: 2597
+[Server] Count duration: 15132911000 nanos
+[Server] Total count: 2720
+[Server] Count duration: 28838756000 nanos
+[Server] Total count: 5052
+[Server] Count duration: 3517495000 nanos
+[Server] Total count: 574
+[Server] Count duration: 15350363000 nanos
+[Server] Total count: 2563
+[Server] Count duration: 35983116000 nanos
+[Server] Total count: 6145
+[Server] Count duration: 124000 nanos
+[Server] Total count: 0
+[Server] Count duration: 11843498000 nanos
+[Server] Total count: 2066
+[Server] Count duration: 15539505000 nanos
+[Server] Total count: 2691
+[Server] Count duration: 1087050000 nanos
+[Server] Total count: 253
+[Server] Count duration: 15553599000 nanos
+[Server] Total count: 2616
+[Server] Count duration: 15281398000 nanos
+[Server] Total count: 2528
+[Server] Count duration: 15706021000 nanos
+[Server] Total count: 2751
+[Server] Count duration: 16683932000 nanos
+[Server] Total count: 2986
+[Server] Count duration: 15475008000 nanos
+[Server] Total count: 2583
+[Server] Count duration: 15339253000 nanos
+[Server] Total count: 2611
+[Server] Count duration: 15511878000 nanos
+[Server] Total count: 2652
+[Server] Count duration: 16519713000 nanos
+[Server] Total count: 2728
+[Server] Count duration: 15350134000 nanos
+[Server] Total count: 2491
+[Server] Count duration: 15437960000 nanos
+[Server] Total count: 2531
+[Server] Count duration: 15281205000 nanos
+[Server] Total count: 2665
+[Server] Count duration: 16660015000 nanos
+[Server] Total count: 2745
+[Server] Count duration: 2353173000 nanos
+[Server] Total count: 373
+[Server] Finished running (500 Clients joined).
+Parameters: version=ST, size=1024, trial=3
+[Server] Count duration: 15343452000 nanos
+[Server] Total count: 2541
+[Server] Count duration: 16660655000 nanos
+[Server] Total count: 2929
+[Server] Count duration: 15274083000 nanos
+[Server] Total count: 2756
+[Server] Count duration: 5314727000 nanos
+[Server] Total count: 879
+[Server] Count duration: 15597692000 nanos
+[Server] Total count: 2646
+[Server] Count duration: 16348629000 nanos
+[Server] Total count: 2869
+[Server] Count duration: 15368107000 nanos
+[Server] Total count: 2578
+[Server] Count duration: 15101207000 nanos
+[Server] Total count: 2663
+[Server] Count duration: 16581491000 nanos
+[Server] Total count: 2888
+[Server] Count duration: 15399130000 nanos
+[Server] Total count: 2755
+[Server] Count duration: 15434163000 nanos
+[Server] Total count: 2673
+[Server] Count duration: 15585688000 nanos
+[Server] Total count: 2752
+[Server] Count duration: 16486352000 nanos
+[Server] Total count: 2767
+[Server] Count duration: 15278303000 nanos
+[Server] Total count: 2761
+[Server] Count duration: 15471055000 nanos
+[Server] Total count: 2627
+[Server] Count duration: 15205461000 nanos
+[Server] Total count: 2439
+[Server] Count duration: 16649332000 nanos
+[Server] Total count: 2738
+[Server] Count duration: 77000 nanos
+[Server] Total count: 0
+[Server] Count duration: 45000 nanos
+[Server] Total count: 0
+[Server] Count duration: 1205172000 nanos
+[Server] Total count: 209
+[Server] Count duration: 16530060000 nanos
+[Server] Total count: 2866
+[Server] Count duration: 15367236000 nanos
+[Server] Total count: 2588
+[Server] Count duration: 15224861000 nanos
+[Server] Total count: 2615
+[Server] Count duration: 16524905000 nanos
+[Server] Total count: 2743
+[Server] Count duration: 15492886000 nanos
+[Server] Total count: 2606
+[Server] Count duration: 14982057000 nanos
+[Server] Total count: 2725
+[Server] Count duration: 15384131000 nanos
+[Server] Total count: 2662
+[Server] Count duration: 18118194000 nanos
+[Server] Total count: 3112
+[Server] Count duration: 15714777000 nanos
+[Server] Total count: 2669
+[Server] Count duration: 15189982000 nanos
+[Server] Total count: 2717
+[Server] Count duration: 15278875000 nanos
+[Server] Total count: 2710
+[Server] Count duration: 16675366000 nanos
+[Server] Total count: 2824
+[Server] Count duration: 15328690000 nanos
+[Server] Total count: 2471
+[Server] Count duration: 15419361000 nanos
+[Server] Total count: 2594
+[Server] Count duration: 15328734000 nanos
+[Server] Total count: 2679
+[Server] Count duration: 16841419000 nanos
+[Server] Total count: 2843
+[Server] Count duration: 75000 nanos
+[Server] Total count: 0
+[Server] Count duration: 44000 nanos
+[Server] Total count: 0
+[Server] Count duration: 11578327000 nanos
+[Server] Total count: 1955
+[Server] Count duration: 15365967000 nanos
+[Server] Total count: 2728
+[Server] Count duration: 15485233000 nanos
+[Server] Total count: 2681
+[Server] Count duration: 15510094000 nanos
+[Server] Total count: 2540
+[Server] Count duration: 16720492000 nanos
+[Server] Total count: 2905
+[Server] Count duration: 15265916000 nanos
+[Server] Total count: 2519
+[Server] Count duration: 15376689000 nanos
+[Server] Total count: 2683
+[Server] Count duration: 15278025000 nanos
+[Server] Total count: 2668
+[Server] Count duration: 16626035000 nanos
+[Server] Total count: 2838
+[Server] Count duration: 15373296000 nanos
+[Server] Total count: 2555
+[Server] Count duration: 15363142000 nanos
+[Server] Total count: 2619
+[Server] Count duration: 16623496000 nanos
+[Server] Total count: 2907
+[Server] Finished running (500 Clients joined).
+Parameters: version=ST, size=1024, trial=4
+[Server] Count duration: 15573541000 nanos
+[Server] Total count: 3043
+[Server] Count duration: 15518798000 nanos
+[Server] Total count: 2999
+[Server] Count duration: 15281566000 nanos
+[Server] Total count: 2988
+[Server] Count duration: 16639144000 nanos
+[Server] Total count: 3221
+[Server] Count duration: 15317087000 nanos
+[Server] Total count: 3034
+[Server] Count duration: 23000535000 nanos
+[Server] Total count: 4566
+[Server] Count duration: 8027529000 nanos
+[Server] Total count: 1627
+[Server] Count duration: 16529471000 nanos
+[Server] Total count: 3317
+[Server] Count duration: 15308889000 nanos
+[Server] Total count: 3113
+[Server] Count duration: 15511225000 nanos
+[Server] Total count: 3196
+[Server] Count duration: 15326611000 nanos
+[Server] Total count: 3079
+[Server] Count duration: 16613732000 nanos
+[Server] Total count: 3288
+[Server] Count duration: 15409324000 nanos
+[Server] Total count: 3082
+[Server] Count duration: 15419580000 nanos
+[Server] Total count: 3004
+[Server] Count duration: 16625757000 nanos
+[Server] Total count: 3270
+[Server] Count duration: 15431753000 nanos
+[Server] Total count: 3029
+[Server] Count duration: 3700574000 nanos
+[Server] Total count: 748
+[Server] Count duration: 16547135000 nanos
+[Server] Total count: 3206
+[Server] Count duration: 16537841000 nanos
+[Server] Total count: 3318
+[Server] Count duration: 15438732000 nanos
+[Server] Total count: 3059
+[Server] Count duration: 15388786000 nanos
+[Server] Total count: 3073
+[Server] Count duration: 15418179000 nanos
+[Server] Total count: 3037
+[Server] Count duration: 16656039000 nanos
+[Server] Total count: 3256
+[Server] Count duration: 15312913000 nanos
+[Server] Total count: 3040
+[Server] Count duration: 15389466000 nanos
+[Server] Total count: 3006
+[Server] Count duration: 15447958000 nanos
+[Server] Total count: 2963
+[Server] Count duration: 16552764000 nanos
+[Server] Total count: 3134
+[Server] Count duration: 15315965000 nanos
+[Server] Total count: 2928
+[Server] Count duration: 15202061000 nanos
+[Server] Total count: 2986
+[Server] Count duration: 16570716000 nanos
+[Server] Total count: 3283
+[Server] Count duration: 78000 nanos
+[Server] Total count: 0
+[Server] Count duration: 6024903000 nanos
+[Server] Total count: 1140
+[Server] Count duration: 15511475000 nanos
+[Server] Total count: 3051
+[Server] Count duration: 16308443000 nanos
+[Server] Total count: 3288
+[Server] Count duration: 15373352000 nanos
+[Server] Total count: 2993
+[Server] Count duration: 15168791000 nanos
+[Server] Total count: 3002
+[Server] Count duration: 15448094000 nanos
+[Server] Total count: 3015
+[Server] Count duration: 16505366000 nanos
+[Server] Total count: 3291
+[Server] Count duration: 15409962000 nanos
+[Server] Total count: 3056
+[Server] Count duration: 15311537000 nanos
+[Server] Total count: 2973
+[Server] Count duration: 15359812000 nanos
+[Server] Total count: 3048
+[Server] Count duration: 16641710000 nanos
+[Server] Total count: 3252
+[Server] Count duration: 15321555000 nanos
+[Server] Total count: 2976
+[Server] Count duration: 15370436000 nanos
+[Server] Total count: 2999
+[Server] Count duration: 15318437000 nanos
+[Server] Total count: 2977
+[Server] Count duration: 15381463000 nanos
+[Server] Total count: 3055
+[Server] Count duration: 15428990000 nanos
+[Server] Total count: 3084
+[Server] Count duration: 15438442000 nanos
+[Server] Total count: 2999
+[Server] Count duration: 16425775000 nanos
+[Server] Total count: 3202
+[Server] Count duration: 15269061000 nanos
+[Server] Total count: 3135
+[Server] Finished running (500 Clients joined).
+Parameters: version=ST, size=1024, trial=0
+[Server] Count duration: 16484180000 nanos
+[Server] Total count: 2787
+[Server] Count duration: 15367011000 nanos
+[Server] Total count: 2516
+[Server] Count duration: 15373792000 nanos
+[Server] Total count: 2514
+[Server] Count duration: 15471709000 nanos
+[Server] Total count: 2565
+[Server] Count duration: 16522438000 nanos
+[Server] Total count: 2716
+[Server] Count duration: 15121715000 nanos
+[Server] Total count: 2650
+[Server] Count duration: 15473443000 nanos
+[Server] Total count: 2641
+[Server] Count duration: 15319626000 nanos
+[Server] Total count: 2596
+[Server] Count duration: 16465538000 nanos
+[Server] Total count: 2656
+[Server] Count duration: 15540637000 nanos
+[Server] Total count: 2736
+[Server] Count duration: 15340105000 nanos
+[Server] Total count: 2754
+[Server] Count duration: 15331635000 nanos
+[Server] Total count: 2412
+[Server] Count duration: 16598321000 nanos
+[Server] Total count: 2702
+[Server] Count duration: 15214698000 nanos
+[Server] Total count: 2567
+[Server] Count duration: 29593305000 nanos
+[Server] Total count: 5029
+[Server] Count duration: 2522703000 nanos
+[Server] Total count: 464
+[Server] Count duration: 15125060000 nanos
+[Server] Total count: 2557
+[Server] Count duration: 15336696000 nanos
+[Server] Total count: 2544
+[Server] Count duration: 16572238000 nanos
+[Server] Total count: 2610
+[Server] Count duration: 79000 nanos
+[Server] Total count: 0
+[Server] Count duration: 48000 nanos
+[Server] Total count: 0
+[Server] Count duration: 9752237000 nanos
+[Server] Total count: 1657
+[Server] Count duration: 15155129000 nanos
+[Server] Total count: 2603
+[Server] Count duration: 41817256000 nanos
+[Server] Total count: 6840
+[Server] Count duration: 114000 nanos
+[Server] Total count: 0
+[Server] Count duration: 5725507000 nanos
+[Server] Total count: 955
+[Server] Count duration: 15285268000 nanos
+[Server] Total count: 2689
+[Server] Count duration: 15310857000 nanos
+[Server] Total count: 2663
+[Server] Count duration: 15294803000 nanos
+[Server] Total count: 2529
+[Server] Count duration: 15380870000 nanos
+[Server] Total count: 2713
+[Server] Count duration: 16699601000 nanos
+[Server] Total count: 2720
+[Server] Count duration: 15442639000 nanos
+[Server] Total count: 2658
+[Server] Count duration: 15389324000 nanos
+[Server] Total count: 2584
+[Server] Count duration: 15288214000 nanos
+[Server] Total count: 2620
+[Server] Count duration: 16518990000 nanos
+[Server] Total count: 2781
+[Server] Count duration: 15174147000 nanos
+[Server] Total count: 2436
+[Server] Count duration: 15603854000 nanos
+[Server] Total count: 2663
+[Server] Count duration: 15648631000 nanos
+[Server] Total count: 2642
+[Server] Count duration: 16620416000 nanos
+[Server] Total count: 2898
+[Server] Count duration: 15275705000 nanos
+[Server] Total count: 2625
+[Server] Count duration: 77000 nanos
+[Server] Total count: 0
+[Server] Count duration: 46000 nanos
+[Server] Total count: 0
+[Server] Count duration: 41000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 455021000 nanos
+[Server] Total count: 73
+[Server] Count duration: 16781815000 nanos
+[Server] Total count: 2787
+[Server] Count duration: 15159056000 nanos
+[Server] Total count: 2543
+[Server] Count duration: 15308634000 nanos
+[Server] Total count: 2668
+[Server] Count duration: 15294431000 nanos
+[Server] Total count: 2548
+[Server] Count duration: 16666122000 nanos
+[Server] Total count: 2890
+[Server] Finished running (700 Clients joined).
+Parameters: version=ST, size=1024, trial=1
+[Server] Count duration: 15200987000 nanos
+[Server] Total count: 2537
+[Server] Count duration: 15520958000 nanos
+[Server] Total count: 2635
+[Server] Count duration: 15398085000 nanos
+[Server] Total count: 2477
+[Server] Count duration: 89255408000 nanos
+[Server] Total count: 14978
+[Server] Count duration: 42000 nanos
+[Server] Total count: 0
+[Server] Count duration: 41000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 6657378000 nanos
+[Server] Total count: 1116
+[Server] Count duration: 75000 nanos
+[Server] Total count: 0
+[Server] Count duration: 45000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 74599611000 nanos
+[Server] Total count: 12289
+[Server] Count duration: 41000 nanos
+[Server] Total count: 0
+[Server] Count duration: 39000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 14545035000 nanos
+[Server] Total count: 2360
+[Server] Count duration: 16472113000 nanos
+[Server] Total count: 2875
+[Server] Count duration: 15438297000 nanos
+[Server] Total count: 2580
+[Server] Count duration: 15149171000 nanos
+[Server] Total count: 2429
+[Server] Count duration: 88858219000 nanos
+[Server] Total count: 14924
+[Server] Count duration: 43000 nanos
+[Server] Total count: 0
+[Server] Count duration: 42000 nanos
+[Server] Total count: 0
+[Server] Count duration: 43000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 6956817000 nanos
+[Server] Total count: 1172
+[Server] Count duration: 15341673000 nanos
+[Server] Total count: 2622
+[Server] Count duration: 15558916000 nanos
+[Server] Total count: 2544
+[Server] Count duration: 16471617000 nanos
+[Server] Total count: 2816
+[Server] Count duration: 15471970000 nanos
+[Server] Total count: 2655
+[Server] Count duration: 15507955000 nanos
+[Server] Total count: 2568
+[Server] Count duration: 15185158000 nanos
+[Server] Total count: 2504
+[Server] Count duration: 16864013000 nanos
+[Server] Total count: 2715
+[Server] Count duration: 15248554000 nanos
+[Server] Total count: 2567
+[Server] Count duration: 15288478000 nanos
+[Server] Total count: 2545
+[Server] Count duration: 15359820000 nanos
+[Server] Total count: 2590
+[Server] Count duration: 15394917000 nanos
+[Server] Total count: 2486
+[Server] Count duration: 15032861000 nanos
+[Server] Total count: 2547
+[Server] Count duration: 15387801000 nanos
+[Server] Total count: 2519
+[Server] Count duration: 8064590000 nanos
+[Server] Total count: 1326
+[Server] Count duration: 15428899000 nanos
+[Server] Total count: 2582
+[Server] Count duration: 15710069000 nanos
+[Server] Total count: 2664
+[Server] Count duration: 16537042000 nanos
+[Server] Total count: 2652
+[Server] Count duration: 16526260000 nanos
+[Server] Total count: 2808
+[Server] Count duration: 15550060000 nanos
+[Server] Total count: 2617
+[Server] Count duration: 15319111000 nanos
+[Server] Total count: 2467
+[Server] Count duration: 15162742000 nanos
+[Server] Total count: 2418
+[Server] Count duration: 16606961000 nanos
+[Server] Total count: 2817
+[Server] Count duration: 15335642000 nanos
+[Server] Total count: 2597
+[Server] Finished running (700 Clients joined).
+Parameters: version=ST, size=1024, trial=2
+[Server] Count duration: 148000 nanos
+[Server] Total count: 0
+[Server] Count duration: 62000 nanos
+[Server] Total count: 0
+[Server] Count duration: 4124636000 nanos
+[Server] Total count: 711
+[Server] Count duration: 15285347000 nanos
+[Server] Total count: 2601
+[Server] Count duration: 16501299000 nanos
+[Server] Total count: 2879
+[Server] Count duration: 15299192000 nanos
+[Server] Total count: 2422
+[Server] Count duration: 15567117000 nanos
+[Server] Total count: 2491
+[Server] Count duration: 15450943000 nanos
+[Server] Total count: 2476
+[Server] Count duration: 16330439000 nanos
+[Server] Total count: 2641
+[Server] Count duration: 15373612000 nanos
+[Server] Total count: 2579
+[Server] Count duration: 15213915000 nanos
+[Server] Total count: 2620
+[Server] Count duration: 16589691000 nanos
+[Server] Total count: 2798
+[Server] Count duration: 15308903000 nanos
+[Server] Total count: 2565
+[Server] Count duration: 15044075000 nanos
+[Server] Total count: 2498
+[Server] Count duration: 15259521000 nanos
+[Server] Total count: 2612
+[Server] Count duration: 16613610000 nanos
+[Server] Total count: 2759
+[Server] Count duration: 15104796000 nanos
+[Server] Total count: 2432
+[Server] Count duration: 15319676000 nanos
+[Server] Total count: 2511
+[Server] Count duration: 15098865000 nanos
+[Server] Total count: 2529
+[Server] Count duration: 16676527000 nanos
+[Server] Total count: 2838
+[Server] Count duration: 15221757000 nanos
+[Server] Total count: 2493
+[Server] Count duration: 15082014000 nanos
+[Server] Total count: 2419
+[Server] Count duration: 15454720000 nanos
+[Server] Total count: 2788
+[Server] Count duration: 16517850000 nanos
+[Server] Total count: 2852
+[Server] Count duration: 15309367000 nanos
+[Server] Total count: 2564
+[Server] Count duration: 15286035000 nanos
+[Server] Total count: 2673
+[Server] Count duration: 15381742000 nanos
+[Server] Total count: 2514
+[Server] Count duration: 16565349000 nanos
+[Server] Total count: 2864
+[Server] Count duration: 15485160000 nanos
+[Server] Total count: 2670
+[Server] Count duration: 15467517000 nanos
+[Server] Total count: 2579
+[Server] Count duration: 16607820000 nanos
+[Server] Total count: 2864
+[Server] Count duration: 15296477000 nanos
+[Server] Total count: 2489
+[Server] Count duration: 15380262000 nanos
+[Server] Total count: 2551
+[Server] Count duration: 15444263000 nanos
+[Server] Total count: 2565
+[Server] Count duration: 16466567000 nanos
+[Server] Total count: 2710
+[Server] Count duration: 15306641000 nanos
+[Server] Total count: 2861
+[Server] Count duration: 15652391000 nanos
+[Server] Total count: 2634
+[Server] Count duration: 15284996000 nanos
+[Server] Total count: 2578
+[Server] Count duration: 16524658000 nanos
+[Server] Total count: 2672
+[Server] Count duration: 15426780000 nanos
+[Server] Total count: 2722
+[Server] Count duration: 15198261000 nanos
+[Server] Total count: 2603
+[Server] Count duration: 15366454000 nanos
+[Server] Total count: 2532
+[Server] Count duration: 16651835000 nanos
+[Server] Total count: 2833
+[Server] Count duration: 15338328000 nanos
+[Server] Total count: 2588
+[Server] Count duration: 15545299000 nanos
+[Server] Total count: 2707
+[Server] Count duration: 16469649000 nanos
+[Server] Total count: 2770
+[Server] Count duration: 15493376000 nanos
+[Server] Total count: 2495
+[Server] Count duration: 15299074000 nanos
+[Server] Total count: 2702
+[Server] Count duration: 16631124000 nanos
+[Server] Total count: 2756
+[Server] Count duration: 16611581000 nanos
+[Server] Total count: 2822
+[Server] Finished running (700 Clients joined).
+Parameters: version=ST, size=1024, trial=3
+[Server] Count duration: 15396048000 nanos
+[Server] Total count: 2637
+[Server] Count duration: 65000 nanos
+[Server] Total count: 0
+[Server] Count duration: 14886887000 nanos
+[Server] Total count: 2379
+[Server] Count duration: 15172508000 nanos
+[Server] Total count: 2640
+[Server] Count duration: 15251480000 nanos
+[Server] Total count: 2421
+[Server] Count duration: 15502715000 nanos
+[Server] Total count: 2510
+[Server] Count duration: 77000 nanos
+[Server] Total count: 0
+[Server] Count duration: 13397751000 nanos
+[Server] Total count: 2337
+[Server] Count duration: 17177037000 nanos
+[Server] Total count: 2855
+[Server] Count duration: 15531123000 nanos
+[Server] Total count: 2706
+[Server] Count duration: 15393001000 nanos
+[Server] Total count: 2421
+[Server] Count duration: 15510410000 nanos
+[Server] Total count: 2619
+[Server] Count duration: 17384725000 nanos
+[Server] Total count: 2830
+[Server] Count duration: 15414830000 nanos
+[Server] Total count: 2600
+[Server] Count duration: 15242248000 nanos
+[Server] Total count: 2578
+[Server] Count duration: 15314372000 nanos
+[Server] Total count: 2618
+[Server] Count duration: 17311634000 nanos
+[Server] Total count: 2883
+[Server] Count duration: 15144529000 nanos
+[Server] Total count: 2419
+[Server] Count duration: 15630591000 nanos
+[Server] Total count: 2618
+[Server] Count duration: 15470812000 nanos
+[Server] Total count: 2677
+[Server] Count duration: 15250013000 nanos
+[Server] Total count: 2636
+[Server] Count duration: 15404686000 nanos
+[Server] Total count: 2452
+[Server] Count duration: 15502789000 nanos
+[Server] Total count: 2670
+[Server] Count duration: 17363645000 nanos
+[Server] Total count: 2910
+[Server] Count duration: 57919361000 nanos
+[Server] Total count: 9578
+[Server] Count duration: 42000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 6266457000 nanos
+[Server] Total count: 1019
+[Server] Count duration: 15343049000 nanos
+[Server] Total count: 2442
+[Server] Count duration: 15302449000 nanos
+[Server] Total count: 2532
+[Server] Count duration: 15147583000 nanos
+[Server] Total count: 2474
+[Server] Count duration: 17330209000 nanos
+[Server] Total count: 3022
+[Server] Count duration: 15632784000 nanos
+[Server] Total count: 2557
+[Server] Count duration: 15328258000 nanos
+[Server] Total count: 2556
+[Server] Count duration: 17073077000 nanos
+[Server] Total count: 2866
+[Server] Count duration: 15311369000 nanos
+[Server] Total count: 2413
+[Server] Count duration: 15388220000 nanos
+[Server] Total count: 2453
+[Server] Count duration: 15325659000 nanos
+[Server] Total count: 2415
+[Server] Count duration: 17375788000 nanos
+[Server] Total count: 2887
+[Server] Count duration: 15182295000 nanos
+[Server] Total count: 2538
+[Server] Count duration: 1859525000 nanos
+[Server] Total count: 299
+[Server] Count duration: 15293693000 nanos
+[Server] Total count: 2464
+[Server] Count duration: 17385505000 nanos
+[Server] Total count: 2865
+[Server] Count duration: 15476158000 nanos
+[Server] Total count: 2469
+[Server] Count duration: 15105661000 nanos
+[Server] Total count: 2532
+[Server] Count duration: 15181296000 nanos
+[Server] Total count: 2574
+[Server] Count duration: 38288710000 nanos
+[Server] Total count: 6389
+[Server] Count duration: 46000 nanos
+[Server] Total count: 0
+[Server] Count duration: 10297226000 nanos
+[Server] Total count: 1763
+[Server] Count duration: 17277356000 nanos
+[Server] Total count: 2810
+[Server] Finished running (700 Clients joined).
+Parameters: version=ST, size=1024, trial=4
+[Server] Count duration: 15337472000 nanos
+[Server] Total count: 2670
+[Server] Count duration: 15336462000 nanos
+[Server] Total count: 2541
+[Server] Count duration: 16719486000 nanos
+[Server] Total count: 2807
+[Server] Count duration: 15331285000 nanos
+[Server] Total count: 2554
+[Server] Count duration: 15384169000 nanos
+[Server] Total count: 2601
+[Server] Count duration: 15359778000 nanos
+[Server] Total count: 2573
+[Server] Count duration: 16822513000 nanos
+[Server] Total count: 2972
+[Server] Count duration: 15399747000 nanos
+[Server] Total count: 2725
+[Server] Count duration: 15282821000 nanos
+[Server] Total count: 2511
+[Server] Count duration: 15315811000 nanos
+[Server] Total count: 2485
+[Server] Count duration: 16551676000 nanos
+[Server] Total count: 2806
+[Server] Count duration: 15482974000 nanos
+[Server] Total count: 2609
+[Server] Count duration: 15337991000 nanos
+[Server] Total count: 2524
+[Server] Count duration: 15272357000 nanos
+[Server] Total count: 2626
+[Server] Count duration: 16615188000 nanos
+[Server] Total count: 2950
+[Server] Count duration: 15184340000 nanos
+[Server] Total count: 2581
+[Server] Count duration: 15347814000 nanos
+[Server] Total count: 2482
+[Server] Count duration: 15396847000 nanos
+[Server] Total count: 2435
+[Server] Count duration: 16638619000 nanos
+[Server] Total count: 2866
+[Server] Count duration: 15398864000 nanos
+[Server] Total count: 2594
+[Server] Count duration: 15445050000 nanos
+[Server] Total count: 2643
+[Server] Count duration: 16745930000 nanos
+[Server] Total count: 2814
+[Server] Count duration: 15209860000 nanos
+[Server] Total count: 2532
+[Server] Count duration: 15044515000 nanos
+[Server] Total count: 2509
+[Server] Count duration: 15595678000 nanos
+[Server] Total count: 2692
+[Server] Count duration: 16657547000 nanos
+[Server] Total count: 2984
+[Server] Count duration: 15308352000 nanos
+[Server] Total count: 2600
+[Server] Count duration: 15130612000 nanos
+[Server] Total count: 2634
+[Server] Count duration: 15388725000 nanos
+[Server] Total count: 2519
+[Server] Count duration: 16585659000 nanos
+[Server] Total count: 2787
+[Server] Count duration: 15593033000 nanos
+[Server] Total count: 2745
+[Server] Count duration: 12793029000 nanos
+[Server] Total count: 2360
+[Server] Count duration: 15390845000 nanos
+[Server] Total count: 2542
+[Server] Count duration: 16483980000 nanos
+[Server] Total count: 2715
+[Server] Count duration: 15260973000 nanos
+[Server] Total count: 2551
+[Server] Count duration: 15406288000 nanos
+[Server] Total count: 2687
+[Server] Count duration: 16515897000 nanos
+[Server] Total count: 2782
+[Server] Count duration: 15405649000 nanos
+[Server] Total count: 2612
+[Server] Count duration: 15486118000 nanos
+[Server] Total count: 2521
+[Server] Count duration: 15432345000 nanos
+[Server] Total count: 2537
+[Server] Count duration: 16728934000 nanos
+[Server] Total count: 2905
+[Server] Count duration: 15191169000 nanos
+[Server] Total count: 2645
+[Server] Count duration: 15451899000 nanos
+[Server] Total count: 2579
+[Server] Count duration: 15383123000 nanos
+[Server] Total count: 2645
+[Server] Count duration: 16911206000 nanos
+[Server] Total count: 2848
+[Server] Count duration: 15256912000 nanos
+[Server] Total count: 2619
+[Server] Count duration: 15294033000 nanos
+[Server] Total count: 2472
+[Server] Count duration: 15428720000 nanos
+[Server] Total count: 2729
+[Server] Count duration: 16380891000 nanos
+[Server] Total count: 2678
+[Server] Count duration: 15353328000 nanos
+[Server] Total count: 2565
+[Server] Finished running (700 Clients joined).
+Parameters: version=ST, size=1024, trial=0
+[Server] Count duration: 15300838000 nanos
+[Server] Total count: 2555
+[Server] Count duration: 16772010000 nanos
+[Server] Total count: 2803
+[Server] Count duration: 15527371000 nanos
+[Server] Total count: 2709
+[Server] Count duration: 16526914000 nanos
+[Server] Total count: 2725
+[Server] Count duration: 16520897000 nanos
+[Server] Total count: 2780
+[Server] Count duration: 15801772000 nanos
+[Server] Total count: 2566
+[Server] Count duration: 15551429000 nanos
+[Server] Total count: 2575
+[Server] Count duration: 15293089000 nanos
+[Server] Total count: 2452
+[Server] Count duration: 16762549000 nanos
+[Server] Total count: 2882
+[Server] Count duration: 15195962000 nanos
+[Server] Total count: 2558
+[Server] Count duration: 15368090000 nanos
+[Server] Total count: 2562
+[Server] Count duration: 15271550000 nanos
+[Server] Total count: 2633
+[Server] Count duration: 16548805000 nanos
+[Server] Total count: 2711
+[Server] Count duration: 15354806000 nanos
+[Server] Total count: 2543
+[Server] Count duration: 15331250000 nanos
+[Server] Total count: 2533
+[Server] Count duration: 15467312000 nanos
+[Server] Total count: 2453
+[Server] Count duration: 16593603000 nanos
+[Server] Total count: 2718
+[Server] Count duration: 15426639000 nanos
+[Server] Total count: 2500
+[Server] Count duration: 15465833000 nanos
+[Server] Total count: 2443
+[Server] Count duration: 16769518000 nanos
+[Server] Total count: 2785
+[Server] Count duration: 15528431000 nanos
+[Server] Total count: 2615
+[Server] Count duration: 15452685000 nanos
+[Server] Total count: 2493
+[Server] Count duration: 15256695000 nanos
+[Server] Total count: 2594
+[Server] Count duration: 16718989000 nanos
+[Server] Total count: 2783
+[Server] Count duration: 15063348000 nanos
+[Server] Total count: 2413
+[Server] Count duration: 15502321000 nanos
+[Server] Total count: 2465
+[Server] Count duration: 15151757000 nanos
+[Server] Total count: 2609
+[Server] Count duration: 16854529000 nanos
+[Server] Total count: 2865
+[Server] Count duration: 15484608000 nanos
+[Server] Total count: 2529
+[Server] Count duration: 163000 nanos
+[Server] Total count: 0
+[Server] Count duration: 13527682000 nanos
+[Server] Total count: 2115
+[Server] Count duration: 15422921000 nanos
+[Server] Total count: 2483
+[Server] Count duration: 15195495000 nanos
+[Server] Total count: 2454
+[Server] Count duration: 15447014000 nanos
+[Server] Total count: 2462
+[Server] Count duration: 16787445000 nanos
+[Server] Total count: 2780
+[Server] Count duration: 15845164000 nanos
+[Server] Total count: 2554
+[Server] Count duration: 15265123000 nanos
+[Server] Total count: 2517
+[Server] Count duration: 15357532000 nanos
+[Server] Total count: 2383
+[Server] Count duration: 16779686000 nanos
+[Server] Total count: 2967
+[Server] Count duration: 15377064000 nanos
+[Server] Total count: 2493
+[Server] Count duration: 15320654000 nanos
+[Server] Total count: 2663
+[Server] Count duration: 15311747000 nanos
+[Server] Total count: 2495
+[Server] Count duration: 16421664000 nanos
+[Server] Total count: 2684
+[Server] Count duration: 15332470000 nanos
+[Server] Total count: 2549
+[Server] Count duration: 15316563000 nanos
+[Server] Total count: 2542
+[Server] Count duration: 16522983000 nanos
+[Server] Total count: 2600
+[Server] Count duration: 15422517000 nanos
+[Server] Total count: 2485
+[Server] Count duration: 15431781000 nanos
+[Server] Total count: 2667
+[Server] Count duration: 15174844000 nanos
+[Server] Total count: 2377
+[Server] Count duration: 16864684000 nanos
+[Server] Total count: 2872
+[Server] Finished running (900 Clients joined).
+Parameters: version=ST, size=1024, trial=1
+[Server] Count duration: 15363766000 nanos
+[Server] Total count: 2431
+[Server] Count duration: 15112454000 nanos
+[Server] Total count: 2559
+[Server] Count duration: 16632296000 nanos
+[Server] Total count: 2775
+[Server] Count duration: 15320369000 nanos
+[Server] Total count: 2418
+[Server] Count duration: 15422531000 nanos
+[Server] Total count: 2662
+[Server] Count duration: 16665978000 nanos
+[Server] Total count: 2660
+[Server] Count duration: 15494946000 nanos
+[Server] Total count: 2725
+[Server] Count duration: 15328388000 nanos
+[Server] Total count: 2447
+[Server] Count duration: 15573647000 nanos
+[Server] Total count: 2531
+[Server] Count duration: 107118622000 nanos
+[Server] Total count: 17924
+[Server] Count duration: 45000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 43000 nanos
+[Server] Total count: 0
+[Server] Count duration: 4860061000 nanos
+[Server] Total count: 794
+[Server] Count duration: 15323399000 nanos
+[Server] Total count: 2372
+[Server] Count duration: 16577573000 nanos
+[Server] Total count: 2735
+[Server] Count duration: 15302210000 nanos
+[Server] Total count: 2534
+[Server] Count duration: 15291309000 nanos
+[Server] Total count: 2558
+[Server] Count duration: 16494516000 nanos
+[Server] Total count: 2728
+[Server] Count duration: 15438958000 nanos
+[Server] Total count: 2458
+[Server] Count duration: 15396449000 nanos
+[Server] Total count: 2552
+[Server] Count duration: 71000 nanos
+[Server] Total count: 0
+[Server] Count duration: 41000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 10946440000 nanos
+[Server] Total count: 1926
+[Server] Count duration: 15423573000 nanos
+[Server] Total count: 2538
+[Server] Count duration: 16711349000 nanos
+[Server] Total count: 2676
+[Server] Count duration: 15218019000 nanos
+[Server] Total count: 2495
+[Server] Count duration: 15094266000 nanos
+[Server] Total count: 2366
+[Server] Count duration: 15240585000 nanos
+[Server] Total count: 2487
+[Server] Count duration: 16801404000 nanos
+[Server] Total count: 2832
+[Server] Count duration: 15325665000 nanos
+[Server] Total count: 2517
+[Server] Count duration: 15422906000 nanos
+[Server] Total count: 2558
+[Server] Count duration: 16627565000 nanos
+[Server] Total count: 2597
+[Server] Count duration: 15341530000 nanos
+[Server] Total count: 2641
+[Server] Count duration: 15449335000 nanos
+[Server] Total count: 2481
+[Server] Count duration: 15531974000 nanos
+[Server] Total count: 2681
+[Server] Count duration: 96958645000 nanos
+[Server] Total count: 16385
+[Server] Count duration: 45000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 39000 nanos
+[Server] Total count: 0
+[Server] Count duration: 39000 nanos
+[Server] Total count: 0
+[Server] Count duration: 14519242000 nanos
+[Server] Total count: 2428
+[Server] Count duration: 15544593000 nanos
+[Server] Total count: 2597
+[Server] Count duration: 16454714000 nanos
+[Server] Total count: 2640
+[Server] Count duration: 15143059000 nanos
+[Server] Total count: 2440
+[Server] Count duration: 15430001000 nanos
+[Server] Total count: 2495
+[Server] Finished running (900 Clients joined).
+Parameters: version=ST, size=1024, trial=2
+[Server] Count duration: 15239224000 nanos
+[Server] Total count: 2622
+[Server] Count duration: 15329610000 nanos
+[Server] Total count: 2090
+[Server] Count duration: 15495215000 nanos
+[Server] Total count: 2646
+[Server] Count duration: 16560581000 nanos
+[Server] Total count: 2692
+[Server] Count duration: 15329598000 nanos
+[Server] Total count: 2443
+[Server] Count duration: 15439140000 nanos
+[Server] Total count: 2585
+[Server] Count duration: 16654219000 nanos
+[Server] Total count: 3006
+[Server] Count duration: 15495478000 nanos
+[Server] Total count: 2682
+[Server] Count duration: 15375031000 nanos
+[Server] Total count: 2515
+[Server] Count duration: 15301077000 nanos
+[Server] Total count: 2538
+[Server] Count duration: 16609515000 nanos
+[Server] Total count: 2740
+[Server] Count duration: 15295203000 nanos
+[Server] Total count: 2488
+[Server] Count duration: 15297625000 nanos
+[Server] Total count: 2500
+[Server] Count duration: 15272643000 nanos
+[Server] Total count: 2634
+[Server] Count duration: 16681505000 nanos
+[Server] Total count: 2790
+[Server] Count duration: 15304205000 nanos
+[Server] Total count: 2480
+[Server] Count duration: 15219877000 nanos
+[Server] Total count: 2563
+[Server] Count duration: 15518313000 nanos
+[Server] Total count: 2477
+[Server] Count duration: 16587875000 nanos
+[Server] Total count: 2939
+[Server] Count duration: 15340598000 nanos
+[Server] Total count: 2567
+[Server] Count duration: 15301843000 nanos
+[Server] Total count: 2507
+[Server] Count duration: 16503612000 nanos
+[Server] Total count: 2664
+[Server] Count duration: 15399115000 nanos
+[Server] Total count: 2667
+[Server] Count duration: 15530632000 nanos
+[Server] Total count: 2683
+[Server] Count duration: 15270322000 nanos
+[Server] Total count: 2605
+[Server] Count duration: 16900030000 nanos
+[Server] Total count: 2620
+[Server] Count duration: 15326819000 nanos
+[Server] Total count: 2466
+[Server] Count duration: 15292158000 nanos
+[Server] Total count: 2328
+[Server] Count duration: 15368337000 nanos
+[Server] Total count: 2533
+[Server] Count duration: 16420690000 nanos
+[Server] Total count: 2608
+[Server] Count duration: 15237790000 nanos
+[Server] Total count: 2584
+[Server] Count duration: 15392322000 nanos
+[Server] Total count: 2529
+[Server] Count duration: 15439417000 nanos
+[Server] Total count: 2502
+[Server] Count duration: 16182649000 nanos
+[Server] Total count: 2680
+[Server] Count duration: 15298365000 nanos
+[Server] Total count: 2479
+[Server] Count duration: 15520852000 nanos
+[Server] Total count: 2487
+[Server] Count duration: 16623939000 nanos
+[Server] Total count: 2789
+[Server] Count duration: 15482059000 nanos
+[Server] Total count: 2471
+[Server] Count duration: 78000 nanos
+[Server] Total count: 0
+[Server] Count duration: 76205718000 nanos
+[Server] Total count: 12464
+[Server] Count duration: 43000 nanos
+[Server] Total count: 0
+[Server] Count duration: 3673000 nanos
+[Server] Total count: 1
+[Server] Count duration: 41000 nanos
+[Server] Total count: 0
+[Server] Count duration: 39000 nanos
+[Server] Total count: 0
+[Server] Count duration: 11972003000 nanos
+[Server] Total count: 1918
+[Server] Count duration: 15697581000 nanos
+[Server] Total count: 2532
+[Server] Count duration: 14914231000 nanos
+[Server] Total count: 2711
+[Server] Count duration: 15390628000 nanos
+[Server] Total count: 2529
+[Server] Count duration: 16148047000 nanos
+[Server] Total count: 2613
+[Server] Count duration: 15282761000 nanos
+[Server] Total count: 2478
+[Server] Finished running (900 Clients joined).
+Parameters: version=ST, size=1024, trial=3
+[Server] Count duration: 15286113000 nanos
+[Server] Total count: 2516
+[Server] Count duration: 16392575000 nanos
+[Server] Total count: 2800
+[Server] Count duration: 15217650000 nanos
+[Server] Total count: 2433
+[Server] Count duration: 15546269000 nanos
+[Server] Total count: 2699
+[Server] Count duration: 15302592000 nanos
+[Server] Total count: 2652
+[Server] Count duration: 16726174000 nanos
+[Server] Total count: 2899
+[Server] Count duration: 15370483000 nanos
+[Server] Total count: 2509
+[Server] Count duration: 15370402000 nanos
+[Server] Total count: 2485
+[Server] Count duration: 16857357000 nanos
+[Server] Total count: 2751
+[Server] Count duration: 15323160000 nanos
+[Server] Total count: 2543
+[Server] Count duration: 15468036000 nanos
+[Server] Total count: 2644
+[Server] Count duration: 15593136000 nanos
+[Server] Total count: 2530
+[Server] Count duration: 16560137000 nanos
+[Server] Total count: 2783
+[Server] Count duration: 15725158000 nanos
+[Server] Total count: 2512
+[Server] Count duration: 16064979000 nanos
+[Server] Total count: 2539
+[Server] Count duration: 15060193000 nanos
+[Server] Total count: 2578
+[Server] Count duration: 16699560000 nanos
+[Server] Total count: 2813
+[Server] Count duration: 15960427000 nanos
+[Server] Total count: 2621
+[Server] Count duration: 15841222000 nanos
+[Server] Total count: 2629
+[Server] Count duration: 4907838000 nanos
+[Server] Total count: 808
+[Server] Count duration: 15822456000 nanos
+[Server] Total count: 2600
+[Server] Count duration: 15554784000 nanos
+[Server] Total count: 2620
+[Server] Count duration: 15445757000 nanos
+[Server] Total count: 2506
+[Server] Count duration: 16601919000 nanos
+[Server] Total count: 2782
+[Server] Count duration: 15631831000 nanos
+[Server] Total count: 2416
+[Server] Count duration: 15293970000 nanos
+[Server] Total count: 2465
+[Server] Count duration: 15562936000 nanos
+[Server] Total count: 2424
+[Server] Count duration: 16507779000 nanos
+[Server] Total count: 2827
+[Server] Count duration: 15695954000 nanos
+[Server] Total count: 2599
+[Server] Count duration: 15474580000 nanos
+[Server] Total count: 2653
+[Server] Count duration: 15757653000 nanos
+[Server] Total count: 2479
+[Server] Count duration: 15739707000 nanos
+[Server] Total count: 2446
+[Server] Count duration: 15585446000 nanos
+[Server] Total count: 2660
+[Server] Count duration: 15321629000 nanos
+[Server] Total count: 2437
+[Server] Count duration: 16660123000 nanos
+[Server] Total count: 2580
+[Server] Count duration: 15674056000 nanos
+[Server] Total count: 2591
+[Server] Count duration: 15574937000 nanos
+[Server] Total count: 2465
+[Server] Count duration: 14722286000 nanos
+[Server] Total count: 2402
+[Server] Count duration: 16849710000 nanos
+[Server] Total count: 2683
+[Server] Count duration: 15362170000 nanos
+[Server] Total count: 2559
+[Server] Count duration: 15678692000 nanos
+[Server] Total count: 2596
+[Server] Count duration: 15416468000 nanos
+[Server] Total count: 2574
+[Server] Count duration: 16661647000 nanos
+[Server] Total count: 2669
+[Server] Count duration: 15331526000 nanos
+[Server] Total count: 2456
+[Server] Count duration: 15162496000 nanos
+[Server] Total count: 2422
+[Server] Count duration: 16429015000 nanos
+[Server] Total count: 2879
+[Server] Count duration: 15127249000 nanos
+[Server] Total count: 2589
+[Server] Count duration: 15219292000 nanos
+[Server] Total count: 2512
+[Server] Count duration: 15536223000 nanos
+[Server] Total count: 2479
+[Server] Count duration: 16728420000 nanos
+[Server] Total count: 2739
+[Server] Finished running (900 Clients joined).
+Parameters: version=ST, size=1024, trial=4
+[Server] Count duration: 15272136000 nanos
+[Server] Total count: 2992
+[Server] Count duration: 1128000000 nanos
+[Server] Total count: 180
+[Server] Count duration: 15412740000 nanos
+[Server] Total count: 2382
+[Server] Count duration: 17423705000 nanos
+[Server] Total count: 2765
+[Server] Count duration: 15625753000 nanos
+[Server] Total count: 2478
+[Server] Count duration: 15439783000 nanos
+[Server] Total count: 2343
+[Server] Count duration: 16118611000 nanos
+[Server] Total count: 2665
+[Server] Count duration: 16893936000 nanos
+[Server] Total count: 2967
+[Server] Count duration: 15473231000 nanos
+[Server] Total count: 2531
+[Server] Count duration: 15165106000 nanos
+[Server] Total count: 2555
+[Server] Count duration: 16608574000 nanos
+[Server] Total count: 2676
+[Server] Count duration: 15662627000 nanos
+[Server] Total count: 2665
+[Server] Count duration: 15185909000 nanos
+[Server] Total count: 2475
+[Server] Count duration: 15400460000 nanos
+[Server] Total count: 2666
+[Server] Count duration: 16535112000 nanos
+[Server] Total count: 2794
+[Server] Count duration: 15673505000 nanos
+[Server] Total count: 2679
+[Server] Count duration: 15653973000 nanos
+[Server] Total count: 2522
+[Server] Count duration: 15405874000 nanos
+[Server] Total count: 2511
+[Server] Count duration: 16561970000 nanos
+[Server] Total count: 2766
+[Server] Count duration: 15352734000 nanos
+[Server] Total count: 2544
+[Server] Count duration: 15424396000 nanos
+[Server] Total count: 2428
+[Server] Count duration: 16535815000 nanos
+[Server] Total count: 2797
+[Server] Count duration: 15619559000 nanos
+[Server] Total count: 2539
+[Server] Count duration: 15172332000 nanos
+[Server] Total count: 2598
+[Server] Count duration: 15470525000 nanos
+[Server] Total count: 2550
+[Server] Count duration: 16983209000 nanos
+[Server] Total count: 2744
+[Server] Count duration: 15449345000 nanos
+[Server] Total count: 2535
+[Server] Count duration: 75000 nanos
+[Server] Total count: 0
+[Server] Count duration: 43000 nanos
+[Server] Total count: 0
+[Server] Count duration: 41000 nanos
+[Server] Total count: 0
+[Server] Count duration: 40000 nanos
+[Server] Total count: 0
+[Server] Count duration: 39000 nanos
+[Server] Total count: 0
+[Server] Count duration: 3313208000 nanos
+[Server] Total count: 526
+[Server] Count duration: 16940967000 nanos
+[Server] Total count: 2722
+[Server] Count duration: 15406167000 nanos
+[Server] Total count: 2363
+[Server] Count duration: 16069131000 nanos
+[Server] Total count: 2672
+[Server] Count duration: 16699035000 nanos
+[Server] Total count: 2690
+[Server] Count duration: 42657332000 nanos
+[Server] Total count: 7099
+[Server] Count duration: 45000 nanos
+[Server] Total count: 0
+[Server] Count duration: 5587544000 nanos
+[Server] Total count: 851
+[Server] Count duration: 16719576000 nanos
+[Server] Total count: 2676
+[Server] Count duration: 15990151000 nanos
+[Server] Total count: 2670
+[Server] Count duration: 15849642000 nanos
+[Server] Total count: 2481
+[Server] Count duration: 15050343000 nanos
+[Server] Total count: 2463
+[Server] Count duration: 15391512000 nanos
+[Server] Total count: 2471
+[Server] Count duration: 9917977000 nanos
+[Server] Total count: 1551
+[Server] Count duration: 15559698000 nanos
+[Server] Total count: 2590
+[Server] Count duration: 16823147000 nanos
+[Server] Total count: 2878
+[Server] Count duration: 15166667000 nanos
+[Server] Total count: 2408
+[Server] Count duration: 80000 nanos
+[Server] Total count: 0
+[Server] Finished running (900 Clients joined).

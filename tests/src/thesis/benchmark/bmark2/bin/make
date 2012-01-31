@@ -1,0 +1,136 @@
+#!/bin/bash
+
+##
+# Run from the sessionj root directory:
+# tests/src/thesis/benchmark/bmark2/bin/make LOCALHOST ALL 
+##
+
+
+##
+# Script configuration parameters (global variables).
+##
+java=                     # We're using sessionjc, so need java (not javac); set by parseArgs
+compiler=bin/sessionjc    # Compiler
+classpath=tests/classes   # Classpath
+destination=tests/classes # Output directory
+
+
+##
+# Compile source file.
+##
+compile()
+{
+  echo Compiling: $1
+  $compiler -J $java -cp $classpath $1 -d $destination
+  if [ $? -ne 0 ]; then exit 1; fi
+}
+
+
+##
+# Command line arguments.
+##
+parseArgs()
+{
+	# These are global variables accessed from main.
+	flag=$1
+	base=false     # Base/shared
+	noalias=false  # 
+	ordinary=false # 
+	
+	if [ "$flag" == "LOCALHOST" ];
+	then
+	  java=java
+	elif [ "$flag" == "DOC" ];
+	then
+	  java=java
+	elif [ "$flag" == "CAMELOT" ];
+	then
+	  java=~/bin/jdk1.6.0_21-64/bin/java  
+	else
+	  echo Invalid environment: $1
+	exit 1
+	fi
+	
+	shift
+	
+	while true;
+	do
+	  case $1 in
+	    "")
+	      break
+	      ;;
+	    ALL) 
+	      base=true
+	      noalias=true
+	      ordinary=true
+	      break
+	      ;;
+	    BASE)
+	      base=true
+	      shift
+	      ;;       
+	    NOALIAS) 
+	      noalias=true
+	      shift
+	      ;;      
+	    ORDINARY)
+	      ordinary=true
+	      shift
+	      ;;
+	    *)
+	      shift
+	      ;;
+	  esac
+	done
+}
+
+
+##
+# Main.
+##
+main() 
+{
+	parseArgs $*
+
+	echo Parameters: compiler=$compiler, java=$java, classpath=$classpath, destination=$destination 
+	
+	if [ "$base" == "true" ];
+	then  
+	  tests/src/thesis/benchmark/bin/make $flag BASE
+	  
+	  local path=tests/src/thesis/benchmark/bmark2  
+	  for f in NoaliasMessage NoaliasBinaryTree; do
+	    compile $path/$f.sj
+	  done
+	fi
+	
+	if [ "$noalias" == "true" ];
+	then  
+	  local path=tests/src/thesis/benchmark/bmark2/noaliaz
+	  for f in NoaliasServer NoaliasClient; do
+	    compile $path/$f.sj
+	  done
+	fi
+	
+	if [ "$ordinary" == "true" ];
+	then  
+	  local path=tests/src/thesis/benchmark/bmark2/ordinary  
+	  for f in OrdinaryServer OrdinaryClient; do
+	    compile $path/$f.sj
+	  done
+	fi
+	
+	if [ "$base" == "true" ];
+	then  
+	  local path=tests/src/thesis/benchmark/bmark2 
+	  for f in ServerRunner SharedMemoryRunner; do
+	    compile $path/$f.sj
+	  done
+	fi  
+}
+
+
+##
+# Call the main function.
+##  
+main $*

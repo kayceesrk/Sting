@@ -1,0 +1,69 @@
+<project name="myMain" default="build">  
+   
+     <target name="clean">  
+         <delete includeemptydirs="true">  
+             <fileset dir="tests/classes/purdue/continuations/" includes="**/*"/>  
+         </delete>  
+     </target>  
+       
+     <taskdef name="javaflow" classname="org.apache.commons.javaflow.ant.AntRewriteTask">  
+         <classpath> 
+	     <pathelement location="runtime/classes/sessionj/runtime/net/"/>
+             <pathelement location="tests/classes/purdue/continuations/"/> 
+             <pathelement location="lib/javaflow.jar"/>  
+	     <pathelement location="lib/bcel.jar"/>
+	     <pathelement location="lib/commons.jar"/>
+	     <pathelement location="lib/sessionj.jar"/>
+	     <pathelement location="lib/sessionj-rt.jar"/>
+
+         </classpath>  
+     </taskdef>  
+       
+     <target name="build">  
+           
+         <javac srcdir="tests/classes/purdue/continuations/" destdir="tests/classes/">  
+             <classpath> 
+	         <pathelement location="tests/classes/"/>
+                 <pathelement location="lib/javaflow.jar"/>
+		 <pathelement location="lib/bcel.jar"/>
+		 <pathelement location="lib/commons.jar"/>  
+		 <pathelement location="lib/sessionj.jar"/>
+		 <pathelement location="lib/sessionj-rt.jar"/>
+             </classpath>  
+         </javac>  
+           
+         <javaflow srcdir="tests/classes/purdue/continuations/" dstdir="tests/classes/purdue/continuations/">  
+             <include name="**/*.class"/>  
+         </javaflow>  
+
+         <javaflow srcdir="runtime/classes/sessionj/runtime/net/" dstdir="runtime/classes/sessionj/runtime/net/">  
+             <include name="**/*.class"/>  
+         </javaflow>  
+           
+     </target>  
+       
+     <target name="run" depends="build">  
+         <java classname="purdue.continuations.Client2"  fork="true" dir="tests/classes/" spawn="true">  
+             <classpath>
+	         <pathelement location="tests/classes/"/>
+                 <pathelement location="lib/javaflow.jar"/>
+		 <pathelement location="lib/bcel.jar"/>
+		 <pathelement location="lib/commons.jar"/>
+		 <pathelement location="lib/sessionj.jar"/>
+		 <pathelement location="lib/sessionj-rt.jar"/>
+		 <pathelement location="lib/polyglot.jar"/>
+             </classpath>  
+         </java>
+         <java classname="purdue.continuations.Client1"  fork="true" dir="tests/classes/">  
+             <classpath>
+	         <pathelement location="tests/classes/"/>
+                 <pathelement location="lib/javaflow.jar"/>
+		 <pathelement location="lib/bcel.jar"/>
+		 <pathelement location="lib/commons.jar"/>
+		 <pathelement location="lib/sessionj.jar"/>
+		 <pathelement location="lib/sessionj-rt.jar"/>
+		 <pathelement location="lib/polyglot.jar"/>
+             </classpath>  
+         </java>  
+     </target>  
+ </project>  

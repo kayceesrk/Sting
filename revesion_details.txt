@@ -1,0 +1,93 @@
+In this file, we put details about every revision. Topmost are the oldest.
+
+No issues have appeared in the previous revisions.
+------------------------------------------------------------------------------
+No #1
+Progress:
+1. Added multi-participant functionality for client sockets, through the use of new classes such as SJParticipantList.
+2. Modified the vasst majority of networking runtime to support multi-participant functionality.
+3. Added functionality for extending implementation conformance checking so that they can verify that session operations are performed on the correct targets, as dictated by the protocol.
+
+
+Issues that must/should be resolved in the future:
+1. We need to add multi-participant functionality to server sockets.
+2. Only the issuer of the beginning of the protocol can communicate to multiple parties.
+3. SJStateManager_c is disabled since it assumes that there is a unique protocol copy for each socket in SJParticipantList. Need to re-enable and solve this issue in a different way.
+4. SJService.request(int dummyVariable) is not a good function style, we should look for a way to remove the unneeded parameter, and conform to the imeplemented interface
+5. Look for "MQUnknown" and resolve them.
+6. The target for inwhile calls cannot be checked, yet. The issue is in Line # 1001 in compiler/src/sessionj/types/contexts/SJTypeBuildingContext_c.java. We need to supply the target name for the SJInwhileType constructor as dictated by the protocol, not as supplied by the inwhile function call.
+7. Participants keyword should be the parent of begin. Currently, it is the opposite (begin is the parent of all other session types.
+8. Some added functionality (specially in protocol conformance checking) is working flawlessly but they've been implemented in an ugly way. We should find another way to implement them, if possible.
+9. When not supplying a target for inbranch, the exception produced does not state the exact problem description as it fires before execution reaches my code (which is where it should be). I think this is fine, however.
+
+------------------------------------------------------------------------------
+No #2
+Progress:
+1. Added gprotocol to lprotocol conversion.
+2. Issue #7 in revision No #1 was solved. Now "participants" is the parent of "begin".
+3. The syntax for "participants" has been changed from "participants: c1 | c2 | c3" to "participants: c1, c2, c3". The OR has been replaced by the COMMA.
+4. A test file (tests/src/andi/delegation/GPrtclToLPrtclTest.sj) was created to test the conversion process.
+
+Issues:
+1. SessionJ allows empty loops. In the biparty version, we know that both (or all) participants participate in the loop. But for the empty loop in our multi-party sessions, it will be generated only for the outwhile (loop initiator). This is minor and probably insignificant, but it is worth mentioning.
+
+Notes:
+1. Almost all of the added GProtocol files are now unneeded. but they are kept anyway. Should be removed in the future.
+
+------------------------------------------------------------------------------
+No #3:
+
+Progress:
+1. Implemented type-driven batching.
+2. Wrote test files to test the batching process. These are located in tests/src/purdue/batching/typedriven/
+
+Notes:
+1. The optimizations are decided at runtime, not at compile-time as described by the paper. This means that everything (data + control signals) is buffered until there is a need to flush the buffer (like a connection close or insync() signal). This leads to better performance as buffering includes control signals and session operations inside BRANCH 
+cases.
+2. Debugging in batching was left enabled for testing purposes. To disable it set DEBUG_ENABLED to false in runtime/src/sessionj/runtime/session/SJBatchedSerializer.java
+3. The batching was implemented only in SJSessionProtocolsImpl.java, it is still needs to be implemented in SJNonSjCompatibilityProtocols.java and in SJSecureSessionProtocols.java. The implementation should be trivial but I haven't done so since I don't know how to run these classes and therefore can't test them.
+
+------------------------------------------------------------------------------
+No #4:
+
+Progress:
+1. Now all prticipants have exactly the same GProtocol. "This Participant" is identified by the use of the new "participant" keyword, which is out of the protocol declaration.
+2. All participants are forced to participate in branches and loops.
+
+------------------------------------------------------------------------------
+No #5:
+
+Progress:
+1. Implemented multi-party server sockets.
+2. Solved bugs in gprotocol to lprotocol conversion.
+3. Removed dummy variable from SJService.request(int).
+4. Renamed SJSocketGroup to SJSocketGroup class.
+5. Wrote test file to test multi-party functionality in tests/src/purdue/multiparty/
+6. Change gprotocol keyword to protocol
+
+Notes:
+1. Currently, different participants can not have equal port numbers, not even on different servers. See SJServerSocketImpl.java line #82.
+
+------------------------------------------------------------------------------
+No #6:
+1. Actually created the gprotocol nodes in the node factory. These were not actually created in previous revisions as they were not required.
+2. Wrote a small extension in SJManualTCPConnection to determine weather more data is available or not.
+
+------------------------------------------------------------------------------
+No# 7:
+
+Progress:
+1. Added Type 2 Chaining optimization, which required adding costsMap as well as a few other modifications.
+2. Constructed the gprotocol in the Node Factory in order to be used for other optimizations.
+3. Wrote test files to test chaining.
+
+Notes:
+1. The node factory still prints some debugging information when compiling .sj files.
+
+------------------------------------------------------------------------------
+No #8:
+1. Added continuatoin exporting optimization.
+2. Solved a bug in chaining when costsMap = null in file SJSocketGroup.
+
+Notes:
+1. You can't use continuation exporting if you have non-serializable objects in the stack.

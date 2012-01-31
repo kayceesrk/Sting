@@ -1,0 +1,99 @@
+//$ bin/sessionjc -cp tests/classes/ tests/src/pldi/benchmarks/benchmark3/a/Alice.sj -d tests/classes/
+//$ bin/sessionj -cp tests/classes/ pldi/benchmarks/benchmark3/a/Alice false localhost 8888 0 1 
+
+package pldi.benchmarks.benchmark3.a;
+
+import sessionj.runtime.*;
+import sessionj.runtime.net.*;
+
+import pldi.benchmarks.NoAliasBinaryTree;
+
+public class Alice
+{	
+	private final noalias protocol p_bob
+	{
+		cbegin.![!<NoAliasBinaryTree>.?(NoAliasBinaryTree)]*
+	}	
+	
+	public void run(boolean debug, String bob, int bob_port, int depth, int len) throws Exception 
+	{	
+		final noalias SJService c = SJService.create(p_bob, bob, bob_port);
+		
+		noalias NoAliasBinaryTree bt = NoAliasBinaryTree.createDepth(depth);
+		
+		final noalias SJSocket ds; 
+				
+		try (ds) 
+		{   
+			ds = c.request();
+
+			int k = 0;
+			
+			ds.outwhile(k < 1)
+			{
+				ds.send(bt);
+				
+				bt = (NoAliasBinaryTree) ds.receive();
+				
+				k++;
+			}
+			
+			bt = NoAliasBinaryTree.createDepth(depth);
+
+			long runTime = 0;
+			
+			long timeStarted = 0;		
+			long timeFinished = 0;			
+			
+			final noalias SJSocket s;
+			
+			try (s) 
+			{
+				s = c.request();
+				
+				timeStarted = System.nanoTime();
+				
+				int j = 0;
+				
+				s.outwhile(j < len)
+				{				
+					s.send(bt);
+					
+					bt = (NoAliasBinaryTree) s.receive();
+					
+					if (debug)
+					{
+						bt.println();
+					}					
+					
+					j++;
+				}
+				
+				timeFinished = System.nanoTime();
+			}
+			finally
+			{
+			
+			}			
+			
+			runTime = (timeFinished - timeStarted) / 1000; // Micros.
+							
+			System.out.println(runTime);
+		}
+		finally
+		{
+		
+		}
+	}
+	
+	public static void main(String[] args) throws Exception
+	{
+		boolean debug = Boolean.parseBoolean(args[0]);
+		String bob = args[1];
+		int bob_port = Integer.parseInt(args[2]);
+		int depth = Integer.parseInt(args[3]);
+		int len = Integer.parseInt(args[4]);
+	
+		new Alice().run(debug, bob, bob_port, depth, len);
+	}
+}

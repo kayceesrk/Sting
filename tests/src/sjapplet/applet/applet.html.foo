@@ -1,0 +1,16 @@
+<html>
+<body>
+	<applet
+		code=sjapplet.applet.SJApplet.class
+		codebase="file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/tests/classes/"
+		archive=
+			"file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/lib/sessionj.jar,
+			file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/lib/sessionj-rt.jar,
+			file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/lib/polyglot.jar,
+			file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/lib/ppg.jar,
+			file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/lib/java_cup.jar,
+			file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/lib/JFlex.jar"
+		width=600 height=400>
+	</applet>
+</body>
+</html>

@@ -1,0 +1,112 @@
+/*
+ * This file is part of SessionJ.
+ *
+ * Copyright (C) Raymond Hu, Imperial College London.
+ *
+ */
+
+package sj.del;
+
+import polyglot.ast.*;
+import polyglot.types.*;
+import polyglot.visit.*;
+
+import sj.SJConstants;
+import sj.ast.sesscasts.*;
+
+/**
+ * "Overrides" base type checking for receive methods on SJSockets. But source will be checked again later properly after translation by javac.
+ */
+public class SJReceiveDel_c extends JL_c implements SJReceiveDel // Would be better if we could access the parent node so the receive del could be associated directly with receive operations (instead of all potential parents).
+{
+	// Temporary solution: should subclass e.g. Assign_c, Call_c, etc. and modify typeCheck method (because we can't access the private/protected fields required)?
+	public Node typeCheck(TypeChecker tc) throws SemanticException
+	{
+		Node n = node();
+
+		if (n instanceof LocalDecl) // No need to check FieldDecl.
+		{
+			LocalDecl ld = (LocalDecl) n;
+			Expr init = ld.init();
+
+			if (init instanceof Call)
+			{
+				Call call = (Call) init;
+
+				if (call.target().type().isSubtype(SJConstants.SJSOCKET_TYPE) && call.name().equals(SJConstants.SJ_SYNTAX_RECEIVE))
+				{
+					return checkLocalDecl(tc, ld);
+				}
+			}
+			else if (init instanceof SJCast)
+			{
+				return checkLocalDecl(tc, ld);
+			}
+		}
+		else if (n instanceof Assign) // Would be enough to just check LocalAssign.
+		{
+			Assign ass = (Assign) n;
+			Expr right = ass.right();
+
+			if (right instanceof Call)
+			{
+				Call call = (Call) ass.right();
+
+				if (call.target().type().isSubtype(SJConstants.SJSOCKET_TYPE) && call.name().equals(SJConstants.SJ_SYNTAX_RECEIVE))
+				{
+					return checkAssign(tc, ass);
+				}
+			}
+			else if (right instanceof SJCast)
+			{
+				return checkAssign(tc, ass);
+			}
+		}
+		else if (n instanceof Call) // Not good enough - e.g. `" " + s.receive()'. Need to make a dedicated pass for receive type-checking. // Or can prune traversal tree for base type checker whenever a receive is encountered?
+		{
+			Call call = (Call) n;
+
+			for (Object arg : call.arguments()) // Is actually a list of Expr.
+			{
+				if (arg instanceof Call)
+				{
+					Call c = (Call) arg;
+
+					if (c.target().type().isSubtype(SJConstants.SJSOCKET_TYPE) && c.name().equals(SJConstants.SJ_SYNTAX_RECEIVE))
+					{
+						throw new SemanticException("Receive type inference for method call arguments not yet done: " + n);
+					}
+				}
+			}
+		}
+
+		return n.typeCheck(tc);
+	}
+
+	private LocalDecl checkLocalDecl(TypeChecker tc, LocalDecl ld) throws SemanticException
+	{
+		try // Copied from LocalDecl_c (original type checking code excluding assignment check).
+		{
+			tc.typeSystem().checkLocalFlags(ld.flags());
+		}
+		catch (SemanticException se)
+		{
+			throw new SemanticException(se.getMessage(), ld.position());
+		}
+
+		return ld;
+	}
+
+	private Assign checkAssign(TypeChecker tc, Assign ass) throws SemanticException
+	{
+		Expr left = ass.left();
+
+		// Copied from Assign_c (original type checking code excluding assignment check).
+		if (!(left instanceof Variable))
+		{
+			throw new SemanticException("Target of assignment must be a variable.", ass.position());
+		}
+
+		return (Assign) ass.type(left.type());
+	}
+}

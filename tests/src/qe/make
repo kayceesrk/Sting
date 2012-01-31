@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+#Run from the sessionj root directory:
+#tests/src/qe/make  
+
+
+# Script configuration parameters.
+
+compiler=javac # Compiler.
+classpath=tests/classes # Classpath.
+destination=tests/classes # Output directory.
+
+
+# Functions.
+
+compile()
+{
+  echo Compiling: $1
+  $compiler -cp $classpath $1 -d $destination
+  if [ $? -ne 0 ]; then exit 1; fi
+}
+
+
+# Main.
+
+echo Parameters: compiler=$compiler, classpath=$classpath, destination=$destination 
+
+path=tests/src/qe/channel
+
+for f in Message Channel BoundedChannel ZeroCopyChannel QECell GloballySynchronisedQueue BlockingQueue SharedSemaphoresQueue QECellQueue; do
+  compile $path/$f.java
+done
+
+path=tests/src/qe/session
+
+for f in Session QESession ExchangeSession StreamSession QEExchangeSession QEStreamSession; do
+  compile $path/$f.java
+done
+  
+path=tests/src/qe
+
+for f in LocalRun QELocalRun; do
+  compile $path/$f.java
+done  
+  

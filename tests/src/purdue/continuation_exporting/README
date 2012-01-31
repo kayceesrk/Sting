@@ -1,0 +1,7 @@
+This directory contains test files for continuation exporting. Building and running the test programs is a bit more complex than the other examples. The steps are:
+1. Be sure that you are on the root directory of the project.
+2. Type "ant jar" to build the compiler and the runtime jars
+3. Compile Client1.sj, Client2.sj, Client3.sj (the information on how to compile these is contained within the files).
+4. Type "ant -f continuation.xml". This runs some instrumentation processing on the continuation classes (and some of the runtime classes).
+5. Type "ant jar" again to include the instrumented runtime classes in the jars.
+6. Run the servers (Client2 & Client3) and then run Client1 as described in the .sj files.

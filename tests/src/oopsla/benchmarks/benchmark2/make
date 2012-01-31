@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# Run from the sessionj root directory:
+#$ tests/src/benchmarks/benchmark2/make all
+
+a=false
+b=false
+c=false
+d=false
+
+while true;
+do
+  case $1 in
+    "")
+      break
+      ;;
+    all) 
+      a=true
+      b=true
+      c=true
+      d=true
+      break
+      ;;
+    a) 
+      a=true
+      shift
+      ;;      
+    b)
+      b=true
+      shift
+      ;;
+    c)
+      c=true
+      shift
+      ;;
+    d)
+      d=true
+      shift
+      ;; 
+    *)
+      shift
+      ;;
+  esac
+done
+
+
+if [ "$c" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark2.c.Server:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark2/c/Server.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling benchmarks.benchmark2.c.Client:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark2/c/Client.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
+
+
+if [ "$d" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark2.d.Server:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark2/d/Server.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
+
+
+if [ "$a" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark2.a.NoAlias:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark2/a/NoAlias.sj -d tests/classes/  
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
+
+
+if [ "$b" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark2.b.Ordinary:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark2/b/Ordinary.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi

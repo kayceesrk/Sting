@@ -1,0 +1,58 @@
+- allow this to be passed as arg. to na-final parameters
+- noalias check class bodies for anonymous classes
+- noalias type checking for repeated call arguments not quite accurate, e.g. (x=y).m(y);
+- noalias translation for conditional expressions too conservative?
+- noalias translation for nested single statements, i.e. not Blocks, e.g. while (...) while (...) ...
+- extend use of instanceof, make a dualto/dualof for session types
+- passing non-noalias arguments to (noalias) session sockets methods is currently not uniform with general noalias typing. make a "copy" parameter type?
+- inline protocol declarations for channel/server create
+- inline spawn declarations
+- probably should disallow running more than one session via the same socket to make runtime implementation easier
+- single statement if branches not supported, because branch case contexts don't get pushed
+- try using null as a pre-receive operation to get around base type checking before receive-casts are inserted.
+- organise compiler components e.g. session type node libraries, session operation libraries, etc. to use interfaces for the required compilation pass routines, e.g. session type node dismabiguation, session operation parsing/type building/type checking, etc.
+- fix channel/server "merge" for branch contexts
+- enforce tail recursive implementations (including regular Java code) for recurse operations
+- change grammar rules for session out-ops. to factor out the angle bracks.
+- rework the context pop routine(s) into smaller components, factor out common parts (like manual session advance, incomplete session check, etc.) 
+- try to factor out more common SJTypeable routines for channels/sockets/servers, e.g. type building, typeobjects, context push/pop/merge, etc.
+- detect non-assigned SJRequest/SJAccept.
+- think more about making noalias and nafinal modifiers in the grammar
+- try-statements for session servers (maybe by parsing an SJAmbiguousSessionTry for both sessions and servers) 
+- improve extension objects and extension routines e.g. sjnames
+- new object instance expression is given noalias type, but actually want to be able to use it as regular type as well (). should allow non-noalias arguments to passed to a New, making that New non-noalias as well.
+- make a SJClassNotFoundException that is a runtime exception
+- instanceof Expr
+- clone/serialize and noalias?
+- noalias translation for e.g. assignments inside loop conditions, for-iters, etc.
+- primitive types should be implicitly noalias
+- weird bug for Agency.sj if no cp specified (i.e. Address recompiled), although Customer.sj (and Address.sj itself) has no problems. seems to be because Agency refers to Address in the protocol, but does not use the class directly itself. probably can hack a fix by "using" Address in a dummy way
+- receive should not be implicitly noalias, it depends on if the type being received is noalias compatible
+- long-running delegation benchmark unstable
+- inference of receive-casts not done yet (some mechanisms are there, but need to override base type checking in the relevant situations)
+- session method return types not done yet
+- currently restricted to only permit delegation within a session-branch if the branch is terminal
+- timeouts need finishing: do remaining operations (accept, compound ops.), need to make SJTimeout a terminal exception (don't carry on with FIN protocol, although would want other side to recognise premature session close), and need to make sure connection close for all transports will interrupt read operations (and properly propagate the exception up) 
+- currently, na-final sockets cannot be accessed (correctly) from within inner classes because the (noalias?) translation strips the final away, and second javac pass raises the error. make this check better 
+- anonymous inner SJThread subclasses don't work - Polyglot bug?
+- should identify "multiply typed" session operations, such as SJSpawn. need proper AST node classes and extension objects.
+- sendInt, etc. not done
+- relax channels from na-final and "must be initialised" to still na-final, but can be initialised later (like session sockets). Then also need to support branch subsumption for received channels - unlike session sockets, no scoping rules (i.e. session-try) that confine the channel type to within the branches.
+- protocol reference nodes currently cannot be channel types for casts and method parameters, because incorrectly parsed as SJSocketType
+- session method return types
+- recursive session methods (see the next point) 
+- unroll recursion for delegation (including method argument passing) of recurse type?
+- relax restrictions on break/continue/return within branch/loop contexts. e.g. break in outwhile can be supported by some additional translation work to send the final false flag. need to think whether branch/return should require all active (open) sessions to be complete, or just the ones in scope 
+- there is no na-final return type (final noalias methods might be confusing) 
+- identify more clearly what it means for a port to be in use: just by a server, or also by a client?
+- change from host names to host addresses (e.g. to better support wireless nodes; currently, delegation, etc. will not work to such nodes)
+- statically check object messages are serializable?
+- there are problems compiling mutually dependent classes featuring session types (e.g. one class is referring to another that refers to protocols declared back in the first), especially when one is updated after both have already been compiled
+- sort out mutually referring classes: e.g. for protocol declarations and noalias compatibility.
+- branch operations need default cases
+- check if noalias passing is enabled for select and session layer protocols like initiation
+- session-receiver party in a delegation can be deadlocked if the passive party fails to reconnect. maybe do something about this (via the session-sender)
+- add a final else case to inbranch translation
+- delegation within a recursion is fine if we're on a branch that has no possibility to recurse
+- take exception throwing (i.e. how it affects control flow) into account when session type checking (e.g. a definite runtime exception means no need to complete session typing on that path) 
+- a lot of work is needed on integrating recursive session methods with correct runtime monitoring

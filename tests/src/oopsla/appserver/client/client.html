@@ -1,0 +1,48 @@
+<!--For use with the appletviewer. FIXME: change deprecated applet tags to generic object tags.-->
+
+<html>
+
+<head>
+	<title>
+		SJ Transport-Independent Application Server Applet Example.
+	</title>
+	<!--<meta content="" name="">-->
+</head>
+
+<body>
+	<p>
+		<h3>SJ Transport-Independent Application Server Applet Example.</h3>
+	</p>
+
+	<p>
+		Welcome. The Portal applet is below. Select the desired task to be transferred to the appropriate Application Server.
+	</p>
+
+	<p>
+		<applet
+				code=oopsla.appserver.client.Client.class
+				codebase="file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/tests/classes/"
+				archive=
+					"file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/tests/classes/lib/sessionj.jar,
+					file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/tests/classes/lib/sessionj-rt.jar,
+					file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/tests/classes/lib/polyglot.jar,
+					file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/tests/classes/lib/java_cup.jar,
+					file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/tests/classes/lib/JFlex.jar"
+				width=600 height=400>
+			<param name="DEBUG" value="true">
+			<param name="SETUPS" value="mh">
+			<param name="TRANSPORTS" value="mh">
+			<param name="PORTAL_HOST" value="localhost">
+			<param name="PORTAL_PORT" value="8888">
+			<param name="EMAIL_IMAGE" value="file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/tests/src/oopsla/appserver/client/images/email.png">
+			<param name="CALENDAR_IMAGE" value="file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/tests/src/oopsla/appserver/client/images/calendar.png">
+			<param name="WORD_PROCESSOR_IMAGE" value="file:///c:/cygwin/home/Raymond/code/java/eclipse/sessionj-cvs/tests/src/oopsla/appserver/client/images/word_processor.png">
+		</applet>
+	</p>
+
+	<p>
+		2009-03-10. Ray.
+	</p>
+</body>
+
+</html>

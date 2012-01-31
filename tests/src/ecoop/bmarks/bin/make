@@ -1,0 +1,197 @@
+#!/bin/bash
+
+# Run from the sessionj root directory:
+# tests/src/ecoop/bmarks/bin/make all 
+
+
+c=false  # Core/common.
+jt=false # Java threads.
+je=false # Java events (NIO).
+st=false # SJ threads.
+se=false # SJ events.
+smtp=false
+
+
+while true;
+do
+  case $1 in
+    "")
+      break
+      ;;
+    all) 
+      jt=true
+      je=true
+      st=true
+      se=true
+      c=true
+      break
+      ;;
+    c)
+      c=true
+      shift
+      ;;       
+    jt) 
+      jt=true
+      shift
+      ;;      
+    je)
+      je=true
+      shift
+      ;;
+    st)
+      st=true
+      shift
+      ;;
+    se)
+      se=true
+      shift
+      ;;     
+    smtp)
+    	smtp=true
+      shift
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+
+if [ "$c" == "true" ];
+then	
+	path=tests/src/ecoop/bmarks
+	
+	for f in ClientMessage MyObject SignalClient; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+fi
+
+if [ "$jt" == "true" ];
+then	
+	path=tests/src/ecoop/bmarks/java/thread/server
+	
+	for f in Server; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+	
+	path=tests/src/ecoop/bmarks/java/thread/client
+	
+	for f in LoadClient TimerClient TimerClient2; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+fi
+
+if [ "$je" == "true" ];
+then	
+	path=tests/src/ecoop/bmarks/java/event/server
+	
+	for f in Server; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+	
+	path=tests/src/ecoop/bmarks/java/event/client
+	
+	for f in LoadClient TimerClient TimerClient2; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+fi
+
+if [ "$st" == "true" ];
+then	
+	path=tests/src/ecoop/bmarks/sj/server/thread
+	
+	for f in Server; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+fi
+
+if [ "$se" == "true" ];
+then	
+	path=tests/src/ecoop/bmarks/sj/server/event
+	
+	for f in Server; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+fi
+
+if [ "$st" == "true" -o "$se" == "true" ];
+then
+	path=tests/src/ecoop/bmarks/sj/client
+	
+	for f in LoadClient TimerClient TimerClient2; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+fi
+
+if [ "$c" == "true" ];
+then	
+	path=tests/src/ecoop/bmarks
+	
+	for f in SignalServer ServerRunner ClientRunner; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+fi
+	
+if [ "$smtp" == "true" ];
+then	
+	bin/sessionjc -cp tests/classes tests/src/ecoop/bmarks/smtp/messages/CompileMessagesHack.sj -d tests/classes
+
+	path=tests/src/ecoop/bmarks/smtp
+
+	for f in SmtpServerFormatter; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+
+	path=tests/src/ecoop/bmarks/smtp/event
+	
+	for f in Server; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done	
+	
+	path=tests/src/ecoop/bmarks/smtp/thread
+	
+	for f in Server; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+	
+	path=tests/src/ecoop/bmarks/smtp/client
+	
+	for f in DummyClient; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done
+	
+	path=tests/src/ecoop/bmarks/smtp
+	
+	for f in SmtpSignalServer SmtpServerRunner SmtpClientRunner; do
+	  echo Compiling $path/$f.sj
+	  bin/sessionjc -cp tests/classes $path/$f.sj -d tests/classes
+	  if [ $? -ne 0 ]; then exit 1; else echo; fi
+	done	
+fi	
+	

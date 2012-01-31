@@ -1,0 +1,134 @@
+#!/bin/bash
+#
+#Run from the sessionj root directory:
+#tests/src/ecoop/bmarks2/macro/smtp/bin/make localhost all 
+
+
+# Script configuration parameters.
+
+#compiler=bin/sessionjc # Compiler.
+classpath=tests/classes # Classpath.
+destination=tests/classes # Output directory.
+
+
+# Functions.
+
+compile()
+{
+  echo Compiling: $1
+  $compiler -cp $classpath $1 -d $destination
+  if [ $? -ne 0 ]; then exit 1; fi
+}
+
+
+# Command line arguments.
+
+c=false # Core/common (some are from the microbenchmarks).
+st=false # SMTP SJ threads.
+se=false # SMTP SJ events.
+
+if [ "$1" == "localhost" ];
+then
+  compiler=bin/sessionjc
+else 
+  if [ "$1" == "camelot" ];
+  then
+    compiler=bin/csessionjc
+  else
+    echo Invalid environment: $1
+  exit 1
+  fi
+fi
+
+shift
+
+while true;
+do
+  case $1 in
+    "")
+      break
+      ;;
+    all) 
+      c=true
+      st=true
+      se=true
+      break
+      ;;
+    c)
+      c=true
+      shift
+      ;;       
+    st)
+      st=true
+      shift
+      ;;
+    se)
+      se=true
+      shift
+      ;;     
+    *)
+      shift
+      ;;
+  esac
+done
+
+
+# Main.
+
+echo Parameters: compiler=$compiler, classpath=$classpath, destination=$destination 
+
+
+if [ "$c" == "true" ];
+then  
+  path=tests/src/ecoop/bmarks2/micro
+  
+  for f in Common StartSpinningController Server SignalServer SignalClient ; do
+    compile $path/$f.sj
+  done
+
+  path=tests/src/ecoop/bmarks2/macro/smtp/sj/messages
+  
+  for f in CompileMessagesHack; do
+    compile $path/$f.sj
+  done
+  
+	path=tests/src/ecoop/bmarks2/macro/smtp/sj
+  
+  for f in Server SmtpServerFormatter; do
+    compile $path/$f.sj
+  done
+  
+	path=tests/src/ecoop/bmarks2/macro/smtp/client
+  
+  for f in DummyClient; do
+    compile $path/$f.sj
+  done      
+fi
+
+if [ "$st" == "true" ];
+then  
+  path=tests/src/ecoop/bmarks2/macro/smtp/sj/thread/server
+  
+  for f in Server; do
+    compile $path/$f.sj
+  done
+fi
+
+if [ "$se" == "true" ];
+then  
+  path=tests/src/ecoop/bmarks2/macro/smtp/sj/event/server
+  
+  for f in Server; do
+    compile $path/$f.sj
+  done
+fi
+
+if [ "$c" == "true" ];
+then  
+  path=tests/src/ecoop/bmarks2/macro/smtp
+  
+  for f in ServerRunner ClientRunner; do
+    compile $path/$f.sj
+  done
+fi  
+  

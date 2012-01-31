@@ -1,0 +1,1103 @@
+// Assumes polyglot.jar is in classpath
+include "polyglot/parse/java12.cup"
+
+package sessionj.parse;
+
+import polyglot.parse.*; // RAY: needed to build.
+
+import sessionj.SJConstants;
+import sessionj.ast.*;
+import sessionj.ast.sesscasts.*;
+import sessionj.ast.protocoldecls.*;
+import sessionj.ast.sessops.*;
+import sessionj.ast.sessops.basicops.*;
+import sessionj.ast.sessops.compoundops.*;
+import sessionj.ast.sessvars.*;
+import sessionj.ast.sesstry.*;
+import sessionj.ast.typenodes.*;
+import sessionj.ast.sessformals.*;
+import sessionj.types.*;
+import sessionj.util.*;
+
+parser Grm extends polyglot.parse.Grm {:
+    public final SJTypeSystem ts;
+    public final SJNodeFactory nf;
+    
+    public Grm(Lexer l, TypeSystem t, NodeFactory n, ErrorQueue q) {
+        super(l, t, n, q);
+        ts = (SJTypeSystem) t;
+        nf = (SJNodeFactory) n;
+        
+        //RAY
+        ((SJNodeFactory) nf).setExtensionInfo(ts.extensionInfo());
+        
+    		try 
+    		{
+    			SJConstants.SJ_PROTOCOL_TYPE = ts.typeForName(SJConstants.SJ_PROTOCOL_CLASS);
+    			SJConstants.SJ_CHANNEL_TYPE = ts.typeForName(SJConstants.SJ_CHANNEL_CLASS);
+    			SJConstants.SJ_SOCKET_INTERFACE_TYPE = ts.typeForName(SJConstants.SJ_SOCKET_INTERFACE);		
+    			SJConstants.SJ_ABSTRACT_SOCKET_TYPE = ts.typeForName(SJConstants.SJ_ABSTRACT_SOCKET_CLASS);
+    			SJConstants.SJ_SERVER_INTERFACE_TYPE = ts.typeForName(SJConstants.SJ_SERVER_INTERFACE);		
+    			SJConstants.SJ_SERVER_TYPE = ts.typeForName(SJConstants.SJ_SERVER_CLASS);
+    			SJConstants.SJ_LABEL_TYPE = ts.typeForName(SJConstants.SJ_LABEL_CLASS);
+    			SJConstants.SJ_RUNTIME_TYPE = ts.typeForName(SJConstants.SJ_RUNTIME_CLASS);
+    			SJConstants.SJ_THREAD_TYPE = ts.typeForName(SJConstants.SJ_THREAD_CLASS);
+    			SJConstants.SJ_ABSTRACT_CHANNEL_TYPE = ts.typeForName(SJConstants.SJ_ABSTRACT_CHANNEL_CLASS);
+    			SJConstants.SJ_CHANNEL_SOCKET_HACK_TYPE = ts.typeForName(SJConstants.SJ_CHANNEL_SOCKET_HACK_CLASS);
+    			SJConstants.SJ_SELECTOR_INTERFACE_TYPE = ts.typeForName(SJConstants.SJ_SELECTOR_INTERFACE);
+			//<By MQ> For our newly defined types
+			SJConstants.SJ_GPROTOCOL_TYPE = ts.typeForName(SJConstants.SJ_GPROTOCOL_CLASS);
+			//</By MQ>
+    		}
+    		catch (SemanticException se) 
+    		{		
+    			throw new RuntimeException("[sessionj.ppg] " + se);
+    		}
+    		//YAR        
+    }
+
+    static List<Receiver> asRecvList(Name n) {
+        List<Receiver> l = new LinkedList<Receiver>();
+        l.add(n.toReceiver());
+        return l;
+    }
+
+    public Position pos(Object first, Object last) {
+        Position pos = super.pos(first, last);
+        if (pos == null) pos = Position.COMPILER_GENERATED;
+        return pos;
+    }
+:};
+
+terminal Token SJ_NOALIAS;
+
+terminal Token SJ_PROTOCOL;
+
+terminal Token SJ_CBEGIN;
+//terminal Token SJ_SBEGIN; //<By MQ> no longer needed
+
+//terminal Token SJ_REQUEST;
+
+terminal Token SJ_SEND;
+terminal Token SJ_PASS;
+terminal Token SJ_COPY;
+terminal Token SJ_RECEIVE;
+terminal Token SJ_RECEIVEINT;
+terminal Token SJ_RECEIVEBOOLEAN;
+terminal Token SJ_RECEIVEDOUBLE;
+terminal Token SJ_REC;
+terminal Token SJ_RECURSE;
+
+terminal Token SJ_OUTBRANCH;
+terminal Token SJ_INBRANCH;
+terminal Token SJ_OUTWHILE;
+terminal Token SJ_NEWOUTWHILE;
+terminal Token SJ_INWHILE;
+terminal Token SJ_RECURSION;
+terminal Token SJ_TYPECASE;
+terminal Token SJ_WHEN;
+
+/*terminal Token SJ_DOUTBRANCH; // "Dependently-typed" versions of the originals. FIXME: these should eventually subsume and replace the originals.
+terminal Token SJ_DINBRANCH;*/
+
+/*terminal Token SJ_REGISTERACCEPT; // Not needed: selector operations currently treated like e.g. server operations.
+terminal Token SJ_REGISTEROUTPUT;
+terminal Token SJ_REGISTERINPUT;
+terminal Token SJ_SELECTSESSION;*/
+
+terminal Token SJ_SPAWN;
+
+terminal Token SJ_RECURSE_LABEL;
+terminal Token SJ_PROTOCOL_REF;
+//<By MQ> All terminal tokens by me
+terminal Token SJ_GPROTOCOL;
+terminal Token SJ_PARTICIPANTS;
+//</By MQ>
+
+non terminal SJTypeNode sj_session_type;
+non terminal SJCBeginNode sj_session_type_cbegin;
+non terminal SJSBeginNode sj_session_type_sbegin;
+non terminal SJTypeNode sj_channel_type;
+non terminal SJTypeNode sj_server_type;
+non terminal SJTypeNode sj_session_type_body;
+non terminal SJTypeNode sj_session_type_element;
+non terminal List sj_branch_cases;
+non terminal SJBranchCaseNode sj_branch_case;
+non terminal TypeNode sj_message_type;
+non terminal List sj_session_set_type_body;
+non terminal SJTypeNode sj_session_set_type;
+
+non terminal SJFieldProtocolDecl sj_field_protocol_declaration;
+non terminal SJLocalProtocolDecl sj_protocol_declaration_statement;
+
+non terminal SJAmbiguousTry sj_try_statement;
+
+non terminal SJBasicOperation sj_basic_operation; // Not uniform that we do (or start) session operation parsing here, but server operations, etc. are not done until a later pass. But this is related to that fact that only session operations can have multiple targets at the moment.
+non terminal SJSend sj_send_operation;
+non terminal SJPass sj_pass_operation;
+non terminal SJCopy sj_copy_operation;
+non terminal SJReceive sj_receive_operation;
+non terminal SJReceive sj_receiveint_operation;
+non terminal SJReceive sj_receiveboolean_operation;
+non terminal SJReceive sj_receivedouble_operation;
+non terminal SJRecurse sj_recurse_operation; 
+
+non terminal SJSpawn sj_spawn_operation; 
+
+non terminal List sj_socket_list;
+non terminal Receiver sj_socket;
+//non terminal Name sj_socket; // Using this instead of name directly doesn't seem to work?
+
+non terminal SJCompoundOperation sj_structural_operation;
+non terminal SJOutbranch sj_outbranch_statement;
+non terminal SJInbranch sj_inbranch_statement;
+non terminal List sj_inbranch_cases;
+non terminal SJInbranchCase sj_inbranch_case;
+non terminal SJOutwhile sj_outwhile_statement;
+non terminal SJOutwhile sj_newoutwhile_statement;
+non terminal SJOutInwhile sj_outinwhile_statement;
+non terminal SJInwhile sj_inwhile_statement;
+non terminal SJRecursion sj_recursion_statement;
+non terminal SJTypecase sj_typecase_statement;
+
+/*//non terminal SJOutbranch sj_doutbranch_statement;
+//non terminal SJInbranch sj_dinbranch_statement;
+non terminal List sj_dinbranch_cases;
+non terminal SJInbranchCase sj_dinbranch_case;*/
+
+non terminal List sj_typecase_caselist;
+non terminal SJWhen sj_typecase_when;
+
+non terminal SJSessionTypeCast sj_session_type_cast_expression;
+
+non terminal SJFormal sj_formal;
+non terminal SJFormal sj_channel_formal;
+non terminal SJFormal sj_session_formal;
+non terminal SJFormal sj_server_formal;
+
+non terminal Object optional_final_noalias;
+//<By MQ> Adding MQ's non-terminals in this section
+non terminal List sj_message_type_list;
+non terminal SJFieldProtocolDecl sj_field_gprotocol_declaration;
+non terminal SJLocalProtocolDecl sj_gprotocol_declaration_statement;
+non terminal SJTypeNode sj_gsession_type;
+non terminal SJTypeNode sj_gsession_type_body;
+non terminal SJTypeNode sj_gsession_type_element;
+non terminal List sj_gsession_set_type_body;
+non terminal SJTypeNode sj_gsession_set_type;
+non terminal TypeNode sj_gmessage_type;
+non terminal List sj_gmessage_type_list;
+non terminal List sj_gbranch_cases;
+non terminal SJBranchCaseNode sj_gbranch_case;
+non terminal SJTypeNode sj_gbegin_type;
+non terminal SJBeginNode sj_session_type_gbegin;
+non terminal List sj_identifier_list;
+//non terminal SJParticipantsNode sj_participants_type;
+//</By MQ>
+start with goal;
+
+// TODO: modify the default Java grammar using PPG operations
+
+extend type ::=
+	SJ_NOALIAS:a reference_type:n // Probably more work than necessary; just make a new flag for noalias? // But for e.g. MethodDecls, noalias belongs to the return type, not the actual method.
+	{:			
+		if (n instanceof AmbTypeNode)
+		{
+			RESULT = parser.nf.SJAmbNoAliasTypeNode(parser.pos(a, n), (AmbTypeNode) n);
+		}
+		else if (n instanceof ArrayTypeNode) // Actually, doesn't serve much purpose, could just use the same ambiguous type node for both.
+		{
+			RESULT = parser.nf.SJNoAliasArrayTypeNode(parser.pos(a, n), (ArrayTypeNode) n);
+		}
+		else if (n instanceof CanonicalTypeNode) // Primitive arrays. Anything else?
+		{
+			RESULT = parser.nf.SJNoAliasCanonicalTypeNode(parser.pos(a, n), (CanonicalTypeNode) n); // FIXME: currently hacked in.
+		}
+		else
+		{
+			throw new RuntimeException("[SJ parser] Unexpected TypeNode (" + n.getClass() + "): " + n);
+		}				
+	:}
+	// Extend to noalias session types? Convenient for session method parameters but don't want session types as types in general.
+;
+
+
+extend class_member_declaration ::= // List of ClassMember.
+	sj_field_protocol_declaration:a
+	{:
+		List l = new TypedList(new LinkedList(), ClassMember.class, false);
+	        l.add(a);
+		RESULT = l;
+	:}
+;
+//<By MQ> extending statement and class member declaration to support gprotocol declaration syntax
+extend class_member_declaration ::= // List of ClassMember.
+	sj_field_gprotocol_declaration:a
+	{:
+		List l = new TypedList(new LinkedList(), ClassMember.class, false);
+	        l.add(a);
+		RESULT = l;
+	:}
+;
+sj_field_gprotocol_declaration ::= // Implicitly final and noalias (set by node factory), other modifiers optional.
+	modifiers_opt:a SJ_GPROTOCOL IDENTIFIER:n sj_gsession_type:t 
+	{:
+		RESULT = parser.nf.SJFieldGProtocolDecl(parser.pos(a, t), a, parser.nf.Id(parser.pos(n), n.getIdentifier()), t);
+	:}
+|	modifiers_opt:a SJ_NOALIAS SJ_GPROTOCOL IDENTIFIER:n sj_gsession_type:t
+	{:
+		RESULT = parser.nf.SJFieldGProtocolDecl(parser.pos(a, t), a, parser.nf.Id(parser.pos(n), n.getIdentifier()), t);
+	:}
+;
+
+extend statement ::= // A single Stmt (unlike regular local variable declarations - this is supposed to be a type declaration).
+	sj_gprotocol_declaration_statement:a // Local protocol declarations.
+	{: 
+		RESULT = a; 
+	:}
+;
+
+sj_gprotocol_declaration_statement ::= // Implicitly final and noalias (set by node factory).
+	optional_final_noalias SJ_GPROTOCOL:a IDENTIFIER:n sj_gsession_type:t
+	{: 
+		RESULT = parser.nf.SJLocalGProtocolDecl(parser.pos(a, t), parser.nf.Id(parser.pos(n), n.getIdentifier()), t);
+	:}
+;
+
+//</By MQ>
+sj_field_protocol_declaration ::= // Implicitly final and noalias (set by node factory), other modifiers optional.
+//<By MQ> Adding the ID@ID lprotocol definition syntax
+	modifiers_opt:a SJ_PROTOCOL IDENTIFIER:n SJ_PROTOCOL_REF IDENTIFIER:m sj_session_type:t 
+//</By MQ>
+	{:
+		RESULT = parser.nf.SJFieldProtocolDecl(parser.pos(a, t), a, parser.nf.Id(parser.pos(n), n.getIdentifier()), t);
+	:}
+//<By MQ> Adding the ID@ID lprotocol definition syntax
+|	modifiers_opt:a SJ_NOALIAS SJ_PROTOCOL IDENTIFIER:n SJ_PROTOCOL_REF IDENTIFIER:m sj_session_type:t
+//</By MQ>
+	{:
+		RESULT = parser.nf.SJFieldProtocolDecl(parser.pos(a, t), a, parser.nf.Id(parser.pos(n), n.getIdentifier()), t);
+	:}
+;
+
+extend statement ::= // A single Stmt (unlike regular local variable declarations - this is supposed to be a type declaration).
+	sj_protocol_declaration_statement:a // Local protocol declarations.
+	{: 
+		RESULT = a; 
+	:}
+;
+
+sj_protocol_declaration_statement ::= // Implicitly final and noalias (set by node factory).
+//<By MQ> Adding the ID@ID lprotocol definition syntax
+	optional_final_noalias SJ_PROTOCOL:a IDENTIFIER:n SJ_PROTOCOL_REF IDENTIFIER:m sj_session_type:t
+//</By MQ>
+	{: 
+		RESULT = parser.nf.SJLocalProtocolDecl(parser.pos(a, t), parser.nf.Id(parser.pos(n), n.getIdentifier()), t);
+	:}
+;
+
+// None, one or both can be specified but both will be set anyway.
+optional_final_noalias ::=
+   | FINAL | FINAL SJ_NOALIAS | SJ_NOALIAS FINAL | SJ_NOALIAS ;
+
+sj_session_type ::= // begin prefixes actually enforced syntactically (although well-formedness routines still explicitly check).
+	sj_channel_type:a       {: RESULT = a; :}
+|   sj_server_type:a        {: RESULT = a; :}
+|   sj_session_type_body:a  {: RESULT = a; :}
+|   sj_session_set_type:a   {: RESULT = a; :}
+;
+
+sj_session_set_type ::=  LBRACE:l sj_session_set_type_body:b RBRACE:r
+    {:
+        RESULT = new SJSetTypeNode_c(parser.pos(l,r), b);
+    :};
+sj_session_set_type_body ::=
+    sj_session_type:t
+    {:
+        List l = new LinkedList();
+        l.add(t);
+        RESULT = l;
+    :}
+|   sj_session_set_type_body:l COMMA sj_session_type:t
+    {:
+        l.add(t);
+        RESULT = l;
+    :}
+;
+
+sj_channel_type ::=
+	sj_session_type_cbegin:a {:  RESULT = a;  :}
+|	sj_session_type_cbegin:a DOT sj_session_type_body:b
+	    {: RESULT = a.child(b); :}
+;
+
+sj_server_type ::=
+	sj_session_type_sbegin:a {:  RESULT = a;  :}
+|	sj_session_type_sbegin:a DOT sj_session_type_body:b
+	    {: RESULT = a.child(b); :}
+;
+
+sj_session_type_cbegin ::=
+/*	IDENTIFIER:a COLON QUESTION SJ_CBEGIN:b //<By MQ> Added the id:? syntax
+	{:
+		RESULT = parser.nf.SJSBeginNode(parser.pos(a,b)); //<By MQ> Changed SJCBeginNode to SJSBeginNode
+	:}
+//<By MQ> Added the !begin syntax for lprotocol
+|*/	NOT:a SJ_CBEGIN:b //<By MQ> Added the id:? syntax
+	{:
+		RESULT = parser.nf.SJCBeginNode(parser.pos(a,b));
+	:}
+//</By MQ>
+;
+
+//<By MQ> Updated to reflect the new syntax id:?begin
+sj_session_type_sbegin ::=
+	IDENTIFIER:a COLON QUESTION SJ_CBEGIN:b
+	{:
+		RESULT = parser.nf.SJSBeginNode(parser.pos(a, b), parser.nf.Id(parser.pos(a), a.getIdentifier())); 
+	:}
+;
+//</By MQ>
+
+sj_session_type_body ::=
+	sj_session_type_element:a
+	{: 
+		RESULT = a; 
+	:}
+|	sj_session_type_element:a DOT sj_session_type_body:b
+	{: 
+		RESULT = a.child(b); 
+	:}
+;
+
+// may be able to specify empty session types here (just do RESULT directly) as for e.g. block_statements_opt for optional blocks 
+sj_session_type_element ::=
+	//Cannot use LPAREN/RPAREN, conflicts with session type cast.
+//<By MQ>
+	IDENTIFIER:a COLON NOT LT sj_message_type/*_list*/:b GT:c
+	{: 
+		RESULT = parser.nf.SJSendNode(parser.pos(a, c), parser.nf.Id(parser.pos(a), a.getIdentifier()), b); 
+	:}
+|	IDENTIFIER:a COLON QUESTION LPAREN sj_message_type/*_list*/:b RPAREN:c
+
+	{:
+		RESULT = parser.nf.SJReceiveNode(parser.pos(a, c), parser.nf.Id(parser.pos(a), a.getIdentifier()), b);
+	:}
+| NOT:a LBRACE sj_branch_cases:b RBRACE:c
+	{:
+		RESULT = parser.nf.SJOutbranchNode(parser.pos(a, c), b);
+	:}
+| IDENTIFIER:a COLON QUESTION LBRACE sj_branch_cases:b RBRACE:c
+	{:
+		RESULT = parser.nf.SJInbranchNode(parser.pos(a, c), parser.nf.Id(parser.pos(a), a.getIdentifier()), b);
+	:}
+
+| NOT:a LBRACK sj_session_type_body:b RBRACK MULT:c 
+	{:
+		RESULT = parser.nf.SJOutwhileNode(parser.pos(a, c), b);
+	:}
+| NOT:a LBRACK RBRACK MULT:c // Any better way to allow empty body?
+	{:
+		RESULT = parser.nf.SJOutwhileNode(parser.pos(a, c), null);
+	:}	
+| IDENTIFIER:a COLON QUESTION LBRACK sj_session_type_body:b RBRACK MULT:c
+	{:
+		RESULT = parser.nf.SJInwhileNode(parser.pos(a, c), parser.nf.Id(parser.pos(a), a.getIdentifier()), b);
+	:}			
+| IDENTIFIER:a COLON QUESTION LBRACK RBRACK MULT:c 
+	{:
+		RESULT = parser.nf.SJInwhileNode(parser.pos(a, c), parser.nf.Id(parser.pos(a), a.getIdentifier()), null);
+//</By MQ>
+	:}		
+| SJ_REC:a IDENTIFIER:b LBRACK sj_session_type_body:c RBRACK:d
+	{:
+		RESULT = parser.nf.SJRecursionNode(parser.pos(a, d), new SJLabel(b.getIdentifier()), c);
+	:}
+| SJ_REC:a IDENTIFIER:b LBRACK RBRACK:d // Is this useful (no recursive call)?
+	{:
+		RESULT = parser.nf.SJRecursionNode(parser.pos(a, d), new SJLabel(b.getIdentifier()), null);
+	:}	
+|	SJ_RECURSE_LABEL:a IDENTIFIER:b // Seems difficult to enforce tail recursion syntactically, check through explicit routines.
+	{:
+		RESULT = parser.nf.SJRecurseNode(parser.pos(a, b), new SJLabel(b.getIdentifier()));
+	:}
+| SJ_PROTOCOL_REF:a LPAREN name:b RPAREN:c // Parentheses needed to support disambiguation of receiver name (not just a String identifier), and also if send type constructor uses parentheses rather than angle brackets.
+	{:
+		RESULT = parser.nf.SJProtocolRefNode(parser.pos(a, b), b.toReceiver());
+	:}
+| XOR:a LPAREN name:b RPAREN:c
+	{:
+		RESULT = parser.nf.SJProtocolDualNode(parser.pos(a, c), b.toReceiver());
+	:}
+;
+
+//<By MQ> Adding operations for gprotocol
+sj_gsession_type ::= // begin prefixes actually enforced syntactically (although well-formedness routines still explicitly check).
+   sj_gbegin_type:a       {: RESULT = a; :}   //MQTODO: replace with gprotocol begin
+//|   sj_server_type:a        {: RESULT = a; :}  	    //MQTODO: replace with gprotocol begin
+|   sj_gsession_type_body:a  {: RESULT = a; :}
+|   sj_gsession_set_type:a   {: RESULT = a; :}
+;
+
+sj_gbegin_type ::=
+	sj_session_type_gbegin:a {:  RESULT = a;  :}
+|	sj_session_type_gbegin:a DOT sj_gsession_type_body:b
+	    {:
+		if(b != null)
+		     	RESULT = a.child(b); 
+		else
+			RESULT = a;
+	    :}
+;
+
+sj_session_type_gbegin ::=
+/*	SJ_CBEGIN:a
+	{:
+		RESULT = parser.nf.SJGBeginNode(parser.pos(a)); 
+	:}
+|*/	IDENTIFIER:a COLON SJ_CBEGIN:b
+	{:
+		RESULT = parser.nf.SJGBeginNode(parser.pos(a,b), parser.nf.Id(parser.pos(a), a.getIdentifier())); 
+	:}
+;
+
+/*sj_participants_type ::=
+	SJ_PARTICIPANTS:a COLON sj_identifier_list:b
+	{:
+		RESULT = parser.nf.SJParticipantsNode(parser.pos(a,b));
+	:};*/
+sj_identifier_list ::= 
+	IDENTIFIER:a 
+	{:
+		List ids = new LinkedList();
+		ids.add(parser.nf.Id(parser.pos(a), a.getIdentifier()));
+		RESULT = ids;
+	:}
+|	sj_identifier_list:ids OR IDENTIFIER:b
+	{:
+		ids.add(parser.nf.Id(parser.pos(b), b.getIdentifier()));
+		RESULT = ids;
+	:};
+
+sj_gsession_type_body ::=
+	sj_gsession_type_element:a
+	{: 
+		RESULT = a; 
+	:}
+|	sj_gsession_type_element:a DOT sj_gsession_type_body:b
+	{:
+		if(b != null) 
+			RESULT = a.child(b); 
+		else
+			RESULT = a;
+	:}
+;
+
+sj_gsession_set_type ::=  LBRACE:l sj_gsession_set_type_body:b RBRACE:r
+    {:
+        RESULT = new SJSetTypeNode_c(parser.pos(l,r), b);
+    :};
+sj_gsession_set_type_body ::=
+    sj_gsession_type:t
+    {:
+        List l = new LinkedList();
+        l.add(t);
+        RESULT = l;
+    :}
+|   sj_gsession_set_type_body:l COMMA sj_gsession_type:t
+    {:
+        l.add(t);
+        RESULT = l;
+    :}
+;
+
+sj_gmessage_type_list ::=
+    sj_gmessage_type:w
+    {:
+        List l = new LinkedList();
+        l.add(w); RESULT = l;
+    :}
+|   sj_gmessage_type_list:l COMMA sj_gmessage_type:w
+    {:
+        l.add(w); RESULT = l;
+    :};
+sj_gmessage_type ::=
+	type:a
+	{: 
+		RESULT = a; 
+	:}
+| sj_gsession_type:a
+	{: 
+		RESULT = a;
+	:}
+;
+
+sj_gbranch_cases ::=
+	sj_gbranch_case:a
+	{:
+		List l = new TypedList(new LinkedList(), SJBranchCaseNode.class, false);
+
+		l.add(a);
+		
+		RESULT = l;
+	:}
+| sj_gbranch_case:a COMMA sj_gbranch_cases:b
+	{:
+		b.add(a);
+
+		RESULT = b;
+	:}
+;
+
+sj_gbranch_case ::=
+	IDENTIFIER:a COLON sj_gsession_type:b
+	{:		
+		RESULT = parser.nf.SJBranchCaseNode(parser.pos(a, b), new SJLabel(a.getIdentifier()), b);
+	:} 
+|	IDENTIFIER:a COLON:b 
+	{:		
+		RESULT = parser.nf.SJBranchCaseNode(parser.pos(a, b), new SJLabel(a.getIdentifier()), null);
+	:}
+;
+
+sj_gsession_type_element ::=
+	//Cannot use LPAREN/RPAREN, conflicts with session type cast.
+	IDENTIFIER:a MINUS GT IDENTIFIER:b COLON LT sj_gmessage_type/*_list*/:c GT:d
+	{: 
+		RESULT = parser.nf.SJGMsgNode(parser.pos(a, d), parser.nf.Id(parser.pos(a), a.getIdentifier()), parser.nf.Id(parser.pos(b), b.getIdentifier()), c);
+	:}
+| IDENTIFIER:a COLON LBRACE sj_gbranch_cases:b RBRACE:c
+	{:
+		RESULT = parser.nf.SJGBranchNode(parser.pos(a, c), parser.nf.Id(parser.pos(a), a.getIdentifier()), b); 
+	:}
+
+| IDENTIFIER:a COLON LBRACK sj_gsession_type_body:b RBRACK MULT:c
+	{:
+		RESULT = parser.nf.SJGLoopNode(parser.pos(a, c), parser.nf.Id(parser.pos(a), a.getIdentifier()), b);
+	:}			
+| IDENTIFIER:a COLON LBRACK RBRACK MULT:c 
+	{:
+		RESULT = parser.nf.SJGLoopNode(parser.pos(a, c), parser.nf.Id(parser.pos(a), a.getIdentifier()), null);
+	:}		
+| SJ_PARTICIPANTS:a COLON sj_identifier_list:b
+        {:
+                RESULT = parser.nf.SJParticipantsNode(parser.pos(a,b), b);
+        :}
+
+;
+
+//</By MQ>
+sj_branch_cases ::=
+	sj_branch_case:a
+	{:
+		List l = new TypedList(new LinkedList(), SJBranchCaseNode.class, false);
+
+		l.add(a);
+		
+		RESULT = l;
+	:}
+| sj_branch_case:a COMMA sj_branch_cases:b
+	{:
+		b.add(a);
+
+		RESULT = b;
+	:}
+;
+
+sj_branch_case ::=
+	IDENTIFIER:a COLON sj_session_type:b
+	{:		
+		RESULT = parser.nf.SJBranchCaseNode(parser.pos(a, b), new SJLabel(a.getIdentifier()), b);
+	:} 
+|	IDENTIFIER:a COLON:b 
+	{:		
+		RESULT = parser.nf.SJBranchCaseNode(parser.pos(a, b), new SJLabel(a.getIdentifier()), null);
+	:}
+;
+//<By MQ>
+sj_message_type_list ::=
+    sj_message_type:w
+    {:
+        List l = new LinkedList();
+        l.add(w); RESULT = l;
+    :}
+|   sj_message_type_list:l COMMA sj_message_type:w
+    {:
+        l.add(w); RESULT = l;
+    :};
+//</By MQ>
+sj_message_type ::=
+	type:a
+	{: 
+		RESULT = a; 
+	:}
+| sj_session_type:a
+	{: 
+		RESULT = a;
+	:}
+;
+
+extend statement_without_trailing_substatement ::= // As for regular try.
+	sj_try_statement:a
+	{:
+		RESULT = a;
+	:}
+;
+	
+sj_try_statement ::=
+	TRY:a LPAREN sj_socket_list:b RPAREN block:c catches:d 
+	{: 
+		RESULT = parser.nf.SJAmbiguousTry(parser.pos(a, d), c, d, null, b); 
+	:}
+| TRY:a LPAREN sj_socket_list:b RPAREN block:c catches_opt:d finally:e
+	{: 			
+		RESULT = parser.nf.SJAmbiguousTry(parser.pos(a, e), c, d, e, b); 
+	:}
+;
+
+extend method_invocation ::= // Unicast basic operations done here. 
+	name:tgt DOT SJ_SEND:b LPAREN argument_list_opt:arg RPAREN:end // Not sure why has to be name, doesn't work for primary. But should be OK to use name, session sockets can only be locals.
+	{: 
+		RESULT = parser.nf.SJSend(parser.pos(tgt, end), arg, parser.asRecvList(tgt));
+	:}
+|	name:a DOT SJ_PASS:b LPAREN argument_list_opt:c RPAREN:d 
+	{: 
+		RESULT = parser.nf.SJPass(parser.pos(a, d), c, parser.asRecvList(a));
+	:}
+|	name:a DOT SJ_COPY:b LPAREN argument_list_opt:c RPAREN:d 
+	{: 		
+		RESULT = parser.nf.SJCopy(parser.pos(a, d), c, parser.asRecvList(a));
+	:}
+| sj_receive_operation:a 
+	{: 		
+		RESULT = a; 
+	:}
+| sj_receiveint_operation:a // But we don't currently have sendInt, etc.
+	{: 		
+		RESULT = a; 
+	:}
+| sj_receiveboolean_operation:a 
+{: 		
+	RESULT = a; 
+:}
+| sj_receivedouble_operation:a 
+{: 		
+	RESULT = a; 
+:}
+|	name:a DOT SJ_RECURSE LPAREN IDENTIFIER:b RPAREN:c
+	{: 	
+		RESULT = parser.nf.SJRecurse(parser.pos(a, c), new SJLabel(b.getIdentifier()), parser.asRecvList(a)); 
+	:}		
+|	name:a DOT SJ_SPAWN LPAREN class_instance_creation_expression:b RPAREN:c 	
+	{: 	
+		if (!(b instanceof New))
+		{
+			// Not using SJRuntimeException: Doesn't work for fresh build - sessionj.runtime classes not built yet.
+			throw new RuntimeException("[SJParser] Unsupported spawn target: " + b);
+		}
+		
+		RESULT = parser.nf.SJSpawn(parser.pos(a, c), (New) b, parser.asRecvList(a)); 
+	:}
+;
+
+extend statement_expression ::= // Does the current approach (extend statement_expression and assignment_expression) make sense?
+    sj_basic_operation:a
+	{:
+		RESULT = a;
+	:}
+|   sj_spawn_operation:a
+	{:
+		RESULT = a;
+	:}
+;
+
+sj_basic_operation ::= // For parsing the full multi-target operations, so receive not included here. 
+	sj_send_operation:a
+	{:
+		RESULT = a;
+	:}
+|	sj_pass_operation:a
+	{:
+		RESULT = a;
+	:}
+|	sj_copy_operation:a
+	{:
+		RESULT = a;
+	:}
+/* sj_receive_operation Not needed here because already in method_invocation extension. */
+|	sj_recurse_operation:a
+	{:
+		RESULT = a;
+	:}
+;
+
+sj_send_operation ::=
+	LT:a sj_socket_list:tgtLst GT DOT SJ_SEND LPAREN argument_list_opt:arg RPAREN:d
+	{: 	
+		RESULT = parser.nf.SJSend(parser.pos(a, d), arg, tgtLst); 
+	:}
+;
+
+sj_pass_operation ::=
+	LT:a sj_socket_list:b GT DOT SJ_PASS LPAREN argument_list_opt:c RPAREN:d
+	{: 	
+		RESULT = parser.nf.SJPass(parser.pos(a, d), c, b); 
+	:}
+;
+
+sj_pass_operation ::=
+	LT:a sj_socket_list:b GT DOT SJ_COPY LPAREN argument_list_opt:c RPAREN:d
+	{: 	
+		RESULT = parser.nf.SJCopy(parser.pos(a, d), c, b); 
+	:}
+;
+
+sj_recurse_operation ::=
+	//LT:a sj_socket_list:b GT DOT SJ_RECURSE LPAREN argument_list_opt:c RPAREN:d
+	LT:a sj_socket_list:b GT DOT SJ_RECURSE LPAREN IDENTIFIER:c RPAREN:d // Since recurse doesn't actually involve any communication, probably OK to fix arguments to just the label (i.e. no timeouts, etc.)
+	{: 	
+		RESULT = parser.nf.SJRecurse(parser.pos(a, d), new SJLabel(c.getIdentifier()), b); 
+	:}
+;
+
+sj_spawn_operation ::=
+	//LT:a sj_socket_list:b GT DOT SJ_SPAWN LPAREN argument_list_opt:c RPAREN:d
+	LT:a sj_socket_list:b GT DOT SJ_SPAWN LPAREN class_instance_creation_expression:c RPAREN:d
+	{: 	
+		if (!(c instanceof New))
+		{
+			//throw new SJRuntimeException("[SJParser] Unsupported spawn target: " + c);
+			throw new RuntimeException("[SJParser] Unsupported spawn target: " + c);
+		}
+		
+		RESULT = parser.nf.SJSpawn(parser.pos(a, d), (New) c, b); 
+	:}
+;
+
+sj_receive_operation ::=
+	name:a DOT SJ_RECEIVE LPAREN argument_list_opt:b RPAREN:c // Using sj_socket doesn't seem to work?
+	{: 		
+		RESULT = parser.nf.SJReceive(parser.pos(a, c), b, parser.asRecvList(a));
+	:}
+;
+
+sj_receiveboolean_operation ::=
+	name:a DOT SJ_RECEIVEBOOLEAN LPAREN argument_list_opt:b RPAREN:c 
+	{: 		
+		RESULT = parser.nf.SJReceiveBoolean(parser.pos(a, c), b, parser.asRecvList(a));
+	:}
+;
+
+sj_receivedouble_operation ::=
+	name:a DOT SJ_RECEIVEDOUBLE LPAREN argument_list_opt:b RPAREN:c 
+	{: 		
+		RESULT = parser.nf.SJReceiveDouble(parser.pos(a, c), b, parser.asRecvList(a));
+	:}
+;
+
+// FIXME: shouldn't this be receiveint?
+sj_receive_operation ::=
+	name:a DOT SJ_RECEIVEINT LPAREN argument_list_opt:b RPAREN:c // Using sj_socket doesn't seem to work?
+	{: 		
+		RESULT = parser.nf.SJReceiveInt(parser.pos(a, c), b, parser.asRecvList(a));
+	:}
+;
+
+sj_socket_list ::= // Move the angled brackets from the individual operations into here. 
+	sj_socket:a 
+	{:
+		List sockets = new LinkedList();
+		sockets.add(a);
+		
+		RESULT = sockets;
+	:}
+|	sj_socket_list:a COMMA sj_socket:b
+	{:
+		a.add(b);
+		
+		RESULT = a;
+	:}
+;
+
+sj_socket ::=
+	name:a // This syntatically restricts session-try and session operation targets to session socket (local) variables.
+	{:
+		RESULT = a.toReceiver();
+		//RESULT = a; // So that sj_socket can be used in the method_invocation extension for (single target) session operations.
+	:}
+;
+
+//extend unary_expression_not_plus_minus ::= // If type cannot be determined (protocol reference), cast is removed now and reinserted later (as for general receive-cast insertion).
+extend cast_expression ::=
+	sj_session_type_cast_expression:a
+	{:
+		RESULT = a;	
+	:}
+;
+
+extend statement ::=
+	sj_structural_operation:a
+	{:
+		RESULT = a;
+	:}
+;
+
+sj_structural_operation ::=
+	sj_outbranch_statement:a   {: RESULT = a; :}
+|   sj_inbranch_statement:a    {: RESULT = a; :}
+|	sj_outwhile_statement:a    {: RESULT = a; :}
+|	sj_newoutwhile_statement:a {: RESULT = a; :}
+|	sj_outinwhile_statement:a  {: RESULT = a; :}
+|	sj_inwhile_statement:a     {: RESULT = a; :}
+|   sj_recursion_statement:a   {: RESULT = a; :}
+|   sj_typecase_statement:a    {: RESULT = a; :}
+//|	sj_doutbranch_statement:a   {: RESULT = a; :}
+//|	sj_dinbranch_statement:a    {: RESULT = a; :}
+;
+
+sj_outbranch_statement ::=
+	LT:a sj_socket_list:b GT DOT SJ_OUTBRANCH LPAREN IDENTIFIER:c RPAREN block:d 
+	{: 
+		RESULT = parser.nf.SJOutbranch(parser.pos(a, d), d.statements(), new SJLabel(c.getIdentifier()), b); 
+	:} 	
+|	name:a DOT SJ_OUTBRANCH LPAREN IDENTIFIER:b RPAREN block:c
+	{: 
+		RESULT = parser.nf.SJOutbranch(parser.pos(a, c), c.statements(),
+		            new SJLabel(b.getIdentifier()), parser.asRecvList(a));
+	:}
+/* Duplicated the above for "dependently-typed" extension.
+|	LT:a sj_socket_list:b GT DOT SJ_DOUTBRANCH LPAREN IDENTIFIER:c RPAREN block:d 
+{: 
+	RESULT = parser.nf.SJOutbranch(parser.pos(a, d), d.statements(), new SJLabel(c.getIdentifier()), b, true); 
+:} 	
+|	name:a DOT SJ_DOUTBRANCH LPAREN IDENTIFIER:b RPAREN block:c //FIXME: should also support literals (like we did previously).
+{: 
+	RESULT = parser.nf.SJOutbranch(parser.pos(a, c), c.statements(),
+	            new SJLabel(parser.nf.Id(parser.pos(b), b.getIdentifier())), parser.asRecvList(a), true);
+:}*/ 
+;
+
+sj_inbranch_statement ::=
+	name:a DOT SJ_INBRANCH LPAREN argument_list_opt:b RPAREN LBRACE sj_inbranch_cases:c RBRACE:d
+	{: 
+		RESULT = parser.nf.SJInbranch(parser.pos(a, d), b, c, parser.asRecvList(a)); // Hacked position, for when no cases.
+	:}
+;
+
+sj_inbranch_cases ::=
+	sj_inbranch_case:a
+	{: // TypedList is a legacy approximation to generics.
+		List l = new TypedList(new LinkedList(), SJInbranchCase.class, false);
+		l.add(a);
+		RESULT = l; 
+	:}
+|	sj_inbranch_cases:a sj_inbranch_case:b
+	{: 
+		a.add(b);
+		RESULT = a; 
+	:}
+;
+	
+sj_inbranch_case ::=
+	CASE:a IDENTIFIER:b COLON block_statements_opt:c
+	{: 
+		RESULT = parser.nf.SJInbranchCase(parser.pos(a, c), c, new SJLabel(b.getIdentifier()));
+	:}
+;
+
+sj_outwhile_statement ::=
+	LT:a sj_socket_list:b GT DOT SJ_OUTWHILE LPAREN expression:c RPAREN statement:d 
+	{: 
+		RESULT = parser.nf.SJOutwhile(parser.pos(a, d), c, d, b); 
+	:} 
+| name:a DOT SJ_OUTWHILE LPAREN expression:b RPAREN statement:c 
+	{: 
+		RESULT = parser.nf.SJOutwhile(parser.pos(a, c), b, c, parser.asRecvList(a));
+	:}  
+;
+
+sj_newoutwhile_statement ::=
+	LT:a sj_socket_list:b GT DOT SJ_NEWOUTWHILE LPAREN expression:c RPAREN statement:d
+	{:
+		RESULT = parser.nf.SJNewOutwhile(parser.pos(a, d), c, d, b);
+	:}
+| name:a DOT SJ_NEWOUTWHILE LPAREN expression:b RPAREN statement:c
+	{:
+		RESULT = parser.nf.SJNewOutwhile(parser.pos(a, c), b, c, parser.asRecvList(a));
+	:}
+;
+
+sj_outinwhile_statement ::=
+	// multi-targets, single source, no condition
+	LT:lt sj_socket_list:tgtLst GT DOT SJ_OUTWHILE LPAREN name:src DOT SJ_INWHILE LPAREN RPAREN RPAREN statement:body
+	{:
+	    RESULT = parser.nf.SJOutInwhile(parser.pos(lt, body), body, parser.asRecvList(src), tgtLst, null);
+	:}
+  // single target, single source, no condition
+| name:tgt DOT SJ_OUTWHILE LPAREN name:src DOT SJ_INWHILE LPAREN RPAREN RPAREN statement:body
+	{:
+		RESULT = parser.nf.SJOutInwhile(parser.pos(tgt, body), body, parser.asRecvList(src), parser.asRecvList(tgt), null);
+	:}
+  // single target, single source, with condition
+| name:tgt DOT SJ_OUTWHILE LPAREN name:src DOT SJ_INWHILE LPAREN RPAREN SEMICOLON expression:cond RPAREN statement:body
+    {:
+        RESULT = parser.nf.SJOutInwhile(parser.pos(tgt, body), body, parser.asRecvList(src), parser.asRecvList(tgt), cond);
+    :}
+  // multi-targets, single source, with condition
+| LT:lt sj_socket_list:tgtLst GT DOT SJ_OUTWHILE LPAREN name:src DOT SJ_INWHILE LPAREN RPAREN SEMICOLON expression:cond RPAREN statement:body
+    {:
+        RESULT = parser.nf.SJOutInwhile(parser.pos(lt, body), body, parser.asRecvList(src), tgtLst, cond);
+    :}
+  // multi-targets, multi-source, no condition
+| LT:lt sj_socket_list:tgtLst GT DOT SJ_OUTWHILE LPAREN LT sj_socket_list:srcLst GT DOT SJ_INWHILE LPAREN RPAREN RPAREN statement:body
+    {:
+        RESULT = parser.nf.SJOutInwhile(parser.pos(lt, body), body, srcLst, tgtLst, null);
+    :}
+  // single target, multi-source, no condition
+| name:tgt DOT SJ_OUTWHILE LPAREN LT sj_socket_list:srcLst GT DOT SJ_INWHILE LPAREN RPAREN RPAREN statement:body
+    {:
+        RESULT = parser.nf.SJOutInwhile(parser.pos(tgt, body), body, srcLst, parser.asRecvList(tgt), null);
+    :}
+  // multi-targets, multi-source, with condition
+| LT:lt sj_socket_list:tgtLst GT DOT SJ_OUTWHILE LPAREN LT sj_socket_list:srcLst GT DOT SJ_INWHILE LPAREN RPAREN SEMICOLON expression:cond RPAREN statement:body
+    {:
+        RESULT = parser.nf.SJOutInwhile(parser.pos(lt, body), body, srcLst, tgtLst, cond);
+    :}
+  // single target, multi-source, with condition
+| name:tgt DOT SJ_OUTWHILE LPAREN LT sj_socket_list:srcLst GT DOT SJ_INWHILE LPAREN RPAREN SEMICOLON expression:cond RPAREN statement:body
+    {:
+        RESULT = parser.nf.SJOutInwhile(parser.pos(tgt, body), body, srcLst, parser.asRecvList(tgt), cond);
+    :}
+;
+
+sj_inwhile_statement ::=
+//<By MQ> Added argument list to support targets in an argument
+	LT:lt sj_socket_list:tgtLst GT DOT SJ_INWHILE LPAREN argument_list_opt:b RPAREN statement:body
+	{: 
+		RESULT = parser.nf.SJInwhile(parser.pos(lt, body), body, tgtLst, b);
+	:} 
+| name:tgt DOT SJ_INWHILE LPAREN argument_list_opt:b RPAREN statement:body 
+	{: 
+		RESULT = parser.nf.SJInwhile(parser.pos(tgt, body), body, parser.asRecvList(tgt), b);
+	:}  
+;
+//</By MQ>
+
+sj_recursion_statement ::=
+	LT:a sj_socket_list:b GT DOT SJ_RECURSION LPAREN IDENTIFIER:c RPAREN block:d
+	{:
+		RESULT = parser.nf.SJRecursion(parser.pos(a, d), d, new SJLabel(c.getIdentifier()), b);
+	:}
+|	name:a DOT SJ_RECURSION LPAREN IDENTIFIER:b RPAREN block:c
+	{:
+		RESULT = parser.nf.SJRecursion(parser.pos(a, c), c, new SJLabel(b.getIdentifier()), parser.asRecvList(a));
+	:}
+;
+
+sj_typecase_statement ::=
+    SJ_TYPECASE:t LPAREN name:socket RPAREN LBRACE sj_typecase_caselist:l RBRACE:end
+    {:
+        RESULT = parser.nf.SJTypecase(parser.pos(t,end), socket, l);
+    :}
+;
+
+sj_typecase_caselist ::=
+    sj_typecase_when:w
+    {:
+        List l = new LinkedList();
+        l.add(w); RESULT = l;
+    :}
+|   sj_typecase_caselist:l sj_typecase_when:w
+    {:
+        l.add(w); RESULT = l;
+    :}
+;
+
+sj_typecase_when ::=
+    SJ_WHEN:w LPAREN sj_session_type:t RPAREN statement:body
+    {:
+        RESULT = parser.nf.SJWhen(parser.pos(w,body), t, body);
+    :}
+;
+
+sj_session_type_cast_expression ::= // Extra keywords needed to prevent grammar problems with the send type constructor, and also makes handling protocol reference nodes easier.
+	LPAREN:a sj_channel_type:b RPAREN method_invocation:c // Should be a SJReceive (or SJReceiveChannel). 
+	{: 
+		RESULT = parser.nf.SJChannelCast(parser.pos(a, c), c, b);
+		// FIXME: protocol references to channel types will be incorrectly parsed as session type bodies.
+		// (Currently dealt with by disallowing protocol references to channel types).
+		// So maybe better to have a manual SJ parse pass for session casts and formals before base type checking.
+		// But this might be difficult - somehow need session type information first. Then maybe
+		// use a SJServiceSocketHack style hack. Old SJ didn't have this problem because used inactive session sockets. 
+	:}
+|	LPAREN:a sj_session_type_body:type RPAREN method_invocation:m
+	{: 
+		if (type instanceof SJProtocolNode)
+		{
+			RESULT = parser.nf.SJAmbiguousCast(parser.pos(a, m), m, type);
+		}
+		else
+		{
+			RESULT = parser.nf.SJSessionCast(parser.pos(a, m), m, type);
+		}
+	:}
+|   LPAREN:a sj_session_set_type:set RPAREN method_invocation:m
+    {:
+        RESULT = parser.nf.SJSessionCast(parser.pos(a,m), m, set);
+    :}
+;
+
+
+extend formal_parameter ::= // For method session type paramters. 
+	sj_formal:a
+	{:
+		RESULT = a;
+	:}
+;
+
+sj_formal ::= // Server formals not allowed.
+	sj_channel_formal:a // FIXME: same problem (and temporary solution) regarding protocol references to channel types as for session type casts.
+	{:
+		RESULT = a;
+	:}	
+|	sj_session_formal:a
+	{:
+		RESULT = a;
+	:}
+|   sj_server_formal:a {: RESULT = a; :}
+;
+
+sj_channel_formal ::=
+	/*SJ_NOALIAS:a sj_session_type_body:b variable_declarator_id:c // Currently not permitted. 
+	{: 
+		RESULT = parser.nf.SJSessionFormal(parser.pos(a, c), Flags.NONE, c.name, b);
+	:}
+| */FINAL:a SJ_NOALIAS sj_channel_type:b variable_declarator_id:c 
+	{: 
+		RESULT = parser.nf.SJChannelFormal(parser.pos(a, c), Flags.FINAL, c.name, b);
+	:}
+;
+
+sj_session_formal ::=
+	// all session sockets must be (possibly final) noalias.
+    SJ_NOALIAS:a sj_session_type_body:b variable_declarator_id:c
+	{: 
+		RESULT = parser.nf.SJSessionFormal(parser.pos(a, c), Flags.NONE, c.name, b);
+	:}
+|   FINAL:a SJ_NOALIAS sj_session_type_body:b variable_declarator_id:c
+	{: 
+		RESULT = parser.nf.SJSessionFormal(parser.pos(a, c), Flags.FINAL, c.name, b); 
+	:}	
+;
+
+sj_server_formal ::=
+    SJ_NOALIAS:a sj_server_type:t variable_declarator_id:v
+    {:
+        RESULT = parser.nf.SJServerFormal(parser.pos(a,v), Flags.NONE, v.name, t);
+    :}
+|   FINAL:a SJ_NOALIAS sj_server_type:t variable_declarator_id:v
+    {:
+        RESULT = parser.nf.SJServerFormal(parser.pos(a,v), Flags.FINAL, v.name, t);
+    :}
+;
+// Not doing session method return types for now.

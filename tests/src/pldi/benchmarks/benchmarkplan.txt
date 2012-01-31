@@ -1,0 +1,324 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outline of Benchmarks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Overview.
+1. overheads of the (new) SJ Runtime.
+2. impact of noalias.
+3. impact of delegation in an application feat. H-O communication.
+4. impact of *cross-transport* session delegation.
+5. Jacobi (Matrix Length: 100 300 1000).
+6. Montecarlo (Workers number: 1-4-12).
+7. cost of session initialization (low latency). 
+8. ability of SJ Runtime to handle "remote" sessions concurrently.
+9. ability of SJ Runtime to handle "local" sessions concurrently.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template format.
+Benchmark ID
+
+Purpose: ...
+Session: ...
+(SJ) Runtime (configuration): ...
+Environment (constants): ...
+Variables: ...
+Measurement:
+Method: ...
+Notes: ...
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Benchmark 1: overheads of the (new) SJ Runtime.
+
+Purpose: to measure the runtime overheads due to the Abstract Transport and 
+other features of the new SJ Runtime for varied session lengths and message 
+sizes.
+
+  P1: the internal (local) overheads of the SJ Runtime.
+	
+  P2: the combined overhead (internal plus message passing) incurred by the 
+  SJ Runtime.
+
+Session: cbegin.![!{L1:!<BinTree>.?(BinTree)}]* (from Client side).
+
+Runtime: the SJ Runtime for each party will be configured to use TCP, for 
+both connection setup and session transport, and the Bounded-Forwarding 
+delegation protocol.
+
+Environment: 
+
+  E1: matrix01 (Server) and matrix02 (Client); ping (64 bytes) is ~0.1 ms. 
+	
+  E2: ??? (high latency).
+
+Variables: tree depth (0, 1, 2, 4, 8), session length (0, 1, 10, 100, 1000).
+
+Measurement: 
+
+  M1: the time to complete a session at the Client side from after 
+  initiation to before leaving the session-try (i.e. session close), for each 
+  combination of tree depth and session length. 
+	
+  M2: for RMI, the time to perform the RMI call (does not include the 
+  preceding registry lookup).	
+
+Method: Server process runs continuously; one Client process per session. 
+Client process to be run 1000 times consecutively (starting the next after 
+the previous terminates), and the mean will be calculated.
+
+  a) (New) SJ: benchmarks/1/a/Server - benchmarks/1/a/client.sh
+  b) Old SJ: benchmarks/1/b/Server - benchmarks/1/b/client.sh
+  c) RMI: benchmarks/1/c/RMIServerImpl - benchmarks/1/c/rmi.sh
+
+Notes: session length means the the number of iterations within the session,
+i.e. the *-value.
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Benchmark 2: impact of noalias.
+
+Purpose: to measure the cost of sending a varied number of *noalias* messages 
+of varied sizes against "ordinary" message equivalents in shared memory and
+distributed (TCP) contexts.
+
+  P1: the performance increase due to noalias in a shared memory session, 
+  i.e. the gains from avoiding serialization of the message (must use the 
+  Bounded-Forwarding delegation protocol) by using direct reference passing 
+  instead.
+
+  P2: the overheads of noalias in a TCP session, i.e. the cost of the 
+  additional noalias operations on top of the necessary message 
+  serialization.
+	
+Session: same as Benchmark 1.
+
+Runtime: the SJ Runtimes will be configured to use TCP for connection setup, 
+and Shared Memory if possible, otherwise TCP, for session transport. The 
+delegation protocol is Bounded-Forwarding.
+
+Environment: 
+
+  E1: matrix01 (Server and Client). Both parties to be run as co-VM threads.
+	
+	E2: same as Benchmark 1 (E1).
+
+Variables: same as Benchmark 1.
+
+Measurement: same as Benchmark 1 (M1).	
+
+Method: 
+
+  M1: Server thread runs continuously; one Client thread per session. 
+  Client thread created and run 1000 times consecutively (joining the 
+  previous Client thread), and the mean will be calculated.
+
+    a) SJ: benchmark2/a/NoAlias.sj
+    b) SJ: benchmark2/b/Ordinary.sj
+
+  M2: same as Benchmark 1.
+	
+    c) SJ: *  benchmarks/2/c/Server.sj - benchmarks/2/c/client.sh 
+    d) SJ: ** benchmarks/2/d/Server.sj - benchmarks/2/d/client.sh
+	
+Notes: * Uses noalias messages. ** Uses "ordinary" messages.
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+Benchmark 3: impact of delegation in an application feat. H-O communication.
+
+Purpose: to measure the overall performance of using delegation (Bounded-
+Forwarding protocol) vs. manual message forwarding in an application that 
+features higher-order communication, for varied message sizes and session 
+lengths.
+
+Sessions:
+
+  S1: (A-B) cbegin.![!<BinTree>.?(BinTree)]*    (from A)
+      (B-C) cbegin.!<![!<BinTree>.?(BinTree)]*> (from B)
+
+  S2: (A-B) cbegin.![!<BinTree>.?(BinTree)]* (from A)
+      (B-C) cbegin.![!<BinTree>.?(BinTree)]* (from B)
+
+Runtime: same as Benchmark 1.
+
+Environment: matrix01 (A), matrix02 (B) and matrix03 (C); ping (64 bytes) is 
+~0.1 ms between each pair of machines. 
+
+Variables: same as Benchmark 1.
+
+Measurement: the time to complete a session at A from after initiation to 
+before leaving the session-try (i.e. before session close), for each 
+combination of tree depth and session length. 
+
+Method: B and C processes run continuously; one A process per session. A 
+process to be run 1000 times consecutively (starting the next after the 
+previous terminates), and the mean will be calculated.
+
+  S1) SJ: benchmarks/3/a/B, benchmarks/3/a/C, benchmarks/3/a/a.sh
+  S2) SJ: benchmarks/3/b/B ,benchmarks/3/b/C, benchmarks/3/b/a.sh
+	
+Notes: [Need a high latency version as well.]
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+Benchmark 4: impact of *cross-transport* session delegation.
+
+Purpose: to measure the overall performance of using delegation (Bounded-
+Forwarding protocol) vs. manual message forwarding in an application that 
+features higher-order communication in a *cross-transport* runtime context, 
+for varied message sizes and session lengths. 
+
+Sessions: Same as Benchmark 3 (S1).
+
+Runtime: 
+
+  R1: same as Benchmark 2.
+  R2: same as Benchmark 3.
+
+Environment: matrix01 (A and C), matrix02 (B); ping (64 bytes) is ~0.1 ms. 
+
+Variables: same as Benchmark 3.
+
+Measurement: same as Benchmark 3. 
+
+Method: A and C are co-VM threads. The B process and C thread run 
+continuously; one A thread per session. A thread to be created and run 1000 
+times consecutively (joining the previous A thread), and the mean will be 
+calculated.
+
+  R1a)   SJ: benchmarks/4/a/B, benchmarks/4/a/C, benchmarks/4/a/a.sh
+  R1b) * SJ: benchmarks/4/b/B, benchmarks/4/b/C, benchmarks/4/b/a.sh 
+	
+  R2)    SJ: benchmarks/4/c/B ,benchmarks/4/c/C, benchmarks/4/c/a.sh	
+	
+Notes: * The same as R1a except A and C are implemented to send the BinTrees 
+as noalias messages. 
+
+[Need a high latency version as well.]
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
+Benchmark 5: Jacobi (Matrix Length: 100 300 1000).
+
+	a) New SJ-TCP, OneDimensionJacobi/WorkerN-WorkerS-Master-Client (run.sh-WorkerN-WorkerS-Master) camelot
+
+4 processes on 4 different physical machines camelot01-02-03-04.
+
+	b1) New SJ-Shared Mem-Alias, OneDimensionJacobi/WorkerN-WorkerS-Master-Client (run.sh-LocalRun) camelot 
+
+client on remote machine, WorkerN-WorkerS-Master on the same physical machine and same VM.
+
+	b2) New SJ-Shared Mem-NoAlias, OneDimensionJacobi/WorkerN-WorkerS-Master-Client (run.sh-LocalRunNoAlias) camelot 	
+
+client on remote machine, WorkerN-WorkerS-Master on the same physical machine and same VM.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+Benchmark 6: Montecarlo (Workers number: 1-4-12)
+	a) New SJ-TCP,  pi2/Master[1-4-12]-Worker-Client () --shell script not coded camelot
+	b) New SJ-Shared Mem,  pi2/Master[1-4-12]-Worker-Client
+	(LocalRun) camelot
+        c) New SJ-TCP  pi2/Master[1-4-12]-Worker-Client () --shell
+	script not coded different matrix machines for Workers and
+	Clinent and Master in camelot 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+Benchmark 7: cost of session initialization. 
+
+Purpose: to estimate the relative cost of (TCP) session initialization for 
+the SJ Runtime in low and high latency contexts.
+
+Session: cbegin.!<String>.?(String) (from Client side).
+
+Runtime: the SJ Runtime for each party will be configured to use TCP, for 
+both connection setup and session transport, and the Bounded-Forwarding 
+delegation protocol.
+
+Environment: 
+
+  E1: same as Benchmark 1 (E1). 
+  E2: same as Benchmark 1 (E2). 
+
+Variables: None.
+
+Measurement: 
+
+  M1: the time to establish and complete a session at the Client 
+  side from immediately before initiation (i.e the request operation) to 
+  before leaving the session-try (session close).  
+	
+	M2: for RMI, the measurement includes the time needed by the Client to 
+  perform the registry lookup and complete the RMI call.
+
+Method: Server process runs continuously; one Client process per session. 
+Client process to be run 1000 times consecutively (starting the next after 
+the previous terminates), and the mean will be calculated.
+
+  a) (New) SJ: benchmarks/1/a/Server - benchmarks/1/a/client.sh
+  b) Old SJ: benchmarks/1/b/Server - benchmarks/1/b/client.sh
+  c) RMI: benchmarks/1/c/RMIServerImpl - benchmarks/1/c/client.sh
+
+Notes: For RMI, the RMI registry should be running on a third machine 
+separate from the Client and Server machines (at low and high latency 
+distance respectively). 
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+Benchmark 8: ability of SJ Runtime to handle "remote" sessions concurrently.
+
+Purpose: to test the ability of the SJ Runtime to handle varied sets of 
+multiple concurrent sessions with distributed peers.
+
+Session: same as Benchmark 1.
+
+Runtime: same as Benchmark 1.
+
+Environment: matrix01 (Server) and matrix02 - matrix_n (Clients 1 to n-1); 
+ping (64 bytes) is ~0.1 ms between each pair of machines. 
+
+Variables: tree depth (0, 1, 2, 4, 8), session length (0, 1, 10, 100, 1000) 
+and number of concurrent Clients (1, 2, 4, 8, ..., ?).
+
+Measurement: the time to complete a session at the (final?) Client side from 
+after initiation to before leaving the session-try (session close), for each 
+combination of tree depth, session length and number of Clients. 
+
+Method: Server process runs continuously; one Client process per session. 
+Client processes to be started in parallel (or consecutively?? immediately 
+after the previous has been started). This will be repeated 1000 times and 
+the mean will be calculated.
+
+  ...
+
+Notes: TODO.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+Benchmark 9: ability of SJ Runtime to handle "local" sessions concurrently.
+
+Notes: same as Benchmark 8 but in a shared memory context. TODO.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

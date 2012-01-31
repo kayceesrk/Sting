@@ -1,0 +1,16 @@
+/*
+ * This file is part of SessionJ.
+ *
+ * Copyright (C) Raymond Hu, Imperial College London.
+ *
+ */
+
+package sj.del;
+
+import polyglot.ast.JL;
+
+// Actually used to "override" (Local)Assign and LocalDecl. // Also need to do for receive as an argument to a method call.
+public interface SJReceiveDel extends JL
+{
+
+}

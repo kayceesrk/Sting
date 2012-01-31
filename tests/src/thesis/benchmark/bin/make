@@ -1,0 +1,97 @@
+#!/bin/bash
+
+##
+# Run from the sessionj root directory:
+# tests/src/thesis/benchmark/bin/make LOCALHOST ALL 
+##
+
+
+##
+# Script configuration parameters (global variables).
+##
+java=                     # We're using sessionjc, so need java (not javac); set by parseArgs
+compiler=bin/sessionjc    # Compiler
+classpath=tests/classes   # Classpath
+destination=tests/classes # Output directory
+
+
+##
+# Compile source file.
+##
+compile()
+{
+  echo Compiling: $1
+  $compiler -J $java -cp $classpath $1 -d $destination
+  if [ $? -ne 0 ]; then exit 1; fi
+}
+
+
+##
+# Command line arguments.
+##
+parseArgs()
+{
+	# These are global variables accessed from main.
+	base=false    # Base/shared
+	
+	if [ "$1" == "LOCALHOST" ];
+	then
+	  java=java
+	elif [ "$1" == "DOC" ];
+	then
+	  java=java
+	elif [ "$1" == "CAMELOT" ];
+	then
+	  java=~/bin/jdk1.6.0_21-64/bin/java  
+	else
+	  echo Invalid environment: $1
+	exit 1
+	fi
+	
+	shift
+	
+	while true;
+	do
+	  case $1 in
+	    "")
+	      break
+	      ;;
+	    ALL) 
+	      base=true
+	      break
+	      ;;
+	    BASE)
+	      base=true
+	      shift
+	      ;;       
+	    *)
+	      shift
+	      ;;
+	  esac
+	done
+}
+
+
+##
+# Main.
+##
+main() 
+{
+	parseArgs $*
+
+	echo Parameters: compiler=$compiler, java=$java, classpath=$classpath, destination=$destination 
+	
+	if [ "$base" == "true" ];
+	then  
+	  local path=tests/src/thesis/benchmark
+	  for f in Util Message ClientMessage ServerMessage Server AbstractServer Client TimerClient SignalServer SignalClient; do
+	    compile $path/$f.sj
+	  done
+	fi  
+}
+
+
+##
+# Call the main function.
+##  
+main $*

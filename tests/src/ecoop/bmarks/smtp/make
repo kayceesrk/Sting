@@ -1,0 +1,9 @@
+bin/sessionjc -d tests/classes tests/src/ecoop/bmarks/smtp/client/messages/CompileMessagesHack.sj
+bin/sessionjc -d tests/classes -cp tests/classes tests/src/ecoop/bmarks/smtp/client/Client.sj
+bin/sessionjc -d tests/classes -cp tests/classes tests/src/ecoop/bmarks/smtp/client/SmtpClientFormatter.sj
+bin/sessionjc -d tests/classes -cp tests/classes tests/src/ecoop/bmarks/smtp/client/DummyClient.sj
+
+bin/sessionjc -d tests/classes tests/src/ecoop/bmarks/smtp/messages/CompileMessagesHack.sj
+bin/sessionjc -d tests/classes -cp tests/classes tests/src/ecoop/bmarks/smtp/SmtpServerFormatter.sj
+bin/sessionjc -d tests/classes -cp tests/classes tests/src/ecoop/bmarks/smtp/event/Server.sj
+bin/sessionjc -d tests/classes -cp tests/classes tests/src/ecoop/bmarks/smtp/thread/Server.sj

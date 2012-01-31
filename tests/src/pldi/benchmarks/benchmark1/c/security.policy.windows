@@ -1,0 +1,4 @@
+grant codeBase "file:///c:/cygwin/home/Raymond/wrk/eclipse/sessionj-cvs/tests/classes/"
+{
+  permission java.security.AllPermission;
+};

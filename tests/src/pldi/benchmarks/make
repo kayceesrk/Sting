@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# tests/src/pldi/benchmarks/make
+
+shared=false
+b1=false
+b2=false
+b3=false
+
+while true;
+do
+  case $1 in
+    "")
+      break
+      ;;
+    all) 
+      shared=true
+      b1=true
+      b2=true
+      b3=true
+      break
+      ;;
+    s)
+      shared=true
+      shift
+      ;;
+    1) 
+      b1=true
+      shift
+      ;;      
+    2)
+      b2=true
+      shift
+      ;;
+    3)
+      b3=true
+      shift
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+
+if [ "$shared" == true ];
+then
+  bin/sessionjc tests/src/pldi/benchmarks/BinaryTree.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc tests/src/pldi/benchmarks/NoAliasBinaryTree.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  bin/sessionjc tests/src/pldi/benchmarks/Pause.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
+
+
+if [ "$b1" == "true" ];
+then
+  tests/src/pldi/benchmarks/benchmark1/make all
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
+
+
+if [ "$b2" == "true" ];
+then
+  tests/src/pldi/benchmarks/benchmark2/make all
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
+
+
+if [ "$b3" == "true" ];
+then
+  tests/src/pldi/benchmarks/benchmark3/make all
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi

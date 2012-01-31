@@ -1,0 +1,4 @@
+grant codeBase "file:///home/.../sessionj/tests/classes/"
+{
+  permission java.security.AllPermission;
+};

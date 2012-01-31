@@ -1,0 +1,45 @@
+<project name="myMain" default="run">  
+   
+     <target name="clean">  
+         <delete includeemptydirs="true">  
+             <fileset dir="class" includes="**/*"/>  
+         </delete>  
+     </target>  
+       
+     <taskdef name="javaflow" classname="org.apache.commons.javaflow.ant.AntRewriteTask">  
+         <classpath> 
+             <pathelement location="class/"/> 
+             <pathelement location="javaflow.jar"/>  
+	     <pathelement location="bcel.jar"/>
+	     <pathelement location="commons.jar"/>
+         </classpath>  
+     </taskdef>  
+       
+     <target name="build" depends="clean">  
+           
+         <javac srcdir="." destdir=".">  
+             <classpath> 
+	         <pathelement location="."/>
+                 <pathelement location="javaflow.jar"/>
+		 <pathelement location="bcel.jar"/>
+		 <pathelement location="commons.jar"/>  
+             </classpath>  
+         </javac>  
+           
+         <javaflow srcdir="." dstdir="class">  
+             <include name="**/*.class"/>  
+         </javaflow>  
+           
+     </target>  
+       
+     <target name="run" depends="build">  
+         <java classname="Test1"  fork="true" dir=".">  
+             <classpath>
+	         <pathelement location="class/"/>
+                 <pathelement location="javaflow.jar"/>
+		 <pathelement location="bcel.jar"/>
+		 <pathelement location="commons.jar"/>
+             </classpath>  
+         </java>  
+     </target>  
+ </project>  

@@ -1,0 +1,281 @@
+//$ bin/sessionjc tests/src/nicdevice/NICDevice.sj -d tests/classes/
+//$ bin/sessionj -cp tests/classes/ nicdevice.NICDevice
+
+package nicdevice;
+
+import java.io.Serializable;
+import java.util.*;
+
+import sj.runtime.*;
+import sj.runtime.net.*;
+
+public class NICDevice 
+{
+	private class DeviceInfo implements Serializable { }
+	private class SetParameters implements Serializable { }
+	private class InvalidParameters implements Serializable { }
+	private class PacketForReceive implements Serializable { }
+	private class BadPacketSize implements Serializable { }
+	private class ReceivedPacket implements Serializable { }
+
+	private class NicEvent implements Serializable { }
+	private class AckEvent implements Serializable { }
+
+	private protocol NicEvent 
+	{ 
+		begin
+		.rec READY[
+			!<NicEvent>
+			.?(AckEvent)
+			.#READY
+		] 
+	}
+
+	private protocol IOConfigureBegin
+	{
+		rec IO_CONFIGURE_BEGIN[            
+			?(@NicEvent) // RegisterForEvents
+			.?(SetParameters)
+			.!{                     
+				InvalidParameters: 
+					!<InvalidParameters> // They have choice based on message type: we don't, so we have to encode using branch.
+					.#IO_CONFIGURE_BEGIN,
+				Success:
+					?{                     
+						StartIO: ,
+						ConfigureIO: 
+							#IO_CONFIGURE_BEGIN
+					}				
+			}			
+		]	
+	}
+
+	private protocol IORunning
+	{
+		rec IO_RUNNING[		               
+			?{
+				PacketForReceive: 
+					?(PacketForReceive)
+					.!{
+						Success: , 
+						BadPacketSize: 
+							!<BadPacketSize>
+					}
+					.#IO_RUNNING,
+				GetReceivedPacket: 
+					!{
+						ReceivedPacket: 
+							!<ReceivedPacket>, 
+						NoPacket: 
+					}
+					.#IO_RUNNING
+			}
+		]	
+	}
+
+	private protocol NicDevice
+	{
+		begin 
+		.!<DeviceInfo>             
+		.@IOConfigureBegin
+		.@IORunning
+	}
+	
+	public NICDevice(String server, int port) throws Exception
+	{			
+		SJServerAddress c = SJServerAddress.create(NicDevice, server, port);			
+		SJSocket s = SJFSocket.create(c);
+		SJSocket s2 = null;
+	
+		try (s, s2)
+		{		
+			s.request(); // More realistic to be a server socket?
+					
+			s.send(new DeviceInfo());		
+			
+			//s2 = IO_CONFIGURE_BEGIN(s);
+			//IO_RUNNING(s2);
+		
+			s2 = meth1(s);
+			meth2(s2);
+		}
+		finally
+		{
+
+		}
+	}	
+
+	private @IORunning meth1(@IOConfigureBegin.@IORunning s) throws ClassNotFoundException, SJIOException
+	{	
+		s.recursion(IO_CONFIGURE_BEGIN)
+		{
+			SJServerAddress addr = (@NicEvent) s.receiveServerAddress();
+
+			// Use the server-address to open a NicEvent session with the client. This session would probably be spawned to run in a separate thread.
+
+			SetParameters sp = s.receive();
+
+			if (true) // Some condition on rfe and sp.
+			{
+				s.outbranch(InvalidParameters)
+				{
+					s.send(new InvalidParameters());
+
+					s.recurse(IO_CONFIGURE_BEGIN);
+				}
+			}
+			else
+			{
+				s.outbranch(Success)
+				{
+					s.inbranch()
+					{
+						case StartIO:
+						{
+
+						}
+						case ConfigureIO:
+						{
+							s.recurse(IO_CONFIGURE_BEGIN);
+						}
+					}
+				}				
+			}								
+		}
+		
+		return s;
+	}
+	
+	private void meth2(@IORunning s) throws ClassNotFoundException, SJIOException
+	{
+		s.recursion(IO_RUNNING)
+		{
+			s.inbranch()
+			{
+				case PacketForReceive:
+				{
+					PacketForReceive pack = s.receive();
+
+					if (true) // Check the received pack buffer is the correct size.
+					{
+						s.outbranch(Success)
+						{
+
+						}
+					}
+					else
+					{
+						s.outbranch(BadPacketSize)
+						{
+							s.send(new BadPacketSize());	
+						}
+					}
+
+					s.recurse(IO_RUNNING);
+				}
+				case GetReceivedPacket:
+				{
+					if (true) // Check there is an available packet for receive.
+					{
+						s.outbranch(ReceivedPacket)
+						{
+							s.send(new ReceivedPacket());
+						}
+					}
+					else
+					{
+						s.outbranch(NoPacket)
+						{
+
+						}
+					}
+
+					s.recurse(IO_RUNNING);
+				}
+			}
+		}
+	}
+	
+	private sessrec @IORunning IO_CONFIGURE_BEGIN(@IOConfigureBegin.@IORunning s) throws ClassNotFoundException, SJIOException
+	{
+		SJServerAddress addr = (@NicEvent) s.receive();
+				
+		// Use the server-address to open a NicEvent session with the client. This session would probably be spawned to run in a separate thread.
+
+		SetParameters sp = s.receive();
+
+		if (false) // Some boolean condition on rfe and sp.
+		{
+			s.outbranch(InvalidParameters)
+			{
+				s.send(new InvalidParameters());
+
+				return IO_CONFIGURE_BEGIN(s);
+			}
+		}
+		else
+		{
+			s.outbranch(Success)
+			{
+				s.inbranch()
+				{
+					case StartIO:
+					{
+						return s;
+					}
+					case ConfigureIO:
+					{
+						return IO_CONFIGURE_BEGIN(s);
+					}
+				}
+			}				
+		}				
+	}
+	
+	private sessrec void IO_RUNNING(@IORunning s) throws ClassNotFoundException, SJIOException
+	{
+		s.inbranch()
+		{
+			case PacketForReceive:
+			{
+				PacketForReceive pack = s.receive();
+
+				if (true) // Check the received pack buffer is the correct size.
+				{
+					s.outbranch(Success)
+					{
+
+					}
+				}
+				else
+				{
+					s.outbranch(BadPacketSize)
+					{
+						s.send(new BadPacketSize());	
+					}
+				}
+
+				IO_RUNNING(s);
+			}
+			case GetReceivedPacket:
+			{
+				if (true) // Check there is an available packet for receive.
+				{
+					s.outbranch(ReceivedPacket)
+					{
+						s.send(new ReceivedPacket());
+					}
+				}
+				else
+				{
+					s.outbranch(NoPacket)
+					{
+
+					}
+				}
+
+				IO_RUNNING(s);
+			}
+		}	
+	}
+}

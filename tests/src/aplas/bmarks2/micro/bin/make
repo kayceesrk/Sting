@@ -1,0 +1,167 @@
+#!/bin/bash
+#
+#Run from the sessionj root directory:
+#tests/src/aplas/bmarks2/micro/bin/make localhost all 
+
+
+# Script configuration parameters.
+
+#compiler=bin/sessionjc # Compiler.
+classpath=tests/classes # Classpath.
+destination=tests/classes # Output directory.
+
+
+# Functions.
+
+compile()
+{
+  echo Compiling: $1
+  $compiler -cp $classpath $1 -d $destination
+  if [ $? -ne 0 ]; then exit 1; fi
+}
+
+
+# Command line arguments.
+
+c=false # Core/common.
+#jt=false # Java threads.
+#je=false # Java events (NIO).
+st=false # SJ threads.
+se=false # SJ events.
+
+if [ "$1" == "localhost" ];
+then
+  compiler=bin/sessionjc
+else 
+  if [ "$1" == "camelot" ];
+  then
+    compiler=bin/csessionjc
+  else
+    echo Invalid environment: $1
+  exit 1
+  fi
+fi
+
+shift
+
+while true;
+do
+  case $1 in
+    "")
+      break
+      ;;
+    all) 
+      c=true
+   #   jt=true
+   #   je=true
+      st=true
+      se=true
+      break
+      ;;
+    c)
+      c=true
+      shift
+      ;;       
+   # jt) 
+     # jt=true
+    #  shift
+    #  ;;      
+   # je)
+   #   je=true
+   #   shift
+   #   ;;
+    st)
+      st=true
+      shift
+      ;;
+    se)
+      se=true
+      shift
+      ;;     
+    *)
+      shift
+      ;;
+  esac
+done
+
+
+# Main.
+
+echo Parameters: compiler=$compiler, classpath=$classpath, destination=$destination 
+
+
+if [ "$c" == "true" ];
+then  
+  path=tests/src/aplas/bmarks2/micro
+  
+  for f in Common ClientMessage ServerMessage Server Client LoadClient SignalServer SignalClient; do
+    compile $path/$f.sj
+  done
+fi
+
+#if [ "$jt" == "true" ];
+#then  
+#  path=tests/src/ecoop/bmarks2/micro/java/thread/server
+#  
+#  for f in Server; do
+#    compile $path/$f.sj
+#  done
+  
+#  path=tests/src/aplas/bmarks2/micro/java/thread/client
+  
+#  for f in LoadClient TimerClient; do
+#    compile $path/$f.sj
+#  done
+#fi
+
+#if [ "$je" == "true" ];
+#then  
+#  path=tests/src/ecoop/bmarks2/micro/java/event/server
+#  
+#  for f in Server; do
+#    compile $path/$f.sj
+#  done
+#  
+#  path=tests/src/ecoop/bmarks2/micro/java/event/client
+#  
+#  for f in LoadClient TimerClient; do
+#    compile $path/$f.sj
+#  done
+#fi
+
+if [ "$st" == "true" ];
+then  
+  path=tests/src/aplas/bmarks2/micro/te/thread/server
+  
+  for f in Server; do
+    compile $path/$f.sj
+  done
+fi
+
+if [ "$se" == "true" ];
+then  
+  path=tests/src/aplas/bmarks2/micro/te/event/server
+  
+  for f in Server; do
+    compile $path/$f.sj
+  done
+fi
+
+if [ "$st" == "true" -o "$se" == "true" ];
+then  
+  path=tests/src/aplas/bmarks2/micro/te/client
+  
+  for f in LoadClient; do
+    compile $path/$f.sj
+  done
+fi
+
+if [ "$c" == "true" ];
+then  
+  path=tests/src/aplas/bmarks2/micro
+  
+  for f in ServerRunner ClientRunner; do
+    compile $path/$f.sj
+  done
+fi  
+ 

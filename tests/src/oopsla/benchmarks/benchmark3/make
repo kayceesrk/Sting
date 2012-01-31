@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# Run from the sessionj root directory:
+#$ tests/src/benchmarks/benchmark3/make all
+
+
+a=false
+b=false
+c=false
+
+while true;
+do
+  case $1 in
+    "")
+      break
+      ;;
+    all) 
+      a=true
+      b=true
+      c=true
+      break
+      ;;
+    a) 
+      a=true
+      shift
+      ;;      
+    b)
+      b=true
+      shift
+      ;;
+    c)
+      c=true
+      shift
+      ;;      
+    *)
+      shift
+      ;;
+  esac
+done
+
+
+if [ "$c" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark3.c.KillBobCarol:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/c/KillBobCarol.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+
+  echo "Compiling benchmarks.benchmark3.c.Carol:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/c/Carol.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi  
+  
+  echo "Compiling benchmarks.benchmark3.c.Bob:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/c/Bob.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+
+  echo "Compiling benchmarks.benchmark3.c.Alice:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/c/Alice.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi  
+fi
+
+
+if [ "$b" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark3.b.Carol:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/b/Carol.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+
+	echo "Compiling benchmarks.benchmark3.b.Bob:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/b/Bob.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi  
+fi
+
+
+if [ "$a" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark3.a.KillBobCarol:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/a/KillBobCarol.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+
+  echo "Compiling benchmarks.benchmark3.a.Carol:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/a/Carol.sj -d tests/classes/  
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling benchmarks.benchmark3.a.Bob:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/a/Bob.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+
+  echo "Compiling benchmarks.benchmark3.a.Alice:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/a/Alice.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi  
+  
+  echo "Compiling benchmarks.benchmark3.a.AliceCarol:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark3/a/AliceCarol.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi  
+fi

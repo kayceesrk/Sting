@@ -1,0 +1,159 @@
+#!/bin/bash
+
+# Run from the sessionj root directory:
+# tests/src/benchmarks/benchmark1/make all
+
+
+sj_dir=../sj-prev # Assumes relative position of directory for preceding SJ version.
+sessionj_dir=../sessionj
+
+
+a=false
+b=false
+c=false
+d=false
+e=false
+
+while true;
+do
+  case $1 in
+    "")
+      break
+      ;;
+    all) 
+      a=true
+      b=true
+      c=true
+      d=true
+      e=true
+      break
+      ;;
+    a) 
+      a=true
+      shift
+      ;;      
+    b)
+      b=true
+      shift
+      ;;
+    c)
+      c=true
+      shift
+      ;;
+    d)
+      d=true
+      shift
+      ;;
+    e)
+      e=true
+      shift
+      ;;  
+    *)
+      shift
+      ;;
+  esac
+done
+
+
+if [ "$a" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark1.a.Server:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/a/Server.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling benchmarks.benchmark1.a.Client:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/a/Client.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
+
+
+if [ "$b" == "true" ];
+then
+  cd "$sj_dir"/tests/src/benchmarks
+
+  cp ../../../"$sessionj_dir"/tests/src/benchmarks/BinaryTree.sj .
+
+  cd ../../..
+
+  echo "Compiling benchmarks.BinaryTree:"
+  bin/sjc tests/src/benchmarks/BinaryTree.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+
+  cd tests/src/benchmarks/benchmark1/b
+
+  cp ../../../../../"$sessionj_dir"/tests/src/benchmarks/benchmark1/b/*.sj .
+  cp ../../../../../"$sessionj_dir"/tests/src/benchmarks/benchmark1/b/*.sh .
+
+  cd ../../../../..
+
+  echo "Compiling benchmarks.benchmark1.b.Kill:"
+  bin/sjc -cp tests/classes/ tests/src/benchmarks/benchmark1/b/Kill.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+
+  echo "Compiling benchmarks.benchmark1.b.Server:"
+  bin/sjc -cp tests/classes/ tests/src/benchmarks/benchmark1/b/Server.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling benchmarks.benchmark1.b.Client:"
+  bin/sjc -cp tests/classes/ tests/src/benchmarks/benchmark1/b/Client.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+      
+  cd "$sessionj_dir"
+fi
+
+
+if [ "$c" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark1.c.Kill:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/c/Kill.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling benchmarks.benchmark1.c.Server:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/c/Server.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling benchmarks.benchmark1.c.ServerImpl:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/c/ServerImpl.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling benchmarks.benchmark1.c.Client:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/c/Client.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
+
+if [ "$d" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark1.d.Kill:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/d/Kill.sj -d tests/classes/  
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling benchmarks.benchmark1.d.Server:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/d/Server.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling benchmarks.benchmark1.d.Client:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/d/Client.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi  
+fi
+
+if [ "$e" == "true" ];
+then
+  echo "Compiling benchmarks.benchmark1.e.BigObject:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/e/BigObject.sj -d tests/classes/  
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+
+  #if [ "$a" != "true" ];
+  #then
+  #  echo "Compiling benchmarks.Kill:"
+  #  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/Kill.sj -d tests/classes/  
+  #  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  #fi
+  
+  echo "Compiling benchmarks.benchmark1.e.Server:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/e/Server.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+  
+  echo "Compiling benchmarks.benchmark1.e.Client:"
+  bin/sessionjc -cp tests/classes/ tests/src/benchmarks/benchmark1/e/Client.sj -d tests/classes/
+  if [ $? -ne 0 ]; then exit 1; else echo; fi
+fi
