@@ -27,8 +27,9 @@ COMPILING SJ PROGRAMS AND RUNNING THEM
 4. Run with:
 > sessionj Foo
 
-TEST PROGRAMS:
+TEST PROGRAMS
 -------------
+
 - All our test files are under the directory of tests/src/purdue
 - We mainly have three test sets: batching, continuation exporting, and chaining.
 - To run any test, first you need to build the compiler and the runtime by
@@ -37,6 +38,7 @@ TEST PROGRAMS:
 
 Sting extensions to Sessionj
 ----------------------------
+
 - Support for multiparty session types
   - Language extension for global session types
   - Projections for local session types
