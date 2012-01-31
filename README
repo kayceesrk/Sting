@@ -3,7 +3,13 @@ STING - An Optimizing Session Type Compiler for Java
 
 STING is an optimizing session type compiler for Java from Purdue University.
 STING is an extension of sessionj (http://code.google.com/p/sessionj/) from
-Imperial College London. This implementation uses Polyglot compiler framework.
+Imperial College London. This implementation uses Polyglot compiler framework
+(http://www.cs.cornell.edu/projects/polyglot/) and Javaflow continuation library
+(http://commons.apache.org/sandbox/javaflow/).
+
+For more information on STING compiler, please refer to our paper "Efficient
+Session Type Guided Distributed Interaction"
+(http://www.springerlink.com/content/d3g7075p44904406/).
 
 BUILDING
 --------
