@@ -8,7 +8,7 @@ Imperial College London. This implementation uses Polyglot compiler framework.
 BUILDING
 --------
 
-Run
+Switch to trunk directory and run
 > ant jar
 to build the source. You need Apache Ant and a Java 1.6 JDK for that.
 
