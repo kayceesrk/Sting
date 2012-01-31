@@ -43,7 +43,7 @@ Sting extensions to Sessionj
   - Language extension for global session types
   - Projections for local session types
   - local session type checking against the session implementation
-- Compiler extensions for session type optimization
+- Compiler extensions for session type guided optimizations
   - Batching
   - Chaining
   - Continuation exporting
