@@ -42,6 +42,7 @@ public class SJSessionOperationParser extends ContextVisitor
 		UNTYPED_SOCKET_OPERATIONS.add("getSocketObject"); //<By MQ>
 		UNTYPED_SOCKET_OPERATIONS.add("destroy"); //<By MQ>
 		UNTYPED_SOCKET_OPERATIONS.add("reconnectContinuation"); //<By MQ>
+		UNTYPED_SOCKET_OPERATIONS.add("flush"); //<By MQ>
 	}
 	
 	private static final Set<String> SJ_BASIC_OPERATION_KEYWORDS = new HashSet<String>();

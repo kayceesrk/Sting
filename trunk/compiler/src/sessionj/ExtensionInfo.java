@@ -147,12 +147,12 @@ public class ExtensionInfo extends polyglot.frontend.JLExtensionInfo {
               return g;
           }*/
 		
-		public Goal SJVariableParsing(Job job)
+	        public Goal SJVariableParsing(Job job)
 		{
 			return createGoal(job, SJVariableParser.class, SJCreateOperationParsing(job));
 		}
 	
-		public Goal SJSessionTryDisambiguation(Job job)
+	        public Goal SJSessionTryDisambiguation(Job job)
 		{
 			return createGoal(job, SJSessionTryDisambiguator.class, SJVariableParsing(job));
 		}	
@@ -336,7 +336,7 @@ public class ExtensionInfo extends polyglot.frontend.JLExtensionInfo {
 		
 		public Goal SJSendTranslation(Job job) // Needs to come before noalias translation.
 		{
-			return createGoal(job, SJSendTranslator.class, SJSessionVisiting(job));
+		    return createGoal(job, SJSendTranslator.class, SJSessionVisiting(job));
 		}
 		
 		/*public Goal SJSessionVisiting2(final Job job) // All session type has been information built, checked and recorded.
@@ -394,11 +394,19 @@ public class ExtensionInfo extends polyglot.frontend.JLExtensionInfo {
 		}*/
 		
 		// All SJSessionVisitor passes must come before this one: this translator destroys e.g. SJInbranch, so "automatic" session context management by the SJSessionVisitor framework won't work anymore.
+    	    //<By MQ>
+	    public Goal SJBatchingWithDataFlowAnalyzer(Job job) // Needs to come before noalias translation.
+	    {
+		return createGoal(job, SJBatchingWithDataFlow.class, SJUnicastOptimization(job));
+	    }
+	    //</By MQ>
+
 		public Goal SJCompoundOperationTranslation(Job job)
 		{
       //return createGoal(job, SJCompoundOperationTranslator.class, SJRecursiveSessionCallTranslation(job));
-			return createGoal(job, SJCompoundOperationTranslator.class, SJUnicastOptimization(job));
+			return createGoal(job, SJCompoundOperationTranslator.class, SJBatchingWithDataFlowAnalyzer(job));
 		}
+
 
     public Goal Serialized(final Job job)
 		{
@@ -416,7 +424,7 @@ public class ExtensionInfo extends polyglot.frontend.JLExtensionInfo {
                         List l = new ArrayList();
 
                         l.addAll(super.prerequisiteGoals(scheduler));
-                        //l.add(SJNoAliasTranslation(job));
+                        //l.add(SJBatchingWithDataFlowAnalyzer(job));
                         l.add(SJCompoundOperationTranslation(job));
                         //l.add(SJRecursiveSessionCallTranslation(job));
 

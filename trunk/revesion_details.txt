@@ -91,3 +91,21 @@ No #8:
 
 Notes:
 1. You can't use continuation exporting if you have non-serializable objects in the stack.
+
+------------------------------------------------------------------------------
+No #9:
+
+1. Fixed a bug in batching.
+2. Added the phone-vendor-PC example of the paper.
+
+------------------------------------------------------------------------------
+No #10:
+
+1. Added batching with dataflow analysis along with examples.
+
+------------------------------------------------------------------------------
+No #11:
+
+1. Exposed a flush() and flush(String participant) API functions from the SJSocketGroup class.
+
+------------------------------------------------------------------------------

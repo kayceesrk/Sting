@@ -1,0 +1,22 @@
+This is SJ (or sessionj), a Java 1.2 extension that support distributed programming with session types.
+
+BUILDING
+
+Run
+> ant jar
+to build the source. You need Apache Ant and a Java 1.6 JDK for that.
+
+COMPILING SJ PROGRAMS AND RUNNING THEM
+
+1. Add the bin/ directory to your path.
+2. Write an SJ program, say Foo.sj.
+3. Compile it using:
+> sessionjc Foo.sj [-cp a classpath if needed] [-d destination for generated .java and .class files]
+4. Run with:
+> sessionj Foo
+
+-----------------------------------------------
+Purdue University Test programs:
+- All our test files are under the directory of tests/src/purdue
+- We mainly have three test sets: batching, continuation exporting, and chaining.
+- To run any test, first you need to build the compiler and the runtime by typing "ant jar" on the root directory. Then, compile and run the sj files as described within each file. 

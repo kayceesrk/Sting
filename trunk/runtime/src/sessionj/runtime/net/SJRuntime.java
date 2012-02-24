@@ -224,7 +224,6 @@ public class SJRuntime
 	public static void connectSocket(SJRequestingSocket s) throws SJIOException
 	{		
 		SJServerIdentifier si = s.getServerIdentifier();
-		System.out.println("si = " + si);
 		String targetHostAddress;
 		
 		try
@@ -848,6 +847,7 @@ public class SJRuntime
     }
 
     public static void negotiateNormalInwhile(String p, SJSocket s) throws SJIOException {	
+	s.flush();
 	if(s instanceof SJSocketGroup)
 	    ((SJSocketGroup)s).isPeerInterruptibleOut(p, false);
 	else

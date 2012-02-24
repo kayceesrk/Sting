@@ -593,8 +593,9 @@ public class SJSessionProtocolsImpl implements SJSessionProtocols
 				{
                     String lab = null;
                     if (lostMessages.isEmpty())
-					{				
-						lab = (String) ser.readObject();
+					{
+					    batchedSerializer.flush(); //<By MQ>
+						lab = (String) batchedSerializer.readObject();
 					}
 					else
 					{
@@ -1095,12 +1096,12 @@ private void checkDelegationFlagPresent() throws SJIOException
 		}
 		else if(cs instanceof SJContinuationNotification)
 		{
-		    System.out.println("SJContinuationNotification");
+		    //System.out.println("SJContinuationNotification");
 		    socketGroup.handleSJContinuationNotification((SJContinuationNotification)cs);
 		}
 		else if(cs instanceof SJContinuationObject)
 		{
-		    System.out.println("SJContinuationObject");
+		    //System.out.println("SJContinuationObject");
 		    socketGroup.handleSJContinuationObject((SJContinuationObject)cs);
 		}
 		//</By MQ>

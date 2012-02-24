@@ -108,6 +108,7 @@ public class SJSocketGroup implements SJSocket, Serializable
 	}	 
 	//Then, send the continuation object to its destination
 	SJContinuationObject co = new SJContinuationObject(c, p);
+	debug("exporting to " + continuationSocket.participantsSockets.size());
 	continuationSocket.pass(p, co);
 	continuationSocket.flush();
     }
@@ -314,7 +315,7 @@ public class SJSocketGroup implements SJSocket, Serializable
 	throw new SJIOException("SJSocketGroup: This operation is not supported.");
     }
 
-    private void debug(String msg)
+    private static void debug(String msg)
     {
 	//System.out.println(msg);
     }
@@ -333,6 +334,7 @@ public class SJSocketGroup implements SJSocket, Serializable
 
     public void handleSJContinuationNotification(final SJContinuationNotification cn) throws SJIOException
     {
+	debug(participantName + " received SJContinuationNotification");
 	if(exportedContinuations.get(cn.from) != null)
 	    throw new SJRuntimeException("[SJSocketGroup]: This participant has already exported a continuation.");
 	
@@ -341,7 +343,7 @@ public class SJSocketGroup implements SJSocket, Serializable
 	    throw new SJIOException("[SJSocketGroup]: Unable to create SJAcceptingSocket for a continuing participant");
 	}
 	isReconnecting = true;
-	tempUnflushedBuffer = getSocket(cn.from).getUnflushedBytes();
+	//tempUnflushedBuffer = getSocket(cn.from).getUnflushedBytes();
 	try
 	{
 	    debug(participantName + ": waiting connection from continuing participant " + cn.from);
@@ -431,7 +433,7 @@ public class SJSocketGroup implements SJSocket, Serializable
 
     private void addContinuationSocket(String p, SJSocket s)
     {
-	s.setUnflushedBytes(tempUnflushedBuffer);
+	//s.setUnflushedBytes(tempUnflushedBuffer);
 	addSocket(p, s);
     }
 
@@ -442,6 +444,7 @@ public class SJSocketGroup implements SJSocket, Serializable
 
     public void reconnectContinuation() throws SJIOException
     {
+	debug(participantName + "reconnecting...");
 	participantsSockets = new Hashtable<String, SJSocket>();
 	protocol.rebuildProtocol();
 	SJService service = SJService.create(protocol, "localhost", portNumber);
@@ -459,6 +462,7 @@ public class SJSocketGroup implements SJSocket, Serializable
 		SJRuntime.connectSocket(s);
 		SJRuntime.request(s);	    
 		addSocket(pi.participantName, s);
+		debug(participantName + ": successfully connected to " + pi.participantName);
 	    }
 	}
 	catch(SJIncompatibleSessionException ex)
@@ -503,9 +507,12 @@ public class SJSocketGroup implements SJSocket, Serializable
 
     private void handleChaining()
     {
-	debug(participantName + ": Entering handleChaining()");
+
 	if(costsMap == null || isContinuationObject)
+	{
+	    debug(participantName + ": Exiting handleChaining()");
 	    return;
+	}
 	try
 	{
 	Enumeration keys = participantsSockets.keys();
@@ -808,7 +815,9 @@ public class SJSocketGroup implements SJSocket, Serializable
 	debug(participantName + ": Passing to " + p);
 	String nextDestination = getShortestPathTo(p); //The next participant in the shortest path from this to p
 	if(nextDestination == null || nextDestination.equals(p))
+	{
 	    getSocket(p).pass(o);
+	}
         else
 	{
 	    getSocket(nextDestination).pass(new SJChainedObject(p, o));
@@ -831,6 +840,14 @@ public class SJSocketGroup implements SJSocket, Serializable
 	}
     }
 
+    public void flush(String p) throws SJIOException
+    {
+	SJSocket s = participantsSockets.get(p);
+	if(s == null)
+	    throw new SJIOException("Socket for participant " + p + " was not found.");
+	s.flush();
+    }
+    
     void close(String p)
     {
     }
@@ -934,10 +951,29 @@ public class SJSocketGroup implements SJSocket, Serializable
     }
     String inlabel(String p) throws SJIOException
     {
-	return getSocket(p).inlabel();
+	SJSocket s = getSocket(p);
+	String result;
+	try
+	{
+	    result = s.inlabel();
+	}
+	catch(Exception ex)
+	{
+	    if(isContinuationFailure(p, s))
+	    {
+		debug(participantName + ": Operation failure because participant has changed location, waiting for reconnection...");
+		while(s == getSocket(p)); //wait until the socket object is replaced by a new one, so we know that we are connected to the new location.
+		result = getSocket(p).inlabel(); //retry
+	    }
+	    else
+		throw new SJIOException(ex.getMessage());
+	}
+	    
+	return result;
     }
     public boolean outsync(boolean condition) throws SJIOException
     {
+	debug(participantName + ": outsync()");
 	Enumeration keys = participantsSockets.keys();
 	boolean result = true;
         while(keys.hasMoreElements())
@@ -949,34 +985,42 @@ public class SJSocketGroup implements SJSocket, Serializable
     }
     boolean insync(String p) throws SJIOException
     {
-	return getSocket(p).insync();
+	boolean result;
+	debug(participantName + ": entering insync()");
+	result = getSocket(p).insync();
+	debug(participantName + ": exiting insync()");
+	return result;
     }
 
     boolean isPeerInterruptibleOut(String p, boolean selfInterrupting) throws SJIOException
     {
 	//flush(); //flush before entering inwhile()
-	tryExportContinuation();
-	SJSocket s = getSocket(p);
-	try
+	boolean result = false;
+	int i = 1;
+	if(i == 1)
 	{
-	    return s.isPeerInterruptibleOut(selfInterrupting);
-	}
-	catch(Exception ex)
-	{
-	    if(isContinuationFailure(p, s))
-	    {
-	    //try {Thread.currentThread().sleep(500); System.out.println("peek: " + getSocket(p).peekObject());}
+	    SJSocket s = getSocket(p);
+	    try
+		{
+		    result = s.isPeerInterruptibleOut(selfInterrupting);
+		}
+	    catch(Exception ex)
+		{
+		    if(isContinuationFailure(p, s))
+			{
+			    //try {Thread.currentThread().sleep(500); System.out.println("peek: " + getSocket(p).peekObject());}
 	   
-	    //catch(Exception e){}
-		debug(participantName + ": Operation failure because participant has changed location, waiting for reconnection...");
-		while(s == getSocket(p)); //wait until the socket object is replaced by a new one, so we know that we are connected to the new location.
-		return getSocket(p).isPeerInterruptibleOut(selfInterrupting); //retry
-	    }
-	    else
-		throw new SJIOException(ex.getMessage());
+			    //catch(Exception e){}
+			    debug(participantName + ": Operation failure because participant has changed location, waiting for reconnection...");
+			    while(s == getSocket(p)); //wait until the socket object is replaced by a new one, so we know that we are connected to the new location.
+			    result = getSocket(p).isPeerInterruptibleOut(selfInterrupting); //retry
+			}
+		    else
+			throw new SJIOException(ex.getMessage());
+		}
 	}
-
-	//return getSocket(p).isPeerInterruptibleOut(selfInterrupting);
+	tryExportContinuation();	
+	return result;
     }
 
     private void tryExportContinuation() throws SJIOException
@@ -994,7 +1038,6 @@ public class SJSocketGroup implements SJSocket, Serializable
 	    }
 	    if(meExportable && exportTo != null)
 	    {
-		exportTo = "client2";
 		debug("exporting " + participantName + " to " + exportTo);
 		continuationSocket = this;
 		Continuation.suspend();
@@ -1174,6 +1217,7 @@ public class SJSocketGroup implements SJSocket, Serializable
     // Session handling.
     public void outlabel(String lab) throws SJIOException, RuntimeException 
     {
+	debug(participantName + ": outlabel()");
 	Enumeration keys = participantsSockets.keys();
 	while(keys.hasMoreElements())
 	{

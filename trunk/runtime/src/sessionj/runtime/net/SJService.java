@@ -105,7 +105,6 @@ public class SJService implements SJServiceInterface
                 {
 		    if(pi.participantName.equals(participantName))
 			return pi.si;
-		    System.out.println(pi.si);
 		}
 		return null;
 	}
